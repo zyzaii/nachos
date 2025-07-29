@@ -1,0 +1,1 @@
+This is the folder about the system for further info about what is this systm for the new collaborators to understand. This is the initial commit for practice.
