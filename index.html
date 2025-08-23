@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belle & Chic | Minimalist Girls' Fashion</title>
+    <title>For My Dearest Aki</title>
     <style>
         :root {
-            --primary: #f8e1e4; /* Soft pink */
-            --secondary: #333333; /* Dark gray */
-            --accent: #d4a5a5; /* Muted rose */
-            --text: #3a3a3a;
-            --light: #ffffff;
+            --primary: #ffd6e7; /* Soft baby pink */
+            --secondary: #ff85a2; /* Medium pink */
+            --accent: #ff4f91; /* Bright pink */
+            --text: #5a3d5c; /* Soft purple text */
+            --light: #fff9fb; /* Very light pink */
+            --dark-pink: #d64b76;
         }
         
         * {
@@ -24,6 +25,7 @@
             background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd6e7' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
         
         /* Header */
@@ -34,6 +36,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 2px dashed var(--secondary);
         }
         
         .nav-container {
@@ -47,7 +50,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--secondary);
+            color: var(--dark-pink);
             text-decoration: none;
         }
         
@@ -89,15 +92,34 @@
         
         /* Hero Section */
         .hero {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #ffe6ef 100%);
             padding: 5rem 5%;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "❤";
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 300;
+            color: var(--dark-pink);
         }
         
         .hero p {
@@ -112,22 +134,25 @@
             color: var(--light);
             padding: 0.8rem 2rem;
             text-decoration: none;
-            border-radius: 2px;
+            border-radius: 30px;
             font-size: 0.9rem;
             letter-spacing: 1px;
             transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn:hover {
             background-color: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
-        /* Featured Products */
-        .featured {
+        /* Appreciation Section */
+        .appreciation {
             padding: 5rem 5%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
         }
         
         .section-title {
@@ -135,137 +160,229 @@
             margin-bottom: 3rem;
             font-weight: 300;
             font-size: 1.8rem;
+            color: var(--dark-pink);
+            position: relative;
+            display: inline-block;
         }
         
-        .products {
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .letter-content {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+            position: relative;
+            border: 1px solid var(--primary);
+        }
+        
+        .letter-content::before {
+            content: """;
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 8rem;
+            color: var(--primary);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .letter-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 500;
+            margin-top: 2rem;
+        }
+        
+        /* Memories Section */
+        .memories {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .memory-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 2rem;
         }
         
-        .product-card {
-            background-color: var(--light);
-            border-radius: 3px;
+        .memory-card {
+            background-color: white;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: transform 0.3s;
+            position: relative;
         }
         
-        .product-card:hover {
-            transform: translateY(-5px);
+        .memory-card:hover {
+            transform: translateY(-5px) rotate(2deg);
         }
         
-        .product-img {
-            height: 300px;
+        .memory-img {
+            height: 200px;
             background-color: var(--primary);
             background-size: cover;
             background-position: center;
         }
         
-        .product-info {
+        .memory-info {
             padding: 1.5rem;
         }
         
-        .product-title {
-            font-size: 1rem;
+        .memory-title {
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark-pink);
         }
         
-        .product-price {
+        .memory-desc {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        .heart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--light);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--accent);
-            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Reasons Section */
+        .reasons {
+            background-color: var(--primary);
+            padding: 4rem 5%;
+        }
+        
+        .reasons-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .reasons-list {
+            list-style: none;
+            counter-reset: reason-counter;
+        }
+        
+        .reasons-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .reasons-list li::before {
+            counter-increment: reason-counter;
+            content: counter(reason-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
         
         /* Newsletter */
-        .newsletter {
-            background-color: var(--primary);
+        .closing {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             padding: 4rem 5%;
             text-align: center;
+            color: white;
         }
         
-        .newsletter h2 {
+        .closing h2 {
             font-weight: 300;
             margin-bottom: 1rem;
         }
         
-        .newsletter p {
+        .closing p {
             max-width: 500px;
             margin: 0 auto 2rem;
         }
         
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            font-size: 0.9rem;
-        }
-        
-        .newsletter-form button {
-            background-color: var(--secondary);
-            color: var(--light);
-            border: none;
-            padding: 0 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .newsletter-form button:hover {
-            background-color: var(--accent);
-        }
-        
         /* Footer */
         footer {
-            background-color: var(--secondary);
+            background-color: var(--dark-pink);
             color: var(--light);
             padding: 3rem 5%;
+            text-align: center;
         }
         
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
         }
         
-        .footer-col h3 {
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-col ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
             color: var(--accent);
+            font-size: 2rem;
+            margin: 0 0.5rem;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.3); }
+            60% { transform: scale(1); }
         }
         
         .copyright {
-            text-align: center;
             padding-top: 3rem;
             margin-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
             font-size: 0.8rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .letter-content {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -274,114 +391,105 @@
 <body>
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">Belle & <span>Chic</span></a>
+            <a href="#" class="logo">For <span>Aki</span></a>
             <nav>
                 <ul>
-                    <li><a href="newarrivals.html">New Arrivals</a></li>
-                    <li><a href="#">Dresses</a></li>
-                    <li><a href="#">Tops</a></li>
-                    <li><a href="#">Bottoms</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#letter">My Letter</a></li>
+                    <li><a href="#memories">Our Memories</a></li>
+                    <li><a href="#reasons">Why I Love You</a></li>
                 </ul>
             </nav>
             <div class="icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#"><i class="fas fa-user"></i></a>
-                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="#"><i class="fas fa-heart"></i></a>
             </div>
         </div>
     </header>
     
     <section class="hero">
-        <h1>Minimal Elegance for the Modern Girl</h1>
-        <p>Discover our curated collection of timeless pieces designed for comfort, style, and effortless beauty.</p>
-        <a href="newarrivals.html" class="btn">Shop New Arrivals</a>  <!-- Updated link -->
+        <div class="hero-content">
+            <h1>For My Dearest Aki</h1>
+            <p>A heartfelt letter to express my love and appreciation for you</p>
+            <a href="#letter" class="btn">Read My Letter</a>
+        </div>
     </section>
     
-    <section class="featured">
-        <h2 class="section-title">Featured Collection</h2>
-        <div class="products">
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="product-info">
-                    <h3 class="product-title">Linen Midi Dress</h3>
-                    <p class="product-price">$89.99</p>
+    <section id="letter" class="appreciation">
+        <h2 class="section-title">My Appreciation Letter</h2>
+        <div class="letter-content">
+            <p>My dearest Aki,</p>
+            <p>From the moment you came into my life, everything changed in the most beautiful way. Your smile brightens my darkest days, your laughter is my favorite melody, and your kindness touches everyone around you.</p>
+            <p>I appreciate so many things about you—the way you care for others, your passion for the things you love, your strength during challenging times, and the tenderness you show when I need it most.</p>
+            <p>Every day with you is a gift I cherish. You've shown me what true love means through your actions, your words, and the beautiful heart that you share with me so freely.</p>
+            <p>Thank you for being exactly who you are. Thank you for choosing me every day. Thank you for the love, the memories, and the future we're building together.</p>
+            <p class="signature">With all my love, forever and always<br>Your Admirer</p>
+        </div>
+    </section>
+    
+    <section id="memories" class="memories">
+        <h2 class="section-title">Precious Memories</h2>
+        <div class="memory-grid">
+            <div class="memory-card">
+                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="memory-info">
+                    <h3 class="memory-title">Our First Date</h3>
+                    <p class="memory-desc">That cozy café where we talked for hours without noticing the time passing by.</p>
                 </div>
+                <div class="heart"><i class="fas fa-heart"></i></div>
             </div>
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="product-info">
-                    <h3 class="product-title">Cashmere Sweater</h3>
-                    <p class="product-price">$65.99</p>
+            <div class="memory-card">
+                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1532117182044-031e7cd916ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="memory-info">
+                    <h3 class="memory-title">Stargazing Night</h3>
+                    <p class="memory-desc">When we laid on the blanket and you pointed out constellations I'd never noticed before.</p>
                 </div>
+                <div class="heart"><i class="fas fa-heart"></i></div>
             </div>
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="product-info">
-                    <h3 class="product-title">Wide-Leg Trousers</h3>
-                    <p class="product-price">$59.99</p>
+            <div class="memory-card">
+                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1459478309853-2c33a60058e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="memory-info">
+                    <h3 class="memory-title">Beach Sunset</h3>
+                    <p class="memory-desc">Walking hand-in-hand as the waves kissed our feet and the sky painted itself in hues of orange and pink.</p>
                 </div>
+                <div class="heart"><i class="fas fa-heart"></i></div>
             </div>
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="product-info">
-                    <h3 class="product-title">Silk Blouse</h3>
-                    <p class="product-price">$49.99</p>
+            <div class="memory-card">
+                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="memory-info">
+                    <h3 class="memory-title">Rainy Day Comfort</h3>
+                    <p class="memory-desc">Cuddled up watching movies while the rain created music against the windowpane.</p>
                 </div>
+                <div class="heart"><i class="fas fa-heart"></i></div>
             </div>
         </div>
     </section>
     
-    <section class="newsletter">
-        <h2>Join Our Community</h2>
-        <p>Subscribe to receive updates on new collections, exclusive offers, and styling tips.</p>
-        <form class="newsletter-form">
-            <input type="email" placeholder="Your email address">
-            <button type="submit">Subscribe</button>
-        </form>
+    <section id="reasons" class="reasons">
+        <div class="reasons-container">
+            <h2 class="section-title" style="color: var(--dark-pink);">Reasons Why I Love You</h2>
+            <ul class="reasons-list">
+                <li>Your smile that lights up any room you enter</li>
+                <li>The way you care for others without expecting anything in return</li>
+                <li>Your passion for the things you love</li>
+                <li>How you make ordinary moments feel extraordinary</li>
+                <li>Your strength and resilience during difficult times</li>
+                <li>The way you understand me without me having to say a word</li>
+                <li>Your beautiful heart that sees the good in everyone</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="closing">
+        <h2>Forever Yours</h2>
+        <p>No matter where life takes us, my heart will always belong to you.</p>
+        <p>Thank you for being you.</p>
     </section>
     
     <footer>
         <div class="footer-container">
-            <div class="footer-col">
-                <h3>Shop</h3>
-                <ul>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Best Sellers</a></li>
-                    <li><a href="#">Sale</a></li>
-                    <li><a href="#">Collections</a></li>
-                </ul>
+            <p>Made with <span class="heartbeat">❤</span> for Aki</p>
+            <div class="copyright">
+                <p>&copy; Eternal Love - Today and Always</p>
             </div>
-            <div class="footer-col">
-                <h3>About</h3>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Help</h3>
-                <ul>
-                    <li><a href="#">Customer Service</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Size Guide</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Connect</h3>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Twitter</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2023 Belle & Chic. All rights reserved.</p>
         </div>
     </footer>
 </body>
