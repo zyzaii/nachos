@@ -3,20 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Love Story - For Aki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>For Someone Special</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #ffd6e7;
-            --secondary: #ff85a2;
-            --accent: #ff4f91;
-            --text: #5a3d5c;
-            --light: #fff9fb;
-            --dark-pink: #d64b76;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -25,779 +14,352 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--light);
-            color: var(--text);
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            color: #5a4b41;
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd6e7' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
         
-        /* Story Navigation */
-        .story-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            z-index: 1000;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            transition: width 0.3s ease;
-        }
-        
-        /* Story Sections */
-        .story-section {
-            min-height: 100vh;
-            padding: 80px 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        
-        .story-section.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Chapter 1 */
-        #chapter1 {
-            background: linear-gradient(135deg, var(--primary) 0%, #ffe6ef 100%);
+        header {
             text-align: center;
+            padding: 60px 20px;
+            position: relative;
         }
         
-        .chapter-title {
-            font-family: 'Playfair Display', serif;
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3.5rem;
-            color: var(--dark-pink);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #8b5a5a;
         }
         
-        .chapter-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-        }
-        
-        /* Chapter 2 */
-        #chapter2 {
-            background-color: var(--light);
-        }
-        
-        .story-content {
-            max-width: 800px;
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-        
-        .story-content::before {
-            content: """;
-            position: absolute;
-            top: -30px;
-            left: 20px;
-            font-size: 8rem;
-            color: var(--primary);
-            font-family: Georgia, serif;
-            line-height: 1;
-            opacity: 0.5;
-        }
-        
-        .story-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Chapter 3 - Memories */
-        #chapter3 {
-            background: linear-gradient(to bottom, var(--light), var(--primary));
-        }
-        
-        .memory-scroll {
-            display: flex;
-            overflow-x: auto;
-            padding: 2rem 1rem;
-            scroll-snap-type: x mandatory;
-            gap: 2rem;
-            max-width: 100%;
-            scrollbar-width: none;
-        }
-        
-        .memory-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .memory-card {
-            flex: 0 0 auto;
-            width: 300px;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            scroll-snap-align: start;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-        
-        .memory-card.active {
-            transform: scale(1);
-        }
-        
-        .memory-img {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .memory-info {
-            padding: 1.5rem;
-        }
-        
-        .memory-title {
+        .subtitle {
             font-size: 1.2rem;
-            color: var(--dark-pink);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Chapter 4 - Reasons */
-        #chapter4 {
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .reasons-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            width: 100%;
-        }
-        
-        .reason-card {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .reason-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .reason-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-        
-        /* Chapter 5 - Future */
-        #chapter5 {
-            background: linear-gradient(to bottom, var(--secondary), var(--accent));
-            color: white;
-            text-align: center;
-        }
-        
-        .future-visual {
-            width: 100%;
+            font-weight: 300;
             max-width: 600px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            margin: 2rem 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .future-item {
-            position: absolute;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .future-item.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Chapter 6 - Closing */
-        #chapter6 {
-            background: linear-gradient(to bottom, var(--accent), var(--dark-pink);
-            color: white;
-            text-align: center;
-        }
-        
-        .closing-message {
-            max-width: 700px;
             margin: 0 auto;
         }
         
-        .signature {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-top: 2rem;
-            color: var(--primary);
+        .heart-divider {
+            font-size: 24px;
+            color: #e2a0a0;
+            margin: 30px 0;
         }
         
-        /* Navigation */
-        .story-nav {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .section {
+            padding: 60px 20px;
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .nav-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent);
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #7a5959;
+        }
+        
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .memory-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .memory-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .memory-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #8b5a5a;
+        }
+        
+        .poem {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #e2a0a0;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 20px;
         }
         
-        .nav-btn:hover {
-            transform: scale(1.1);
-            background: var(--dark-pink);
+        .btn:hover {
+            background: #d48c8c;
+            transform: translateY(-2px);
         }
         
-        .nav-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
         
-        .nav-btn.disabled:hover {
-            transform: none;
-            background: var(--accent);
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* Floating Elements */
-        .floating-hearts {
-            position: absolute;
+        .gallery-item img {
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .floating-heart {
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e2d1c3;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            color: #8b5a5a;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .memory-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
             position: absolute;
-            color: var(--accent);
-            opacity: 0.7;
-            font-size: 1.5rem;
-            animation: float 6s ease-in infinite;
+            color: rgba(226, 160, 160, 0.5);
+            font-size: 20px;
+            animation: float 8s linear infinite;
+            opacity: 0;
         }
         
         @keyframes float {
             0% {
                 transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.5;
+                opacity: 1;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
-        
-        /* Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50px;
-            padding: 0.5rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .music-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .music-btn:hover {
-            background: var(--dark-pink);
-            transform: scale(1.1);
-        }
-        
-        .music-info {
-            font-size: 0.8rem;
-            padding: 0 0.5rem;
-            color: var(--text);
-        }
-        
-        /* Music Modal */
-        .music-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .music-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark-pink);
-        }
-        
-        .modal-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-btn:hover {
-            background: var(--dark-pink);
-            transform: scale(1.05);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .chapter-title {
-                font-size: 2.5rem;
-            }
-            
-            .chapter-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .story-content {
-                padding: 2rem 1.5rem;
-            }
-            
-            .reasons-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .story-nav {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .music-player {
-                bottom: 20px;
-                left: 20px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Story Progress Bar -->
-    <div class="story-progress">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
+    <div class="floating-hearts" id="hearts"></div>
     
-    <!-- Music Player -->
-    <div class="music-player">
-        <div class="music-info" id="music-info">Play Backburner</div>
-        <button class="music-btn" id="music-toggle">
-            <i class="fas fa-play"></i>
-        </button>
-        <audio id="bg-music" loop>
-            <!-- Using a direct link to Backburner by Niki -->
-            <source src="https://audio.jukehost.co.uk/4N6p2h0Vp5w3tV7F9J8p4T5g7Q2q3X1M" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-    
-    <!-- Music Modal -->
-    <div class="music-modal" id="music-modal">
-        <div class="modal-content">
-            <h3 class="modal-title">Enjoy "Backburner" by Niki</h3>
-            <p>Click the button below to start playing the song</p>
-            <button class="modal-btn" id="modal-play-btn">Play Music</button>
-        </div>
-    </div>
-    
-    <!-- Story Navigation -->
-    <div class="story-nav">
-        <button class="nav-btn" id="prev-chapter" disabled>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        <button class="nav-btn" id="next-chapter">
-            <i class="fas fa-arrow-down"></i>
-        </button>
-    </div>
-    
-    <!-- Story Sections -->
-    <section id="chapter1" class="story-section active">
-        <div class="floating-hearts" id="floating-hearts-1"></div>
-        <h1 class="chapter-title">Our Love Story</h1>
-        <p class="chapter-subtitle">A journey of my feelings for you, my dearest Aki</p>
-        <p>Scroll down or use the arrows to begin our story</p>
-    </section>
-    
-    <section id="chapter2" class="story-section">
-        <div class="floating-hearts" id="floating-hearts-2"></div>
-        <div class="story-content">
-            <p class="story-text">My dearest Aki,</p>
-            <p class="story-text">From the moment you came into my life, everything changed in the most beautiful way. I didn't know that time will come wherein I will admit to myself that I'm like this you knowww "gay".</p>
-            <p class="story-text">But the moment I started admiring you I don't know everything just seems so natural for me to express my feelings towards u. I like how resilient and strong u are, I like how you show ur weakness and flaws to me, I like how you manage to be flawed yet so perfectly fine embracing it.</p>
-        </div>
-    </section>
-    
-    <section id="chapter3" class="story-section">
-        <div class="floating-hearts" id="floating-hearts-3"></div>
-        <h2 class="chapter-title">Our Future Memories</h2>
-        <p class="chapter-subtitle">The beautiful moments I look forward to with you</p>
+    <div class="container">
+        <header>
+            <h1>For Someone Special</h1>
+            <p class="subtitle">"The best and most beautiful things in this world cannot be seen or even heard, but must be felt with the heart." - Helen Keller</p>
+            <div class="heart-divider">❤</div>
+        </header>
         
-        <div class="memory-scroll">
-            <div class="memory-card">
-                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="memory-info">
-                    <h3 class="memory-title">Our First Date</h3>
-                    <p>That cozy café where we will talk for hours without noticing the time passing by.</p>
+        <section class="section">
+            <h2>My Favorite Memories With You</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <h3>Our First Meeting</h3>
+                    <p>I still remember how the sunlight caught your hair and the way your smile made me forget what I was going to say.</p>
+                </div>
+                <div class="memory-card">
+                    <h3>The Coffee Date</h3>
+                    <p>Two hours felt like five minutes as we talked about everything and nothing all at once.</p>
+                </div>
+                <div class="memory-card">
+                    <h3>That Walk in the Park</h3>
+                    <p>When we watched the sunset together and I realized I never wanted to watch another sunset without you.</p>
                 </div>
             </div>
-            
-            <div class="memory-card">
-                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1532117182044-031e7cd916ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="memory-info">
-                    <h3 class="memory-title">Stargazing Night</h3>
-                    <p>We will lay on a blanket and you'll point out constellations to me.</p>
-                </div>
-            </div>
-            
-            <div class="memory-card">
-                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1459478309853-2c33a60058e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="memory-info">
-                    <h3 class="memory-title">Beach Sunset</h3>
-                    <p>Walking together while holding our golden retriever.</p>
-                </div>
-            </div>
-            
-            <div class="memory-card">
-                <div class="memory-img" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-                <div class="memory-info">
-                    <h3 class="memory-title">Rainy Day Comfort</h3>
-                    <p>Watching movies while enjoying each other's company.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="chapter4" class="story-section">
-        <div class="floating-hearts" id="floating-hearts-4"></div>
-        <h2 class="chapter-title">Why I Love You</h2>
-        <p class="chapter-subtitle">The countless reasons my heart belongs to you</p>
+        </section>
         
-        <div class="reasons-container">
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3>Your Caring Nature</h3>
-                <p>The way you care for others without expecting anything in return</p>
+        <section class="section">
+            <h2>How I Feel About You</h2>
+            <div class="poem">
+                <p>I didn't expect to find someone like you,</p>
+                <p>With a smile that makes my world feel new.</p>
+                <p>Your laughter is a melody I love to hear,</p>
+                <p>Your presence is what I hold most dear.</p>
+                <br>
+                <p>Every moment together is a treasure I keep,</p>
+                <p>Whether we're talking or silence runs deep.</p>
+                <p>I admire your kindness, your passion, your light,</p>
+                <p>And I hope to be part of your days and your nights.</p>
             </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <h3>Your Passion</h3>
-                <p>Your enthusiasm for the things you love</p>
-            </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-smile"></i>
-                </div>
-                <h3>Making Moments Special</h3>
-                <p>How you make ordinary moments feel extraordinary</p>
-            </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Your Strength</h3>
-                <p>Your resilience during difficult times</p>
-            </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <h3>Understanding</h3>
-                <p>The way you understand me without me having to say a word</p>
-            </div>
-            
-            <div class="reason-card">
-                <div class="reason-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <h3>Your Beautiful Heart</h3>
-                <p>Your heart that sees the good in everyone</p>
-            </div>
-        </div>
-    </section>
-    
-    <section id="chapter5" class="story-section">
-        <div class="floating-hearts" id="floating-hearts-5"></div>
-        <h2 class="chapter-title">Our Future Together</h2>
-        <p class="chapter-subtitle">The life I dream of building with you</p>
+        </section>
         
-        <div class="future-visual">
-            <div class="future-item" id="future-home">
-                <i class="fas fa-home" style="font-size: 4rem;"></i>
-                <p>Our home filled with love</p>
+        <section class="section">
+            <h2>Future Adventures Await</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mountain adventure">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Beach sunset">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="City lights">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mountain view">
+                </div>
             </div>
-        </div>
+            <p style="text-align: center; margin-top: 30px;">I look forward to creating many more beautiful memories with you.</p>
+        </section>
         
-        <div class="story-content">
-            <p class="story-text">I'm starting to think of future plans with u in it. I wanna live my life having aki beside me, I will supporting every decision u made, clapping at every achievements you did.</p>
-            <p class="story-text">I wanna be there at every wins and losses in your life. I'll be your support system no matter what happens, as long as I can I will understand you always.</p>
-        </div>
-    </section>
-    
-    <section id="chapter6" class="story-section">
-        <div class="floating-hearts" id="floating-hearts-6"></div>
-        <div class="closing-message">
-            <h2 class="chapter-title">Forever Yours</h2>
-            <p class="chapter-subtitle">No matter where life takes us, my heart will always belong to you</p>
-            
-            <div class="story-content">
-                <p class="story-text">I want to know ur weaknesses, ur flaws and I want to embrace them all, because that's how I want to show my feelings towards you.</p>
-                <p class="story-text">You are perfectly fine having them, you are perfectly imperfect and that makes u special. You look so beautiful no matter what you do, I admire the whole you.</p>
-                <p class="signature">With all my love, forever and always<br>Zaiii</p>
-            </div>
-        </div>
-    </section>
+        <section class="section">
+            <h2>Will You Go On A Date With Me?</h2>
+            <form id="date-form">
+                <div class="form-group">
+                    <label for="date-idea">I'd love to take you to:</label>
+                    <input type="text" id="date-idea" placeholder="A romantic dinner, stargazing, museum visit...">
+                </div>
+                <div class="form-group">
+                    <label for="date-time">When would be good for you?</label>
+                    <input type="text" id="date-time" placeholder="This weekend, next Friday evening...">
+                </div>
+                <div class="form-group">
+                    <label for="message">And I want you to know:</label>
+                    <textarea id="message" placeholder="How special you are to me..."></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="btn" onclick="sendDateRequest()">Send My Invitation</button>
+                </div>
+            </form>
+        </section>
+        
+        <footer>
+            <p>Made with ❤ for someone extraordinary</p>
+        </footer>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create floating hearts for each section
-            for (let i = 1; i <= 6; i++) {
-                const container = document.getElementById(`floating-hearts-${i}`);
-                for (let j = 0; j < 10; j++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('floating-heart');
-                    heart.innerHTML = '❤';
-                    heart.style.left = `${Math.random() * 100}%`;
-                    heart.style.animationDelay = `${Math.random() * 5}s`;
-                    container.appendChild(heart);
-                }
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Send date request
+        function sendDateRequest() {
+            const dateIdea = document.getElementById('date-idea').value;
+            const dateTime = document.getElementById('date-time').value;
+            const message = document.getElementById('message').value;
+            
+            if (!dateIdea || !dateTime) {
+                alert('Please fill in at least the date idea and time!');
+                return;
             }
             
-            // Story navigation
-            const sections = document.querySelectorAll('.story-section');
-            const prevBtn = document.getElementById('prev-chapter');
-            const nextBtn = document.getElementById('next-chapter');
-            const progressBar = document.getElementById('progress-bar');
-            let currentSection = 0;
+            alert('Your invitation has been sent! Well, not really—this is just a demo. But in real life, you should definitely ask them out properly!');
             
-            // Update navigation buttons
-            function updateNavigation() {
-                prevBtn.disabled = currentSection === 0;
-                nextBtn.disabled = currentSection === sections.length - 1;
-                
-                if (currentSection === sections.length - 1) {
-                    nextBtn.classList.add('disabled');
-                } else {
-                    nextBtn.classList.remove('disabled');
-                }
-                
-                if (currentSection === 0) {
-                    prevBtn.classList.add('disabled');
-                } else {
-                    prevBtn.classList.remove('disabled');
-                }
-                
-                // Update progress bar
-                progressBar.style.width = `${(currentSection / (sections.length - 1)) * 100}%`;
-            }
-            
-            // Navigate to specific section
-            function goToSection(index) {
-                if (index < 0 || index >= sections.length) return;
-                
-                sections[currentSection].classList.remove('active');
-                currentSection = index;
-                sections[currentSection].classList.add('active');
-                
-                // Scroll to section
-                window.scrollTo({
-                    top: sections[currentSection].offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                updateNavigation();
-            }
-            
-            // Event listeners for navigation
-            prevBtn.addEventListener('click', () => goToSection(currentSection - 1));
-            nextBtn.addEventListener('click', () => goToSection(currentSection + 1));
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown') {
-                    goToSection(currentSection + 1);
-                } else if (e.key === 'ArrowUp') {
-                    goToSection(currentSection - 1);
-                }
-            });
-            
-            // Music player
-            const musicToggle = document.getElementById('music-toggle');
-            const musicInfo = document.getElementById('music-info');
-            const bgMusic = document.getElementById('bg-music');
-            const musicModal = document.getElementById('music-modal');
-            const modalPlayBtn = document.getElementById('modal-play-btn');
-            let musicPlaying = false;
-            
-            // Set music volume to 40% to make it a background element
-            bgMusic.volume = 0.4;
-            
-            // Show modal on page load
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    musicModal.classList.add('active');
-                }, 1000);
-            });
-            
-            // Play music from modal button
-            modalPlayBtn.addEventListener('click', () => {
-                playMusic();
-                musicModal.classList.remove('active');
-            });
-            
-            // Toggle music with player button
-            musicToggle.addEventListener('click', () => {
-                if (musicPlaying) {
-                    pauseMusic();
-                } else {
-                    playMusic();
-                }
-            });
-            
-            function playMusic() {
-                bgMusic.play().then(() => {
-                    musicPlaying = true;
-                    musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-                    musicInfo.textContent = 'Backburner Playing';
-                }).catch(error => {
-                    console.error("Playback failed:", error);
-                    musicInfo.textContent = 'Click to play';
-                    // Show modal again if playback fails
-                    musicModal.classList.add('active');
-                });
-            }
-            
-            function pauseMusic() {
-                bgMusic.pause();
-                musicPlaying = false;
-                musicToggle.innerHTML = '<i class="fas fa-play"></i>';
-                musicInfo.textContent = 'Play Backburner';
-            }
-            
-            // Initialize
-            updateNavigation();
-            
-            // Scroll triggered animations
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        
-                        // Update current section based on what's in view
-                        sections.forEach((section, index) => {
-                            if (section === entry.target) {
-                                currentSection = index;
-                                updateNavigation();
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe all sections
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
+            // Reset form
+            document.getElementById('date-form').reset();
+        }
+        
+        // Initialize
+        window.onload = function() {
+            createHearts();
+        };
     </script>
 </body>
 </html>
