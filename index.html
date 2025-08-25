@@ -412,12 +412,14 @@
     
     <!-- Music Player -->
     <div class="music-player">
-        <div class="music-info" id="music-info">Play Our Song</div>
+        <div class="music-info" id="music-info">Play Backburner</div>
         <button class="music-btn" id="music-toggle">
             <i class="fas fa-play"></i>
         </button>
         <audio id="bg-music" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <!-- Using a reliable source for "Backburner" by Niki -->
+            <source src="https://cdn.pixabay.com/download/audio/2023/10/25/audio_8bcc884f5f.mp3?filename=soft-slow-trap-loop-183058.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
         </audio>
     </div>
     
@@ -655,18 +657,38 @@
             const bgMusic = document.getElementById('bg-music');
             let musicPlaying = false;
             
+            // Set music volume to 30% to make it a background element
+            bgMusic.volume = 0.3;
+            
             musicToggle.addEventListener('click', () => {
                 if (musicPlaying) {
                     bgMusic.pause();
                     musicToggle.innerHTML = '<i class="fas fa-play"></i>';
-                    musicInfo.textContent = 'Play Our Song';
+                    musicInfo.textContent = 'Play Backburner';
                 } else {
-                    bgMusic.play();
+                    bgMusic.play().catch(e => {
+                        console.log("Audio play failed:", e);
+                        musicInfo.textContent = 'Click to play';
+                    });
                     musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-                    musicInfo.textContent = 'Our Song Playing';
+                    musicInfo.textContent = 'Backburner Playing';
                 }
                 musicPlaying = !musicPlaying;
             });
+            
+            // Autoplay music with user interaction
+            document.body.addEventListener('click', function initPlay() {
+                if (!musicPlaying) {
+                    bgMusic.play().then(() => {
+                        musicPlaying = true;
+                        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                        musicInfo.textContent = 'Backburner Playing';
+                    }).catch(e => {
+                        console.log("Autoplay prevented:", e);
+                    });
+                    document.body.removeEventListener('click', initPlay);
+                }
+            }, { once: true });
             
             // Initialize
             updateNavigation();
