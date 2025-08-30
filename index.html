@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Dearest</title>
+    <title>For My Dearest - Will You Go Out With Me?</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -399,6 +399,116 @@
             box-shadow: 0 5px 15px rgba(192, 108, 132, 0.4);
         }
         
+        /* New styles for the courting elements */
+        .yes-no-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .yes-btn {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            padding: 20px 50px;
+            font-size: 1.5rem;
+        }
+        
+        .no-btn {
+            background: linear-gradient(45deg, #f44336, #ff9800);
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            position: relative;
+            transition: all 0.1s ease;
+        }
+        
+        .no-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .popup.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .popup h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+        }
+        
+        .popup p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            color: var(--accent);
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        
+        .running-text {
+            position: absolute;
+            white-space: nowrap;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 1002;
+        }
+        
         @media (max-width: 768px) {
             h1 {
                 font-size: 3rem;
@@ -418,6 +528,15 @@
             
             .section {
                 padding: 60px 20px;
+            }
+            
+            .yes-no-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .yes-btn, .no-btn {
+                width: 200px;
             }
         }
         
@@ -520,6 +639,17 @@
             }
         }
         
+        @keyframes run {
+            0% {
+                left: 0;
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
         .visible {
             opacity: 1;
             transform: translateY(0) scale(1);
@@ -537,55 +667,60 @@
     <div class="container">
         <header>
             <div class="hero-overlay"></div>
-            <h1>My Heart Belongs to You</h1>
-            <p class="subtitle">"In your smile I see something more beautiful than the stars." - Unknown</p>
+            <h1>Will You Go Out With Me?</h1>
+            <p class="subtitle">"I like you more than pizza, and that's saying a lot!"</p>
             <div class="heart-divider">❤</div>
-            <a href="#memories" class="btn">Explore My Feelings</a>
+            
+            <div class="yes-no-container">
+                <button class="btn yes-btn" onclick="showResponsePopup(true)">YES! 😍</button>
+                <button class="btn no-btn" id="no-btn" onmouseover="moveNoButton()">No 😅</button>
+            </div>
+            
             <div class="scroll-down" onclick="scrollToSection('memories')">
                 <i class="fas fa-chevron-down"></i>
             </div>
         </header>
         
         <section id="memories" class="section">
-            <h2>Our Cherished Moments</h2>
+            <h2>Why You Should Say Yes</h2>
             <div class="memory-grid">
                 <div class="memory-card">
                     <i class="fas fa-heart"></i>
-                    <h3>Our First Meeting</h3>
-                    <p>I still remember how the sunlight caught your hair and the way your smile made me forget what I was going to say.</p>
+                    <h3>I'll Make You Laugh</h3>
+                    <p>My jokes might be cheesy, but they come with a side of genuine affection!</p>
                 </div>
                 <div class="memory-card">
-                    <i class="fas fa-coffee"></i>
-                    <h3>The Coffee Date</h3>
-                    <p>Two hours felt like five minutes as we talked about everything and nothing all at once.</p>
+                    <i class="fas fa-utensils"></i>
+                    <h3>Food Adventures</h3>
+                    <p>I promise to share my fries with you (and that's true love right there).</p>
                 </div>
                 <div class="memory-card">
-                    <i class="fas fa-park"></i>
-                    <h3>That Walk in the Park</h3>
-                    <p>When we watched the sunset together and I realized I never wanted to watch another sunset without you.</p>
+                    <i class="fas fa-film"></i>
+                    <h3>Netflix & Actually Chill</h3>
+                    <p>No "watching" something and then being on our phones the whole time.</p>
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2>My Heart's Poem for You</h2>
+            <h2>My Cheesy Poem for You</h2>
             <div class="poem-container">
                 <div class="poem">
-                    <p>I didn't expect to find someone like you,</p>
-                    <p>With a smile that makes my world feel new.</p>
-                    <p>Your laughter is a melody I love to hear,</p>
-                    <p>Your presence is what I hold most dear.</p>
+                    <p>Roses are red, violets are blue,</p>
+                    <p>I'm not great at poems, but I'm great at liking you.</p>
+                    <p>I might not be perfect, I'll sometimes be late,</p>
+                    <p>But I'll always text back, that's a pretty good trait!</p>
                     <br>
-                    <p>Every moment together is a treasure I keep,</p>
-                    <p>Whether we're talking or silence runs deep.</p>
-                    <p>I admire your kindness, your passion, your light,</p>
-                    <p>And I hope to be part of your days and your nights.</p>
+                    <p>So what do you say, will you give me a chance?</p>
+                    <p>I promise our first date won't be the last dance.</p>
+                    <p>We'll have lots of fun, of that I am sure,</p>
+                    <p>Just click that YES button, let's open that door!</p>
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2>Future Adventures Await</h2>
+            <h2>Imagine Our Future Dates</h2>
             <div class="gallery">
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mountain adventure">
@@ -600,38 +735,24 @@
                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mountain view">
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 40px; font-size: 1.2rem;">I look forward to creating many more beautiful memories with you.</p>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn" onclick="showResponsePopup(true)">Say Yes Already! 😉</button>
+            </div>
         </section>
         
         <section class="section">
-            <h2>Will You Go On A Date With Me?</h2>
-            <form id="date-form">
-                <div class="form-group">
-                    <label for="date-idea">I'd love to take you to:</label>
-                    <input type="text" id="date-idea" placeholder="A romantic dinner, stargazing, museum visit...">
+            <h2>Last Chance to Make Me Happy!</h2>
+            <div style="text-align: center;">
+                <p style="font-size: 1.3rem; margin-bottom: 30px;">I made this whole website just for you! The least you could do is say yes! 😋</p>
+                <div class="yes-no-container">
+                    <button class="btn yes-btn" onclick="showResponsePopup(true)">YES! 🎉</button>
+                    <button class="btn no-btn" onmouseover="moveNoButton()">No 😬</button>
                 </div>
-                <div class="form-group">
-                    <label for="date-time">When would be good for you?</label>
-                    <select id="date-time">
-                        <option value="">Select a day</option>
-                        <option value="weekend">This weekend</option>
-                        <option value="friday">Next Friday evening</option>
-                        <option value="saturday">Next Saturday</option>
-                        <option value="sunday">Next Sunday</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">And I want you to know:</label>
-                    <textarea id="message" placeholder="How special you are to me..."></textarea>
-                </div>
-                <div style="text-align: center;">
-                    <button type="button" class="btn" onclick="sendDateRequest()">Send My Invitation</button>
-                </div>
-            </form>
+            </div>
         </section>
         
         <footer>
-            <p>Made with ❤ for someone extraordinary</p>
+            <p>Made with ❤ (and a lot of hope) for someone special</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -639,6 +760,29 @@
                 <a href="#"><i class="fas fa-envelope"></i></a>
             </div>
         </footer>
+    </div>
+
+    <!-- Response Popups -->
+    <div class="popup" id="yes-popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup('yes-popup')">&times;</span>
+            <h3>YAY! You Said Yes! 🎉</h3>
+            <p>I knew you couldn't resist my charm! 😎</p>
+            <p>Now let's plan our first date! I'm thinking...</p>
+            <button class="btn" style="margin-top: 20px;" onclick="closePopup('yes-popup')">Continue Browsing</button>
+        </div>
+    </div>
+
+    <div class="popup" id="no-popup">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup('no-popup')">&times;</span>
+            <h3>Wait, What? 😢</h3>
+            <p id="no-message">You're breaking my heart! Are you sure?</p>
+            <div class="yes-no-container" style="margin-top: 30px;">
+                <button class="btn yes-btn" onclick="showResponsePopup(true)">Okay, YES! 😊</button>
+                <button class="btn no-btn" onclick="showNextNoMessage()">Still No 😈</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -666,50 +810,145 @@
             });
         }
         
-        // Send date request
-        function sendDateRequest() {
-            const dateIdea = document.getElementById('date-idea').value;
-            const dateTime = document.getElementById('date-time').value;
-            const message = document.getElementById('message').value;
+        // Move the No button when hovered
+        function moveNoButton() {
+            const noBtn = document.getElementById('no-btn');
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
             
-            if (!dateIdea || !dateTime) {
-                alert('Please fill in at least the date idea and time!');
-                return;
-            }
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
             
-            // Create a romantic confirmation
-            const confirmation = document.createElement('div');
-            confirmation.style.position = 'fixed';
-            confirmation.style.top = '0';
-            confirmation.style.left = '0';
-            confirmation.style.width = '100%';
-            confirmation.style.height = '100%';
-            confirmation.style.background = 'rgba(0, 0, 0, 0.8)';
-            confirmation.style.display = 'flex';
-            confirmation.style.justifyContent = 'center';
-            confirmation.style.alignItems = 'center';
-            confirmation.style.zIndex = '1000';
-            confirmation.style.opacity = '0';
-            confirmation.style.transition = 'opacity 0.5s ease';
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
             
-            confirmation.innerHTML = `
-                <div style="background: white; padding: 40px; border-radius: 15px; text-align: center; max-width: 500px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif;">Your invitation has been sent! 💌</h3>
-                    <p style="margin-bottom: 30px;">I hope they say yes! In real life, don't forget to follow up with a personal invitation.</p>
-                    <button onclick="this.parentElement.parentElement.remove()" style="padding: 12px 30px; background: var(--accent); color: white; border: none; border-radius: 30px; cursor: pointer;">Close</button>
-                </div>
-            `;
-            
-            document.body.appendChild(confirmation);
-            
-            // Trigger animation
-            setTimeout(() => {
-                confirmation.style.opacity = '1';
-            }, 10);
-            
-            // Reset form
-            document.getElementById('date-form').reset();
+            // Create running text
+            createRunningText("Just say YES already!", randomX, randomY);
         }
+        
+        // Create running text animation
+        function createRunningText(text, x, y) {
+            const runningText = document.createElement('div');
+            runningText.classList.add('running-text');
+            runningText.textContent = text;
+            runningText.style.top = `${y - 30}px`;
+            runningText.style.left = `${x}px`;
+            
+            document.body.appendChild(runningText);
+            
+            // Animate the text
+            runningText.style.animation = `run 2s linear forwards`;
+            
+            // Remove after animation
+            setTimeout(() => {
+                runningText.remove();
+            }, 2000);
+        }
+        
+        // Show response popup
+        function showResponsePopup(isYes) {
+            if (isYes) {
+                document.getElementById('yes-popup').classList.add('active');
+                createConfetti();
+            } else {
+                document.getElementById('no-popup').classList.add('active');
+            }
+        }
+        
+        // Close popup
+        function closePopup(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+        
+        // No message counter and messages
+        let noCount = 0;
+        const noMessages = [
+            "You're breaking my heart! Are you sure?",
+            "Come on, I made this whole website for you!",
+            "I'm not going to stop asking!",
+            "What if I promise to always share my dessert?",
+            "I'll even watch that show you like!",
+            "Okay, you're really committed to this 'no' thing...",
+            "Last chance before I start sending memes!",
+            "Fine, I'll accept it... just kidding, SAY YES!"
+        ];
+        
+        function showNextNoMessage() {
+            noCount++;
+            
+            if (noCount < noMessages.length) {
+                document.getElementById('no-message').textContent = noMessages[noCount];
+                
+                // Make the popup content shake for drama
+                const popupContent = document.querySelector('#no-popup .popup-content');
+                popupContent.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    popupContent.style.animation = '';
+                }, 500);
+            } else {
+                // After all messages, just show the yes popup anyway
+                closePopup('no-popup');
+                showResponsePopup(true);
+            }
+        }
+        
+        // Create confetti animation
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            const confettiCount = 150;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = '-10px';
+                
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                const animationDuration = Math.random() * 3 + 2;
+                confetti.style.animation = `
+                    fall ${animationDuration}s linear forwards,
+                    sway ${animationDuration * 0.1}s ease-in-out infinite alternate
+                `;
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+        }
+        
+        // Add keyframes for confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    top: 100vh;
+                    opacity: 0;
+                }
+            }
+            @keyframes sway {
+                from {
+                    transform: translateX(-5px);
+                }
+                to {
+                    transform: translateX(5px);
+                }
+            }
+            @keyframes shake {
+                0% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                50% { transform: translateX(10px); }
+                75% { transform: translateX(-10px); }
+                100% { transform: translateX(0); }
+            }
+        `;
+        document.head.appendChild(style);
         
         // Animation on scroll
         function checkVisibility() {
