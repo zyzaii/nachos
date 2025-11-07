@@ -362,6 +362,56 @@
             }
         }
 
+        /* Special shooting star with message */
+        .special-shooting-star {
+            position: fixed;
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: specialShoot 8s linear forwards;
+            pointer-events: none;
+        }
+
+        .special-shooting-star.active {
+            pointer-events: auto;
+        }
+
+        .star-message {
+            color: #2d1b69;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @keyframes specialShoot {
+            0% {
+                transform: translateX(-150px) translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(100vh);
+                opacity: 0;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -373,6 +423,15 @@
             
             .memory-constellation {
                 grid-template-columns: 1fr;
+            }
+            
+            .special-shooting-star {
+                width: 100px;
+                height: 35px;
+            }
+            
+            .star-message {
+                font-size: 0.6rem;
             }
         }
     </style>
@@ -429,6 +488,7 @@
         <div class="message-box">
             <p class="message">Aki, these past four months have felt like traveling through the most beautiful galaxy. Each moment with you shines brighter than any star, and my heart orbits yours in perfect harmony. Thank you for being my cosmic companion in this incredible journey.</p>
             <button class="btn" id="wishBtn">Make a Wish Upon a Star</button>
+            <button class="btn" id="specialStarBtn" style="margin-left: 15px;">Send a Special Star</button>
         </div>
     </div>
     
@@ -476,6 +536,55 @@
                     shootingStar.remove();
                 }, 5000);
             }, 2000);
+        }
+        
+        // Create special shooting star with message
+        function createSpecialShootingStar() {
+            const messages = [
+                "The way you laugh at my silly jokes",
+                "How your eyes light up when you talk about things you love",
+                "The little sound you make when you're thinking",
+                "How you always know exactly what to say to make me feel better",
+                "The way you bite your lip when you're concentrating",
+                "How you remember the small details about my day",
+                "The way you hum when you're happy",
+                "How you always save the last bite for me",
+                "The way you tilt your head when you're listening",
+                "How you make ordinary moments feel magical"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            const specialStar = document.createElement('div');
+            specialStar.className = 'special-shooting-star';
+            specialStar.style.top = Math.random() * 30 + 'vh';
+            specialStar.style.animationDelay = '0s';
+            
+            specialStar.innerHTML = `<div class="star-message">✨ ${randomMessage} ✨</div>`;
+            
+            document.body.appendChild(specialStar);
+            
+            // Make it clickable after a short delay
+            setTimeout(() => {
+                specialStar.classList.add('active');
+            }, 500);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                specialStar.remove();
+            }, 8000);
+            
+            // Add click event to show the full message
+            specialStar.addEventListener('click', function() {
+                alert(`A small thing I love about you, Aki:\n\n"${randomMessage}"\n\nIt's these little things that make me fall for you more every day.`);
+                
+                // Create additional shooting stars for effect
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createShootingStar();
+                    }, i * 200);
+                }
+            });
         }
         
         // Planet data
@@ -654,6 +763,11 @@
             }
         });
         
+        // Special star button
+        document.getElementById('specialStarBtn').addEventListener('click', () => {
+            createSpecialShootingStar();
+        });
+        
         // Animate planets
         function animatePlanets() {
             const planetElements = document.querySelectorAll('.planet');
@@ -685,6 +799,18 @@
         createShootingStars();
         createPlanets();
         animatePlanets();
+        
+        // Create a special shooting star automatically after 10 seconds
+        setTimeout(() => {
+            createSpecialShootingStar();
+        }, 10000);
+        
+        // Create special shooting stars randomly
+        setInterval(() => {
+            if (Math.random() > 0.7) { // 30% chance every 15 seconds
+                createSpecialShootingStar();
+            }
+        }, 15000);
     </script>
 </body>
 </html>
