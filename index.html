@@ -175,6 +175,58 @@
             50% { transform: translate(-50%, -50%) scale(1.1); }
         }
 
+        /* Memory Nebula */
+        .memory-nebula {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(106, 90, 249, 0.4) 0%, rgba(255, 107, 139, 0.3) 30%, transparent 70%);
+            filter: blur(20px);
+            cursor: pointer;
+            z-index: 2;
+            animation: nebulaPulse 8s infinite alternate;
+            box-shadow: 
+                0 0 60px rgba(106, 90, 249, 0.5),
+                inset 0 0 40px rgba(255, 107, 139, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes nebulaPulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 60px rgba(106, 90, 249, 0.5),
+                    inset 0 0 40px rgba(255, 107, 139, 0.3);
+            }
+            100% { 
+                transform: scale(1.1);
+                box-shadow: 
+                    0 0 80px rgba(106, 90, 249, 0.7),
+                    inset 0 0 50px rgba(255, 107, 139, 0.5);
+            }
+        }
+
+        .memory-nebula:hover {
+            transform: scale(1.15);
+            filter: blur(15px);
+        }
+
+        .nebula-text {
+            opacity: 0.8;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+        }
+
         .memory-constellation {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -362,56 +414,6 @@
             }
         }
 
-        /* Special shooting star with message */
-        .special-shooting-star {
-            position: fixed;
-            width: 120px;
-            height: 40px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
-            z-index: 10;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            animation: specialShoot 8s linear forwards;
-            pointer-events: none;
-        }
-
-        .special-shooting-star.active {
-            pointer-events: auto;
-        }
-
-        .star-message {
-            color: #2d1b69;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-align: center;
-            padding: 0 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        @keyframes specialShoot {
-            0% {
-                transform: translateX(-150px) translateY(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100vw) translateY(100vh);
-                opacity: 0;
-            }
-        }
-
         @media screen and (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -425,13 +427,11 @@
                 grid-template-columns: 1fr;
             }
             
-            .special-shooting-star {
-                width: 100px;
-                height: 35px;
-            }
-            
-            .star-message {
-                font-size: 0.6rem;
+            .memory-nebula {
+                width: 180px;
+                height: 180px;
+                right: 5%;
+                top: 15%;
             }
         }
     </style>
@@ -453,6 +453,11 @@
             <div class="orbit" style="width: 450px; height: 450px; top: 75px; left: 75px;"></div>
             <div class="orbit" style="width: 600px; height: 600px; top: 0; left: 0;"></div>
             <div class="orbit" style="width: 750px; height: 750px; top: -75px; left: -75px;"></div>
+            
+            <!-- Memory Nebula -->
+            <div class="memory-nebula" id="memoryNebula">
+                <div class="nebula-text">Click to discover hidden memories</div>
+            </div>
             
             <div class="central-heart">♥</div>
             
@@ -488,7 +493,6 @@
         <div class="message-box">
             <p class="message">Aki, these past four months have felt like traveling through the most beautiful galaxy. Each moment with you shines brighter than any star, and my heart orbits yours in perfect harmony. Thank you for being my cosmic companion in this incredible journey.</p>
             <button class="btn" id="wishBtn">Make a Wish Upon a Star</button>
-            <button class="btn" id="specialStarBtn" style="margin-left: 15px;">Send a Special Star</button>
         </div>
     </div>
     
@@ -499,6 +503,16 @@
             <div class="modal-icon" id="modalIcon">🌌</div>
             <h2 class="modal-title" id="modalTitle">First Glances</h2>
             <p class="modal-text" id="modalText">This is where the memory description will appear.</p>
+        </div>
+    </div>
+
+    <!-- Nebula Memory Modal -->
+    <div class="modal" id="nebulaModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeNebulaModal">&times;</span>
+            <div class="modal-icon" id="nebulaIcon">✨</div>
+            <h2 class="modal-title" id="nebulaTitle">Hidden Memory</h2>
+            <p class="modal-text" id="nebulaText">This is where the nebula memory will appear.</p>
         </div>
     </div>
 
@@ -538,54 +552,34 @@
             }, 2000);
         }
         
-        // Create special shooting star with message
-        function createSpecialShootingStar() {
-            const messages = [
-                "The way you laugh at my silly jokes",
-                "How your eyes light up when you talk about things you love",
-                "The little sound you make when you're thinking",
-                "How you always know exactly what to say to make me feel better",
-                "The way you bite your lip when you're concentrating",
-                "How you remember the small details about my day",
-                "The way you hum when you're happy",
-                "How you always save the last bite for me",
-                "The way you tilt your head when you're listening",
-                "How you make ordinary moments feel magical"
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            
-            const specialStar = document.createElement('div');
-            specialStar.className = 'special-shooting-star';
-            specialStar.style.top = Math.random() * 30 + 'vh';
-            specialStar.style.animationDelay = '0s';
-            
-            specialStar.innerHTML = `<div class="star-message">✨ ${randomMessage} ✨</div>`;
-            
-            document.body.appendChild(specialStar);
-            
-            // Make it clickable after a short delay
-            setTimeout(() => {
-                specialStar.classList.add('active');
-            }, 500);
-            
-            // Remove after animation completes
-            setTimeout(() => {
-                specialStar.remove();
-            }, 8000);
-            
-            // Add click event to show the full message
-            specialStar.addEventListener('click', function() {
-                alert(`A small thing I love about you, Aki:\n\n"${randomMessage}"\n\nIt's these little things that make me fall for you more every day.`);
-                
-                // Create additional shooting stars for effect
-                for (let i = 0; i < 5; i++) {
-                    setTimeout(() => {
-                        createShootingStar();
-                    }, i * 200);
-                }
-            });
-        }
+        // Nebula memories
+        const nebulaMemories = [
+            {
+                title: "Your Laughter",
+                icon: "😊",
+                text: "The sound of your laughter is my favorite melody in the universe. It has this magical quality that can brighten even the darkest of days. I find myself trying to make you laugh just to hear that beautiful sound."
+            },
+            {
+                title: "Small Gestures",
+                icon: "💖",
+                text: "I love the little things you do without even thinking - how you always save the last bite for me, the way you remember my favorite songs, and how you know exactly when I need a hug. These small gestures mean more to me than grand romantic gestures ever could."
+            },
+            {
+                title: "Your Perspective",
+                icon: "🌍",
+                text: "You see the world in a way that constantly surprises and inspires me. Your perspective challenges me to grow and see beauty in places I never noticed before. With you, every day is a new opportunity to see the universe through fresh eyes."
+            },
+            {
+                title: "Quiet Moments",
+                icon: "🤫",
+                text: "Some of my favorite memories are the quiet ones - sitting together in comfortable silence, watching the stars, or just enjoying each other's presence without needing to say a word. In those moments, I feel the deepest connection to you."
+            },
+            {
+                title: "Your Strength",
+                icon: "💪",
+                text: "I admire your strength more than you know. The way you face challenges with grace and determination inspires me to be a better person. You have this incredible resilience that makes me believe we can overcome anything together."
+            }
+        ];
         
         // Planet data
         const planets = [
@@ -715,6 +709,22 @@
             document.getElementById('memoryModal').style.display = 'flex';
         }
         
+        // Show nebula memory
+        function showNebulaMemory() {
+            const randomMemory = nebulaMemories[Math.floor(Math.random() * nebulaMemories.length)];
+            document.getElementById('nebulaIcon').textContent = randomMemory.icon;
+            document.getElementById('nebulaTitle').textContent = randomMemory.title;
+            document.getElementById('nebulaText').textContent = randomMemory.text;
+            document.getElementById('nebulaModal').style.display = 'flex';
+            
+            // Create a beautiful nebula effect with multiple shooting stars
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createShootingStar();
+                }, i * 150);
+            }
+        }
+        
         // Create a single shooting star
         function createShootingStar() {
             const shootingStarsContainer = document.getElementById('shootingStars');
@@ -730,15 +740,22 @@
             }, 5000);
         }
         
-        // Close modal
+        // Close modals
         document.getElementById('closeModal').addEventListener('click', () => {
             document.getElementById('memoryModal').style.display = 'none';
         });
         
-        // Close modal when clicking outside
+        document.getElementById('closeNebulaModal').addEventListener('click', () => {
+            document.getElementById('nebulaModal').style.display = 'none';
+        });
+        
+        // Close modals when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === document.getElementById('memoryModal')) {
                 document.getElementById('memoryModal').style.display = 'none';
+            }
+            if (e.target === document.getElementById('nebulaModal')) {
+                document.getElementById('nebulaModal').style.display = 'none';
             }
         });
         
@@ -763,10 +780,8 @@
             }
         });
         
-        // Special star button
-        document.getElementById('specialStarBtn').addEventListener('click', () => {
-            createSpecialShootingStar();
-        });
+        // Nebula click event
+        document.getElementById('memoryNebula').addEventListener('click', showNebulaMemory);
         
         // Animate planets
         function animatePlanets() {
@@ -799,18 +814,6 @@
         createShootingStars();
         createPlanets();
         animatePlanets();
-        
-        // Create a special shooting star automatically after 10 seconds
-        setTimeout(() => {
-            createSpecialShootingStar();
-        }, 10000);
-        
-        // Create special shooting stars randomly
-        setInterval(() => {
-            if (Math.random() > 0.7) { // 30% chance every 15 seconds
-                createSpecialShootingStar();
-            }
-        }, 15000);
     </script>
 </body>
 </html>
