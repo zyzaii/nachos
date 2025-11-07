@@ -1,450 +1,420 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Comfort Café — Tabletop for My Love</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#fff8f7;
-    --paper:#fffdfc;
-    --blush:#f7d6dd;
-    --pink:#d96a88;
-    --rose:#b84a66;
-    --latte:#bfa79a;
-    --dark:#472e2e;
-    --muted:#6b4a4a;
-    --accent:#ff9dbb;
-    --shadow: 0 14px 40px rgba(75,28,36,0.08);
-    --fruit-size:48px;
-    --max-width:1100px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg), #fff2f3);font-family:Montserrat,system-ui,Arial;color:var(--dark);-webkit-font-smoothing:antialiased}
-  .wrap{max-width:var(--max-width);margin:28px auto;padding:18px}
-  /* Header */
-  header.site{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fffaf9);box-shadow:var(--shadow);
-  }
-  .brand{display:flex;gap:12px;align-items:center}
-  .badge{
-    width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--rose));display:flex;align-items:center;justify-content:center;color:white;font-size:28px;font-weight:800;box-shadow:0 8px 24px rgba(214,75,118,0.10)
-  }
-  .brand .title{font-family:'Playfair Display',serif;font-size:18px;color:var(--rose)}
-  .brand .sub{font-size:13px;color:var(--muted)}
-  .controls{display:flex;gap:8px;align-items:center}
-  .btn{padding:10px 12px;border-radius:999px;border:none;background:var(--pink);color:white;font-weight:700;cursor:pointer;box-shadow:0 10px 28px rgba(255,107,149,0.12)}
-  .btn.ghost{background:transparent;border:1px solid rgba(180,100,120,0.08);color:var(--rose)}
-  .small{font-size:13px;color:var(--muted)}
-  /* Tabletop scene */
-  .scene{margin-top:18px;display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
-  @media(max-width:980px){ .scene{grid-template-columns:1fr} }
-  .table{
-    background:linear-gradient(180deg,#fffefc,#fff6f6);
-    border-radius:16px;padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;
-    min-height:540px;
-  }
-  /* Table visual: left column (table surface) */
-  .table-surface{
-    height:100%;display:flex;flex-direction:column;gap:12px;
-  }
-  .table-top{
-    background:linear-gradient(180deg,#fff9f8,#fff0f2);
-    border-radius:12px;padding:14px;display:flex;gap:12px;align-items:flex-start;
-  }
-  .coffee-cup{
-    width:120px;height:120px;border-radius:20px;background:linear-gradient(180deg,#fffdfb,#fff0f0);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,0.06);
-    position:relative;overflow:hidden;
-  }
-  .coffee{
-    width:86px;height:86px;border-radius:50%;background:linear-gradient(180deg,#6b4a3f,#4d3229);display:flex;align-items:center;justify-content:center;color:#f6e8e5;font-weight:800;font-size:24px;box-shadow:inset 0 -8px 24px rgba(255,255,255,0.03);
-  }
-  .polaroids{display:flex;flex-direction:column;gap:8px;flex:1}
-  .photo{
-    width:100%;border-radius:10px;padding:10px;background:linear-gradient(180deg,#fff,#fff7f7);border:1px solid rgba(184,74,102,0.05);cursor:pointer;display:flex;align-items:center;gap:10px;
-  }
-  .photo .emoji{font-size:32px}
-  .photo .meta{font-weight:700;color:var(--rose)}
-  .note{
-    margin-top:8px;padding:10px;border-radius:10px;background:linear-gradient(180deg,#fff6f6,#fff0f2);border:1px solid rgba(184,74,102,0.04)
-  }
-
-  /* right column: menu/panels */
-  .menu-area{display:flex;flex-direction:column;gap:12px}
-  .panel{background:linear-gradient(180deg,#fff,#fff9f9);padding:14px;border-radius:12px;box-shadow:var(--shadow)}
-  .panel h4{margin:0 0 8px 0;color:var(--rose);font-family:'Playfair Display',serif}
-  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-  .menu-item{padding:10px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff6f7);cursor:pointer;border:1px solid rgba(184,74,102,0.03);font-weight:700;color:var(--muted)}
-  .menu-item small{display:block;font-weight:400;color:#6b4a4a;margin-top:4px}
-
-  /* comfort buttons */
-  .comfort-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-  .comfort-btn{padding:10px;border-radius:10px;border:none;background:linear-gradient(90deg,#fff6f7,#fff1f3);cursor:pointer;color:var(--dark);font-weight:700}
-  .comfort-btn:active{transform:translateY(2px)}
-
-  /* music controls */
-  .music-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .music-btn{padding:8px 12px;border-radius:999px;border:1px solid rgba(180,100,120,0.06);background:linear-gradient(90deg,#fff,#fff6f9);cursor:pointer;font-weight:700;color:var(--rose)}
-
-  /* fruits stage (subtle) */
-  .fruit-stage{position:absolute;inset:12px 12px auto auto;width:calc(100% - 24px);height:120px;pointer-events:none;z-index:30}
-  .fruit{position:absolute;width:var(--fruit-size);height:var(--fruit-size);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px;pointer-events:none;box-shadow:0 8px 18px rgba(0,0,0,0.06)}
-  .fruit .face{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.12);padding:3px 6px;border-radius:8px;font-size:10px;color:#2f1c1c}
-  .straw{background:linear-gradient(135deg,#f86b8f,#f84578)}
-  .melon{background:linear-gradient(135deg,#ffd66b,#ffaf3b);color:#341e1e}
-  .grape{background:linear-gradient(135deg,#9b59ff,#7b2be6)}
-  .banana{background:linear-gradient(135deg,#ffd97a,#ffb84a);color:#341e1e}
-  .apple{background:linear-gradient(135deg,#ff8b8b,#ff4b4b)}
-  .pear{background:linear-gradient(135deg,#b7f17d,#8fd13a);color:#341e1e}
-
-  @keyframes tabletopWiggle{
-    0%{transform:translateY(0) rotate(-4deg)}
-    25%{transform:translateY(-6px) rotate(3deg)}
-    50%{transform:translateY(0) rotate(-1deg)}
-    75%{transform:translateY(-4px) rotate(3deg)}
-    100%{transform:translateY(0) rotate(-4deg)}
-  }
-
-  .fruit.wiggle{animation:tabletopWiggle 4s ease-in-out infinite}
-
-  /* footer */
-  footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-  /* responsive tweaks */
-  @media(max-width:720px){
-    .photo .meta{font-size:14px}
-    .brand .title{font-size:16px}
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Months of Love with Aki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #ffebf2, #fff9fc);
+            color: #5a3d5c;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #d63384;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #9c4d8f;
+            margin-bottom: 20px;
+        }
+        
+        .heart {
+            color: #ff4d6d;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #ffb6c1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .month-container {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .month-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .month-container.left {
+            left: 0;
+        }
+        
+        .month-container.right {
+            left: 50%;
+        }
+        
+        .month-content {
+            padding: 20px 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 2px solid #ffcfe0;
+        }
+        
+        .month-container.left .month-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid #ff4d6d;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .month-container.right .month-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            background-color: white;
+            border: 4px solid #ff4d6d;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        h2 {
+            color: #d63384;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .memory-image {
+            width: 100%;
+            height: 200px;
+            background-color: #ffebf2;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d63384;
+            font-style: italic;
+            overflow: hidden;
+        }
+        
+        .memory-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 1px solid #ffcfe0;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff4d6d;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: #d63384;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.4);
+        }
+        
+        .cherry-blossom {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #ffb6c1;
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .month-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .month-container.right {
+                left: 0;
+            }
+            
+            .month-container.left .month-content::after,
+            .month-container.right .month-content::after {
+                left: 21px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap" role="main">
-    <header class="site" role="banner">
-      <div class="brand">
-        <div class="badge" aria-hidden="true">☕</div>
-        <div>
-          <div class="title">Comfort Café — Tabletop</div>
-          <div class="sub small">A gentle place I made for you — warm, steady, and pink.</div>
-        </div>
-      </div>
-
-      <div class="controls">
-        <button id="ambientToggle" class="btn ghost" aria-pressed="false">Ambient OFF</button>
-        <button id="fruitsReveal" class="btn ghost">Surprise Fruits</button>
-        <button id="promiseBtn" class="btn">Read Promise</button>
-      </div>
-    </header>
-
-    <div class="scene" aria-live="polite">
-      <!-- LEFT: Tabletop -->
-      <div class="table" aria-label="Tabletop scene">
-        <div class="table-surface">
-          <div class="table-top" role="region" aria-label="table items">
-            <div class="coffee-cup" title="A warm cup for you (click)">
-              <div class="coffee" id="coffeeBtn" role="button" tabindex="0" aria-pressed="false" aria-label="Warm coffee — click for comfort">☕</div>
+    <div class="container">
+        <header>
+            <h1>4 Months <span class="heart">♥</span> with Aki</h1>
+            <p class="subtitle">A journey of love, laughter, and beautiful memories</p>
+        </header>
+        
+        <div class="timeline">
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2>Month 1: The Beginning</h2>
+                    <p>Our first month together was filled with nervous excitement and getting to know each other. Every conversation felt like discovering a new world.</p>
+                    <div class="memory-image">
+                        <!-- In a real implementation, you would add an actual image here -->
+                        <span>Our first photo together</span>
+                    </div>
+                    <p>I knew from our first real conversation that there was something special about you, Aki.</p>
+                </div>
             </div>
-
-            <div class="polaroids" role="list">
-              <div class="photo" tabindex="0" data-msg="That first match that brought us together felt like fate — and I loved it." id="pol1" role="listitem">
-                <div class="emoji">🎮</div><div class="meta">Valorant Memory <small class="small">(click)</small></div>
-              </div>
-
-              <div class="photo" tabindex="0" data-msg="Your laugh is my favorite song. Thank you for taking time for my naughty banters." id="pol2" role="listitem">
-                <div class="emoji">😄</div><div class="meta">Your Laugh <small class="small">(click)</small></div>
-              </div>
-
-              <div class="photo" tabindex="0" data-msg="Roxy and Maui — your soft world. I promise to care for them and you." id="pol3" role="listitem">
-                <div class="emoji">🐱🐶</div><div class="meta">Roxy & Maui <small class="small">(click)</small></div>
-              </div>
+            
+            <div class="month-container right">
+                <div class="month-content">
+                    <h2>Month 2: Growing Closer</h2>
+                    <p>By the second month, we were sharing more of ourselves. Our inside jokes started, and I found myself smiling whenever I thought of you.</p>
+                    <div class="memory-image">
+                        <span>That cafe we discovered together</span>
+                    </div>
+                    <p>Remember how we stayed up late talking about everything and nothing? Those were some of my favorite moments.</p>
+                </div>
             </div>
-          </div>
-
-          <div class="note card" id="noteArea" aria-live="polite">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div style="font-weight:800;color:var(--rose)">Table Note</div>
-              <div class="small">Click any item on the table</div>
+            
+            <div class="month-container left">
+                <div class="month-content">
+                    <h2>Month 3: Comfort & Connection</h2>
+                    <p>In our third month, being with you started to feel like home. We understood each other's silences and celebrated each other's joys.</p>
+                    <div class="memory-image">
+                        <span>Our weekend adventure</span>
+                    </div>
+                    <p>You have this incredible way of making ordinary moments feel magical, Aki.</p>
+                </div>
             </div>
-            <p id="noteText" style="margin-top:8px;color:var(--muted)">Welcome, love. Tap an item on the table — I'll share a small comfort or memory. You are safe here.</p>
-          </div>
+            
+            <div class="month-container right">
+                <div class="month-content">
+                    <h2>Month 4: Deepening Love</h2>
+                    <p>Now, four months in, my feelings for you have only grown stronger. You've become such an important part of my life.</p>
+                    <div class="memory-image">
+                        <span>Our most recent memory</span>
+                    </div>
+                    <p>Every day with you is a gift, and I'm so excited to see what the future holds for us.</p>
+                </div>
+            </div>
         </div>
-
-        <!-- subtle fruit field along top -->
-        <div class="fruit-stage" id="fruitStage" aria-hidden="true"></div>
-      </div>
-
-      <!-- RIGHT: Menu & Panels -->
-      <aside class="menu-area" aria-label="Cafe menu and comfort panels">
-        <div class="panel">
-          <h4>Menu — Comfort & Treats</h4>
-          <div class="menu-grid" style="margin-top:8px">
-            <div class="menu-item" tabindex="0" data-msg="McFloat & ShakeShake Fries — your little happy place. I’ll bring it in your dreams.">McFloat <small>— dreamy sip</small></div>
-            <div class="menu-item" tabindex="0" data-msg="Coffee with extra warmth — morning smiles guaranteed.">Latte <small>— warm hug</small></div>
-            <div class="menu-item" tabindex="0" data-msg="Soft playlist + nap mode — I’ll stay as you sleep.">Nap Mix <small>— sleepy tunes</small></div>
-            <div class="menu-item" tabindex="0" data-msg="A pocket full of kisses and babying — whenever you need.">Spoil Box <small>— extra kisses</small></div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h4>Comfort Corner</h4>
-          <div class="comfort-grid" style="margin-top:8px">
-            <button class="comfort-btn" data-msg="It’s okay to rest. I’ll hold things while you breathe.">It’s okay to rest</button>
-            <button class="comfort-btn" data-msg="You are loved. No matter what, I’m here.">You are loved</button>
-            <button class="comfort-btn" data-msg="Your laugh makes ordinary moments golden.">Your laugh</button>
-            <button class="comfort-btn" data-msg="Lean on me. I’ll stay.">Lean on me</button>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h4>Music & Calm</h4>
-          <div class="small">Tap a chime — soft notes inspired by her favorites (user-initiated)</div>
-          <div class="music-row" style="margin-top:10px">
-            <button id="jereena" class="music-btn">Jereena</button>
-            <button id="niki" class="music-btn">NIKI</button>
-            <button id="ariana" class="music-btn">Ariana</button>
-            <button id="ambientBtn" class="music-btn ghost">Play Ambience</button>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h4>Why I Love You</h4>
-          <div class="small" style="margin-top:8px">A few honest truths I want you to keep close.</div>
-          <ul style="margin-top:8px;color:var(--muted)">
-            <li>Your laugh — my favorite sound.</li>
-            <li>Your softness — makes me gentler.</li>
-            <li>Your time — when you make space for my silly side.</li>
-            <li>Your pets — you cherish them and I cherish that in you.</li>
-          </ul>
-        </div>
-      </aside>
+        
+        <footer>
+            <p class="message">Aki, these past four months have been some of the happiest of my life. Thank you for your laughter, your kindness, and for being exactly who you are. I cherish every moment we've shared and look forward to creating many more beautiful memories together.</p>
+            <button class="btn" id="surpriseBtn">Click for a Surprise</button>
+        </footer>
     </div>
 
-    <footer>
-      <div class="small center">Made with gentle care — I’m here, always. 💗</div>
-    </footer>
-  </div>
-
-  <!-- tiny modal for promise -->
-  <div id="promiseModal" class="popup" role="dialog" aria-modal="true" aria-hidden="true" style="display:none">
-    <div style="font-weight:800;color:var(--rose)">My Promise to You</div>
-    <div class="small" style="margin-top:8px">I will spoil you, protect you, and be here. You deserve the best and I will do my best every day. awabyuu.</div>
-    <div style="margin-top:10px;text-align:right"><button id="closePromise" class="btn">Close</button></div>
-  </div>
-
-<script>
-/* ==========================
-   Utility & UI wiring
-   ========================== */
-const noteText = document.getElementById('noteText');
-const pol1 = document.getElementById('pol1');
-const pol2 = document.getElementById('pol2');
-const pol3 = document.getElementById('pol3');
-const coffeeBtn = document.getElementById('coffeeBtn');
-const spoilBtn = document.getElementById('spoilBtn');
-const fruitsReveal = document.getElementById('fruitsReveal');
-const fruitStage = document.getElementById('fruitStage');
-const ambientToggle = document.getElementById('ambientToggle');
-const promiseBtn = document.getElementById('promiseBtn');
-const promiseModal = document.getElementById('promiseModal');
-const closePromise = document.getElementById('closePromise');
-const comfortBtns = document.querySelectorAll('.comfort-btn');
-const menuItems = document.querySelectorAll('.menu-item');
-
-/* open cafe scene */
-document.getElementById('openCafe')?.addEventListener?.('click', ()=> {
-  // fallback if there's an openCafe (not present in this layout)
-});
-
-/* click handlers for polaroids & coffee */
-[pol1, pol2, pol3].forEach(el=>{
-  el.addEventListener('click', ()=> revealNote(el.dataset.msg));
-  el.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); revealNote(el.dataset.msg); }});
-});
-coffeeBtn.addEventListener('click', ()=> revealNote('A warm cup just for you — breathe. I’m here.'));
-coffeeBtn.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') revealNote('A warm cup just for you — breathe. I’m here.'); });
-
-menuItems.forEach(it => {
-  it.addEventListener('click', ()=> revealNote(it.dataset.msg));
-  it.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') revealNote(it.dataset.msg); });
-});
-
-comfortBtns.forEach(b=>{
-  b.addEventListener('click', ()=> revealNote(b.dataset.msg));
-});
-
-/* reveal small note function */
-function revealNote(msg){
-  // show message in note area with subtle effect
-  noteText.style.opacity = 0;
-  setTimeout(()=> {
-    noteText.textContent = msg;
-    noteText.style.opacity = 1;
-  }, 220);
-  // small fruit sprinkle for delight
-  littleFruitBurst(5);
-}
-
-/* Promise modal */
-promiseBtn.addEventListener('click', ()=> {
-  promiseModal.style.display = 'block';
-  promiseModal.setAttribute('aria-hidden','false');
-});
-closePromise.addEventListener('click', ()=> {
-  promiseModal.style.display = 'none';
-  promiseModal.setAttribute('aria-hidden','true');
-});
-
-/* Fruits reveal control */
-let fruitsOn = true;
-fruitsReveal.addEventListener('click', ()=> {
-  fruitsOn = !fruitsOn;
-  fruitsReveal.textContent = fruitsOn ? 'Surprise Fruits' : 'Fruits OFF';
-  if(fruitsOn) startFruits(); else { fruitStage.innerHTML=''; if(fruitTick) clearInterval(fruitTick); }
-});
-
-/* ==========================
-   Subtle Fruit Implementation (F2 + M2, medium but classy)
-   ========================== */
-const FRUITS = ['straw','melon','grape','banana','apple','pear'];
-let fruitPool = [];
-let fruitTick;
-
-function makeFruit() {
-  const el = document.createElement('div');
-  const variant = FRUITS[Math.floor(Math.random()*FRUITS.length)];
-  el.className = 'fruit ' + variant;
-  el.style.left = Math.random()*80 + 'vw';
-  el.style.top = Math.random()*10 + 'px';
-  // face & eyes
-  const face = document.createElement('div'); face.className = 'face';
-  const faces = ['🙂','😯','🥺','😋','😍','🤭'];
-  face.textContent = faces[Math.floor(Math.random()*faces.length)];
-  el.appendChild(face);
-  el.classList.add('wiggle');
-  fruitStage.appendChild(el);
-  // gentle fade and life
-  setTimeout(()=> { el.style.opacity = 1; }, 60);
-  // schedule removal
-  setTimeout(()=> { try{ el.remove(); }catch(e){} }, 10000 + Math.random()*6000);
-  return el;
-}
-
-function spawnFruits(count=10) {
-  for(let i=0;i<count;i++){
-    setTimeout(()=> {
-      if(!fruitsOn) return;
-      makeFruit();
-    }, i * 120);
-  }
-}
-
-function startFruits() {
-  fruitStage.innerHTML = '';
-  spawnFruits(12);
-  if(fruitTick) clearInterval(fruitTick);
-  fruitTick = setInterval(()=> { if(!fruitsOn) return; spawnFruits(4); }, 9000);
-}
-function littleFruitBurst(n=4) {
-  if(!fruitsOn) return;
-  spawnFruits(n);
-}
-
-/* start initial fruits quietly */
-startFruits();
-
-/* ==========================
-   Ambient & Music (WebAudio)
-   - ambient: gentle filtered noise (toggleable)
-   - chimes: simple note sequences for Jereena / NIKI / Ariana
-   ========================== */
-let audioCtx, ambientNode, ambientGain;
-function ensureAudio(){
-  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  return audioCtx;
-}
-
-/* ambient: filtered noise */
-function startAmbient(){
-  const ctx = ensureAudio();
-  // create white noise buffer
-  const bufferSize = ctx.sampleRate * 2;
-  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-  const data = buffer.getChannelData(0);
-  for(let i=0;i<bufferSize;i++) data[i] = (Math.random()*2-1) * 0.12; // quiet noise
-  const noise = ctx.createBufferSource();
-  noise.buffer = buffer;
-  noise.loop = true;
-  const lp = ctx.createBiquadFilter();
-  lp.type = 'lowpass'; lp.frequency.value = 900;
-  const gain = ctx.createGain(); gain.gain.value = 0.0;
-  noise.connect(lp); lp.connect(gain); gain.connect(ctx.destination);
-  noise.start();
-  ambientNode = noise; ambientGain = gain;
-  // fade in gently
-  gain.gain.linearRampToValueAtTime(0.02, ctx.currentTime + 0.5);
-}
-
-function stopAmbient(){
-  if(ambientGain) {
-    ambientGain.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 0.6);
-    setTimeout(()=> { try{ ambientNode.stop(); }catch(e){} ambientNode=null; ambientGain=null; }, 800);
-  }
-}
-
-/* music chimes (notes arrays) */
-function playChime(notes=[440,660,880], durs=[0.18,0.18,0.34]) {
-  const ctx = ensureAudio();
-  const now = ctx.currentTime;
-  const o = ctx.createOscillator();
-  const g = ctx.createGain();
-  o.type = 'sine'; o.connect(g); g.connect(ctx.destination);
-  g.gain.setValueAtTime(0.0001, now);
-  o.start(now);
-  let t = now;
-  for(let i=0;i<notes.length;i++){
-    o.frequency.setValueAtTime(notes[i], t);
-    g.gain.linearRampToValueAtTime(0.06, t+0.02);
-    t += durs[i] || 0.18;
-    g.gain.exponentialRampToValueAtTime(0.0001, t);
-  }
-  o.stop(t+0.05);
-}
-
-/* wire music buttons */
-document.getElementById('jereena').addEventListener('click', ()=> playChime([330,392,523,440],[0.18,0.18,0.22,0.22]));
-document.getElementById('niki').addEventListener('click', ()=> playChime([220,277,330,277],[0.2,0.2,0.3,0.2]));
-document.getElementById('ariana').addEventListener('click', ()=> playChime([440,660,880,660,440],[0.12,0.12,0.18,0.12,0.2]));
-
-/* ambient toggle */
-ambientToggle.addEventListener('click', ()=> {
-  const ctx = ensureAudio();
-  if(ambientNode){
-    stopAmbient(); ambientToggle.textContent = 'Ambient OFF'; ambientToggle.setAttribute('aria-pressed','false');
-  } else {
-    startAmbient(); ambientToggle.textContent = 'Ambient ON'; ambientToggle.setAttribute('aria-pressed','true');
-  }
-});
-
-/* Fruits reveal explicit button: small celebration */
-fruitsReveal.addEventListener('click', ()=> { littleFruitBurst(10); });
-
-/* ==========================
-   Preload / user gesture: ensure audio allowed on first tap
-   ========================== */
-function initUserGesture() {
-  const onFirst = () => {
-    try { ensureAudio(); } catch(e){}
-    document.removeEventListener('click', onFirst);
-    document.removeEventListener('keydown', onFirst);
-  };
-  document.addEventListener('click', onFirst);
-  document.addEventListener('keydown', onFirst);
-}
-initUserGesture();
-
-/* Accessibility: keyboard focus outlines and interactions */
-/* (photo & menu items already have tabindex and key handlers above) */
-
-/* End script */
-</script>
+    <script>
+        // Animation for timeline elements
+        const monthContainers = document.querySelectorAll('.month-container');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        monthContainers.forEach(container => {
+            observer.observe(container);
+        });
+        
+        // Create cherry blossom effect
+        function createCherryBlossom() {
+            const blossom = document.createElement('div');
+            blossom.classList.add('cherry-blossom');
+            
+            // Random position
+            const leftPos = Math.random() * 100;
+            blossom.style.left = `${leftPos}vw`;
+            
+            // Random size
+            const size = Math.random() * 15 + 10;
+            blossom.style.width = `${size}px`;
+            blossom.style.height = `${size}px`;
+            
+            // Random opacity
+            blossom.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            document.body.appendChild(blossom);
+            
+            // Animation
+            let topPos = -30;
+            const fall = setInterval(() => {
+                topPos += 1;
+                blossom.style.top = `${topPos}vh`;
+                
+                // Slight horizontal movement
+                const currentLeft = parseFloat(blossom.style.left);
+                blossom.style.left = `${currentLeft + Math.sin(topPos/20) * 0.5}vw`;
+                
+                // Remove when out of view
+                if (topPos > 100) {
+                    clearInterval(fall);
+                    blossom.remove();
+                }
+            }, 50);
+        }
+        
+        // Create multiple blossoms
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => {
+                createCherryBlossom();
+            }, i * 800);
+        }
+        
+        // Continue creating blossoms periodically
+        setInterval(() => {
+            createCherryBlossom();
+        }, 2000);
+        
+        // Surprise button
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            const messages = [
+                "I love you, Aki!",
+                "You make me so happy!",
+                "Every day with you is a blessing.",
+                "I'm so grateful for you.",
+                "You're my favorite person.",
+                "I can't wait to see you again!",
+                "You have the most beautiful smile.",
+                "I'm lucky to have you in my life."
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+            
+            // Create heart animation
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 100);
+            }
+        });
+        
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '♥';
+            heart.style.position = 'fixed';
+            heart.style.color = '#ff4d6d';
+            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = '100vh';
+            heart.style.zIndex = '9999';
+            heart.style.pointerEvents = 'none';
+            heart.style.opacity = '0.8';
+            
+            document.body.appendChild(heart);
+            
+            // Animation
+            let topPos = 100;
+            const float = setInterval(() => {
+                topPos -= 1.5;
+                heart.style.top = `${topPos}vh`;
+                
+                // Slight horizontal movement
+                const currentLeft = parseFloat(heart.style.left);
+                heart.style.left = `${currentLeft + Math.sin(topPos/20) * 0.3}vw`;
+                
+                // Remove when out of view
+                if (topPos < -10) {
+                    clearInterval(float);
+                    heart.remove();
+                }
+            }, 30);
+        }
+    </script>
 </body>
 </html>
