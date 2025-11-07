@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 4 Months | Aki</title>
+    <title>4 Months with Aki | Our Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
@@ -343,7 +344,7 @@
             height: 100%;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             border-radius: 15px;
-            width: 0%;
+            width: 100%;
             transition: width 1s ease;
         }
 
@@ -428,13 +429,12 @@
         </div>
         
         <div class="interactive-game">
-            <h3 class="game-title">Our Love Meter</h3>
+            <h3 class="game-title">My Love for You</h3>
             <p>How much do I love Aki?</p>
             <div class="love-meter">
                 <div class="love-fill" id="loveFill"></div>
             </div>
-            <button class="game-btn" onclick="increaseLove()">Add More Love!</button>
-            <button class="game-btn" onclick="resetLove()">Reset</button>
+            <p style="margin-top: 15px; font-weight: bold;">It's infinite and keeps growing every day!</p>
         </div>
         
         <div class="timeline">
@@ -515,24 +515,6 @@
             } else {
                 message.style.display = 'block';
             }
-        }
-        
-        // Love meter game
-        let loveLevel = 0;
-        function increaseLove() {
-            if (loveLevel < 100) {
-                loveLevel += 10;
-                document.getElementById('loveFill').style.width = loveLevel + '%';
-                
-                if (loveLevel === 100) {
-                    alert("My love for Aki is infinite! ❤️");
-                }
-            }
-        }
-        
-        function resetLove() {
-            loveLevel = 0;
-            document.getElementById('loveFill').style.width = '0%';
         }
         
         // Timeline animation
