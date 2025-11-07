@@ -3,77 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4 Months of Love with Aki</title>
+    <title>Our 4 Months | Aki</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
-        
+
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #6a5af9;
+            --accent: #4ecdc4;
+            --dark: #2d3047;
+            --light: #f9f9f9;
+        }
+
         body {
-            background: linear-gradient(to bottom, #ffebf2, #fff9fc);
-            color: #5a3d5c;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         header {
             text-align: center;
             padding: 40px 0;
             position: relative;
         }
-        
+
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 10px;
-            color: #d63384;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .subtitle {
             font-size: 1.5rem;
-            color: #9c4d8f;
+            color: var(--dark);
             margin-bottom: 20px;
+            opacity: 0.8;
         }
-        
+
         .heart {
-            color: #ff4d6d;
+            color: var(--primary);
             display: inline-block;
             animation: heartbeat 1.5s infinite;
         }
-        
+
         @keyframes heartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-        
+
+        .interactive-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        }
+
+        .memory-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .memory-card p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .memory-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .secret-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255, 107, 139, 0.1);
+            border-radius: 10px;
+            font-style: italic;
+        }
+
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 50px auto;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
             width: 6px;
-            background-color: #ffb6c1;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
             top: 0;
             bottom: 0;
             left: 50%;
             margin-left: -3px;
             border-radius: 10px;
         }
-        
+
         .month-container {
             padding: 10px 40px;
             position: relative;
@@ -82,29 +160,34 @@
             transform: translateY(20px);
             transition: all 0.8s ease;
         }
-        
+
         .month-container.show {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .month-container.left {
             left: 0;
         }
-        
+
         .month-container.right {
             left: 50%;
         }
-        
+
         .month-content {
             padding: 20px 30px;
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             position: relative;
-            border: 2px solid #ffcfe0;
+            border-left: 5px solid var(--primary);
         }
-        
+
+        .month-container.right .month-content {
+            border-left: none;
+            border-right: 5px solid var(--secondary);
+        }
+
         .month-container.left .month-content::after {
             content: '';
             position: absolute;
@@ -112,12 +195,12 @@
             height: 20px;
             right: -10px;
             background-color: white;
-            border: 4px solid #ff4d6d;
+            border: 4px solid var(--primary);
             top: 15px;
             border-radius: 50%;
             z-index: 1;
         }
-        
+
         .month-container.right .month-content::after {
             content: '';
             position: absolute;
@@ -125,61 +208,62 @@
             height: 20px;
             left: -10px;
             background-color: white;
-            border: 4px solid #ff4d6d;
+            border: 4px solid var(--secondary);
             top: 15px;
             border-radius: 50%;
             z-index: 1;
         }
-        
+
         h2 {
-            color: #d63384;
+            color: var(--dark);
             margin-bottom: 10px;
             font-size: 1.8rem;
         }
-        
-        p {
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        
+
         .memory-image {
             width: 100%;
             height: 200px;
-            background-color: #ffebf2;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             border-radius: 10px;
             margin: 15px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d63384;
+            color: white;
             font-style: italic;
             overflow: hidden;
+            position: relative;
         }
-        
-        .memory-image img {
+
+        .memory-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: rgba(0, 0, 0, 0.2);
         }
-        
+
         footer {
             text-align: center;
             padding: 40px 0;
             margin-top: 50px;
-            border-top: 1px solid #ffcfe0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
-        
+
         .message {
             font-size: 1.2rem;
             max-width: 600px;
             margin: 0 auto 30px;
             line-height: 1.8;
+            color: var(--dark);
         }
-        
+
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #ff4d6d;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border-radius: 30px;
             text-decoration: none;
@@ -190,25 +274,100 @@
             font-size: 1rem;
             box-shadow: 0 4px 10px rgba(255, 77, 109, 0.3);
         }
-        
+
         .btn:hover {
-            background-color: #d63384;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(255, 77, 109, 0.4);
         }
-        
-        .cherry-blossom {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #ffb6c1;
-            border-radius: 50% 0 50% 50%;
-            transform: rotate(45deg);
-            opacity: 0.7;
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: -1;
         }
-        
+
+        .heart-particle {
+            position: absolute;
+            font-size: 20px;
+            color: var(--primary);
+            opacity: 0;
+            animation: float 8s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .interactive-game {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .love-meter {
+            width: 100%;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .love-fill {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .game-btn {
+            margin: 10px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: #3bb4ad;
+            transform: scale(1.05);
+        }
+
         @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
             .timeline::after {
                 left: 31px;
             }
@@ -227,75 +386,156 @@
             .month-container.right .month-content::after {
                 left: 21px;
             }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
         }
     </style>
 </head>
 <body>
+    <div class="floating-hearts" id="heartsContainer"></div>
+    
     <div class="container">
         <header>
-            <h1>4 Months <span class="heart">♥</span> with Aki</h1>
-            <p class="subtitle">A journey of love, laughter, and beautiful memories</p>
+            <h1>4 Months <span class="heart">♥</span> Aki</h1>
+            <p class="subtitle">A unique journey of love, laughter, and beautiful memories</p>
         </header>
+        
+        <div class="interactive-section">
+            <div class="memory-card" onclick="revealMessage(0)">
+                <div class="memory-icon">💖</div>
+                <h3>Our First Meeting</h3>
+                <p>Click to reveal a special memory</p>
+                <div class="secret-message" id="message0">
+                    I still remember the way you smiled that day. It felt like the whole world lit up.
+                </div>
+            </div>
+            
+            <div class="memory-card" onclick="revealMessage(1)">
+                <div class="memory-icon">😂</div>
+                <h3>Inside Jokes</h3>
+                <p>Click to reveal a special memory</p>
+                <div class="secret-message" id="message1">
+                    Remember when we couldn't stop laughing about that silly thing? Those are my favorite moments with you.
+                </div>
+            </div>
+            
+            <div class="memory-card" onclick="revealMessage(2)">
+                <div class="memory-icon">🌙</div>
+                <h3>Late Night Talks</h3>
+                <p>Click to reveal a special memory</p>
+                <div class="secret-message" id="message2">
+                    Our conversations under the moonlight made me feel closer to you than anyone else.
+                </div>
+            </div>
+        </div>
+        
+        <div class="interactive-game">
+            <h3 class="game-title">Our Love Meter</h3>
+            <p>How much do I love Aki?</p>
+            <div class="love-meter">
+                <div class="love-fill" id="loveFill"></div>
+            </div>
+            <button class="game-btn" onclick="increaseLove()">Add More Love!</button>
+            <button class="game-btn" onclick="resetLove()">Reset</button>
+        </div>
         
         <div class="timeline">
             <div class="month-container left">
                 <div class="month-content">
-                    <h2>Month 1: The Beginning</h2>
-                    <p>Our first month together was filled with nervous excitement and getting to know each other. Every conversation felt like discovering a new world.</p>
+                    <h2>Month 1: Discovery</h2>
+                    <p>Our first month was like opening a book with blank pages, ready to be filled with our story. Every conversation revealed something new about you that I adored.</p>
                     <div class="memory-image">
-                        <!-- In a real implementation, you would add an actual image here -->
-                        <span>Our first photo together</span>
+                        The first time we realized how much we had in common
                     </div>
-                    <p>I knew from our first real conversation that there was something special about you, Aki.</p>
+                    <p>You had this way of making ordinary moments feel extraordinary.</p>
                 </div>
             </div>
             
             <div class="month-container right">
                 <div class="month-content">
-                    <h2>Month 2: Growing Closer</h2>
-                    <p>By the second month, we were sharing more of ourselves. Our inside jokes started, and I found myself smiling whenever I thought of you.</p>
+                    <h2>Month 2: Connection</h2>
+                    <p>By the second month, we had developed our own language of inside jokes and meaningful glances. I found myself saving funny things to tell you later.</p>
                     <div class="memory-image">
-                        <span>That cafe we discovered together</span>
+                        That rainy day we spent talking for hours
                     </div>
-                    <p>Remember how we stayed up late talking about everything and nothing? Those were some of my favorite moments.</p>
+                    <p>You became my favorite person to share both good and bad days with.</p>
                 </div>
             </div>
             
             <div class="month-container left">
                 <div class="month-content">
-                    <h2>Month 3: Comfort & Connection</h2>
-                    <p>In our third month, being with you started to feel like home. We understood each other's silences and celebrated each other's joys.</p>
+                    <h2>Month 3: Comfort</h2>
+                    <p>In our third month, being with you felt like coming home. We didn't need to fill every silence because our presence was enough.</p>
                     <div class="memory-image">
-                        <span>Our weekend adventure</span>
+                        Our first adventure together
                     </div>
-                    <p>You have this incredible way of making ordinary moments feel magical, Aki.</p>
+                    <p>I realized how much I appreciate your perspective on the world.</p>
                 </div>
             </div>
             
             <div class="month-container right">
                 <div class="month-content">
-                    <h2>Month 4: Deepening Love</h2>
-                    <p>Now, four months in, my feelings for you have only grown stronger. You've become such an important part of my life.</p>
+                    <h2>Month 4: Certainty</h2>
+                    <p>Now, four months in, I'm certain about my feelings for you. You've become an integral part of my life and my happiness.</p>
                     <div class="memory-image">
-                        <span>Our most recent memory</span>
+                        The moment I realized how much you mean to me
                     </div>
-                    <p>Every day with you is a gift, and I'm so excited to see what the future holds for us.</p>
+                    <p>Every day with you is a new reason to smile.</p>
                 </div>
             </div>
         </div>
         
         <footer>
-            <p class="message">Aki, these past four months have been some of the happiest of my life. Thank you for your laughter, your kindness, and for being exactly who you are. I cherish every moment we've shared and look forward to creating many more beautiful memories together.</p>
-            <button class="btn" id="surpriseBtn">Click for a Surprise</button>
+            <p class="message">Aki, these past four months have shown me a new dimension of happiness. Thank you for your laughter that brightens my darkest days, your kindness that inspires me to be better, and for simply being you. I cherish every moment we've shared and look forward to creating countless more beautiful memories together.</p>
+            <button class="btn" id="surpriseBtn">Click for Our Song</button>
         </footer>
     </div>
 
     <script>
-        // Animation for timeline elements
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.color = `hsl(${Math.random() * 360}, 70%, 65%)`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Reveal secret messages
+        function revealMessage(index) {
+            const message = document.getElementById(`message${index}`);
+            if (message.style.display === 'block') {
+                message.style.display = 'none';
+            } else {
+                message.style.display = 'block';
+            }
+        }
+        
+        // Love meter game
+        let loveLevel = 0;
+        function increaseLove() {
+            if (loveLevel < 100) {
+                loveLevel += 10;
+                document.getElementById('loveFill').style.width = loveLevel + '%';
+                
+                if (loveLevel === 100) {
+                    alert("My love for Aki is infinite! ❤️");
+                }
+            }
+        }
+        
+        function resetLove() {
+            loveLevel = 0;
+            document.getElementById('loveFill').style.width = '0%';
+        }
+        
+        // Timeline animation
         const monthContainers = document.querySelectorAll('.month-container');
         
         const observer = new IntersectionObserver((entries) => {
@@ -310,111 +550,50 @@
             observer.observe(container);
         });
         
-        // Create cherry blossom effect
-        function createCherryBlossom() {
-            const blossom = document.createElement('div');
-            blossom.classList.add('cherry-blossom');
-            
-            // Random position
-            const leftPos = Math.random() * 100;
-            blossom.style.left = `${leftPos}vw`;
-            
-            // Random size
-            const size = Math.random() * 15 + 10;
-            blossom.style.width = `${size}px`;
-            blossom.style.height = `${size}px`;
-            
-            // Random opacity
-            blossom.style.opacity = Math.random() * 0.5 + 0.3;
-            
-            document.body.appendChild(blossom);
-            
-            // Animation
-            let topPos = -30;
-            const fall = setInterval(() => {
-                topPos += 1;
-                blossom.style.top = `${topPos}vh`;
-                
-                // Slight horizontal movement
-                const currentLeft = parseFloat(blossom.style.left);
-                blossom.style.left = `${currentLeft + Math.sin(topPos/20) * 0.5}vw`;
-                
-                // Remove when out of view
-                if (topPos > 100) {
-                    clearInterval(fall);
-                    blossom.remove();
-                }
-            }, 50);
-        }
-        
-        // Create multiple blossoms
-        for (let i = 0; i < 15; i++) {
-            setTimeout(() => {
-                createCherryBlossom();
-            }, i * 800);
-        }
-        
-        // Continue creating blossoms periodically
-        setInterval(() => {
-            createCherryBlossom();
-        }, 2000);
-        
         // Surprise button
         document.getElementById('surpriseBtn').addEventListener('click', function() {
             const messages = [
-                "I love you, Aki!",
-                "You make me so happy!",
-                "Every day with you is a blessing.",
-                "I'm so grateful for you.",
-                "You're my favorite person.",
-                "I can't wait to see you again!",
-                "You have the most beautiful smile.",
-                "I'm lucky to have you in my life."
+                "Our song would be 'Perfect' by Ed Sheeran because every moment with you feels just right.",
+                "If we had a song, it would be 'Can't Help Falling in Love' by Elvis Presley.",
+                "Our theme would be 'You Are The Reason' by Calum Scott.",
+                "I imagine our song as 'A Thousand Years' by Christina Perri.",
+                "For us, it would be 'All of Me' by John Legend - because I love all of you.",
+                "Our song would be 'Just the Way You Are' by Bruno Mars.",
+                "I think 'I Don't Want to Miss a Thing' by Aerosmith captures how I feel.",
+                "Our song would be 'At My Worst' by Pink Sweat$ - because you love me even then."
             ];
             
             const randomMessage = messages[Math.floor(Math.random() * messages.length)];
             alert(randomMessage);
             
-            // Create heart animation
-            for (let i = 0; i < 20; i++) {
+            // Create extra hearts
+            for (let i = 0; i < 10; i++) {
                 setTimeout(() => {
                     createHeart();
                 }, i * 100);
             }
         });
         
-        // Create floating hearts
+        // Create floating hearts on demand
         function createHeart() {
+            const heartsContainer = document.getElementById('heartsContainer');
             const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
             heart.innerHTML = '♥';
-            heart.style.position = 'fixed';
-            heart.style.color = '#ff4d6d';
-            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.top = '100vh';
-            heart.style.zIndex = '9999';
-            heart.style.pointerEvents = 'none';
-            heart.style.opacity = '0.8';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = '0s';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.color = `hsl(${Math.random() * 360}, 70%, 65%)`;
+            heartsContainer.appendChild(heart);
             
-            document.body.appendChild(heart);
-            
-            // Animation
-            let topPos = 100;
-            const float = setInterval(() => {
-                topPos -= 1.5;
-                heart.style.top = `${topPos}vh`;
-                
-                // Slight horizontal movement
-                const currentLeft = parseFloat(heart.style.left);
-                heart.style.left = `${currentLeft + Math.sin(topPos/20) * 0.3}vw`;
-                
-                // Remove when out of view
-                if (topPos < -10) {
-                    clearInterval(float);
-                    heart.remove();
-                }
-            }, 30);
+            // Remove after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
         }
+        
+        // Initialize
+        createHearts();
     </script>
 </body>
 </html>
