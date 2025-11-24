@@ -9,8 +9,8 @@
     html, body {
       height: 100%;
       margin: 0;
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
     }
     body {
       display: flex;
@@ -26,11 +26,11 @@
       overflow: auto;
       font-size: var(--font-size);
       line-height: var(--line-h);
-      background: #000;
-      color: #fff;
+      background: #fff;
+      color: #000;
       margin: 0;
       padding: 8px;
-      border: 0;
+      border: 1px solid #ccc;
     }
     @media (max-width: 420px) {
       :root { --font-size: 4px; --line-h: 4px; }
@@ -52,11 +52,11 @@
   // ---------------------------------------------
 
   const IMAGE_SRC = "download (2).jpg"; 
-  const COLS = 160;
+  const COLS = 150;      // slightly reduced for better clarity on white background
   const SCALE = 0.55;
-  const THRESH_LIGHT = 0.65;  // lower threshold → more visible portrait
+  const THRESH_LIGHT = 0.70;  // tuned for white background visibility
 
-  // Expand characters so we have enough for the ASCII output
+  // Expand characters
   let chars = MESSAGE.split('');
   while (chars.length < 2000) chars.push(...chars);
 
@@ -109,7 +109,8 @@
   };
 
   img.onerror = () => {
-    portraitElem.textContent = "ERROR: Image not found. Make sure 'download (2).jpg' is in the same folder.";
+    portraitElem.textContent =
+      "ERROR: Image not found.\nPlace 'download (2).jpg' in the same folder as this HTML file.";
   };
 
 })();
