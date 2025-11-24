@@ -3,113 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enchanted Storybook | 4 Months with Aki</title>
+    <title>Magical Memory Locket | 4 Months with Aki</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', 'Georgia', serif;
         }
 
         :root {
-            --parchment: #f5e8c8;
-            --ink: #3a2c1e;
-            --gold: #d4af37;
-            --magic1: #9d4edd;
-            --magic2: #5a189a;
-            --magic3: #c77dff;
-            --accent1: #ff6b8b;
-            --accent2: #4ecdc4;
+            --locket-gold: #d4af37;
+            --locket-silver: #c0c0c0;
+            --magic-purple: #9d4edd;
+            --magic-pink: #ff6b8b;
+            --magic-blue: #4ecdc4;
+            --deep-space: #0f0f23;
+            --starlight: #fffacd;
         }
 
         body {
-            background: linear-gradient(135deg, #1a0f0a 0%, #2d1b69 50%, #0f0f23 100%);
-            color: var(--ink);
+            background: 
+                radial-gradient(circle at 20% 30%, #1a0f2e 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, #2d1b69 0%, transparent 50%),
+                var(--deep-space);
+            color: var(--starlight);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        .storybook-container {
-            max-width: 1000px;
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 2;
         }
 
-        .storybook {
-            background: var(--parchment);
-            border-radius: 10px;
-            box-shadow: 
-                0 0 50px rgba(212, 175, 55, 0.5),
-                inset 0 0 50px rgba(245, 232, 200, 0.8);
-            position: relative;
-            overflow: hidden;
-            min-height: 80vh;
-            padding: 40px;
-            margin: 20px 0;
-            border: 15px solid #8b7355;
-        }
-
-        .storybook::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 107, 139, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .page {
-            position: relative;
-            z-index: 2;
-        }
-
         header {
             text-align: center;
-            padding: 20px 0 40px;
+            padding: 40px 0;
             position: relative;
         }
 
         h1 {
             font-size: 3.5rem;
             margin-bottom: 10px;
-            color: var(--magic2);
-            text-shadow: 2px 2px 0px var(--gold);
-            font-family: 'Georgia', serif;
-            position: relative;
-            display: inline-block;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 10%;
-            width: 80%;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            background: linear-gradient(45deg, var(--locket-gold), var(--magic-pink), var(--magic-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            font-weight: 400;
+            letter-spacing: 2px;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--magic1);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
             font-style: italic;
         }
 
         .heart {
-            color: var(--accent1);
+            color: var(--magic-pink);
             display: inline-block;
             animation: heartbeat 1.5s infinite;
-            text-shadow: 0 0 10px var(--accent1);
+            text-shadow: 0 0 10px var(--magic-pink);
         }
 
         @keyframes heartbeat {
@@ -118,219 +80,279 @@
             100% { transform: scale(1); }
         }
 
-        /* Magical Timeline */
-        .magical-timeline {
+        /* Magical Locket */
+        .magical-locket {
             position: relative;
-            margin: 40px 0;
-            padding: 20px 0;
+            width: 500px;
+            height: 500px;
+            margin: 40px auto;
+            perspective: 1000px;
         }
 
-        .timeline-path {
+        .locket-outer {
             position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--magic1), var(--magic2), var(--magic3));
-            transform: translateY(-50%);
-            z-index: 1;
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--magic1);
-        }
-
-        .timeline-milestone {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            margin: 60px 0;
-            z-index: 2;
-        }
-
-        .milestone {
-            width: 45%;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .milestone:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.3);
-            border-color: var(--magic1);
-        }
-
-        .milestone.left {
-            text-align: right;
-        }
-
-        .milestone.right {
-            margin-left: auto;
-        }
-
-        .milestone-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--magic1);
-        }
-
-        .milestone-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--magic2);
-            font-weight: bold;
-        }
-
-        .milestone-content {
-            line-height: 1.6;
-            color: var(--ink);
-        }
-
-        .milestone-marker {
-            position: absolute;
-            top: 50%;
-            width: 20px;
-            height: 20px;
-            background: var(--gold);
-            border-radius: 50%;
-            transform: translateY(-50%);
-            z-index: 3;
-            box-shadow: 0 0 10px var(--gold);
-            border: 3px solid var(--parchment);
-        }
-
-        .milestone.left .milestone-marker {
-            right: -50px;
-        }
-
-        .milestone.right .milestone-marker {
-            left: -50px;
-        }
-
-        /* Magical Elements */
-        .floating-sparkles {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            transform-style: preserve-3d;
+            transition: transform 1.5s ease-in-out;
         }
 
-        .sparkle {
+        .locket-outer.open {
+            transform: rotateY(180deg);
+        }
+
+        .locket-front, .locket-back {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
             border-radius: 50%;
-            opacity: 0;
-            box-shadow: 0 0 5px white;
-        }
-
-        @keyframes sparkleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .enchanted-objects {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 40px 0;
-        }
-
-        .enchanted-item {
-            width: 150px;
-            height: 150px;
-            margin: 15px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        .locket-front {
+            background: 
+                radial-gradient(circle at 30% 30%, var(--locket-gold) 0%, #b8941f 30%, #8a6d0f 100%);
+            box-shadow: 
+                0 0 50px var(--locket-gold),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            border: 10px solid #b8941f;
+            cursor: pointer;
+        }
+
+        .locket-back {
+            background: 
+                radial-gradient(circle at 70% 70%, var(--locket-silver) 0%, #a8a8a8 30%, #787878 100%);
+            box-shadow: 
+                0 0 50px var(--locket-silver),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
+            border: 10px solid #a8a8a8;
+            transform: rotateY(180deg);
+            padding: 60px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .locket-design {
+            position: relative;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at center, transparent 30%, rgba(212, 175, 55, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .locket-center {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--magic-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 0 30px var(--magic-purple);
+            animation: pulse 3s infinite;
+            cursor: pointer;
+        }
+
+        .memory-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .memory-orb {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 20px currentColor;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .memory-orb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px currentColor;
+            z-index: 10;
+        }
+
+        .memory-orb:nth-child(1) {
+            top: 10%;
+            left: 25%;
+            background: radial-gradient(circle at 30% 30%, var(--magic-pink), #d44d75);
+            color: white;
+            animation-delay: 0s;
+        }
+
+        .memory-orb:nth-child(2) {
+            top: 10%;
+            right: 25%;
+            background: radial-gradient(circle at 30% 30%, var(--magic-blue), #3daaa3);
+            color: white;
+            animation-delay: 1s;
+        }
+
+        .memory-orb:nth-child(3) {
+            bottom: 10%;
+            left: 25%;
+            background: radial-gradient(circle at 30% 30%, var(--magic-purple), #7d3db0);
+            color: white;
+            animation-delay: 2s;
+        }
+
+        .memory-orb:nth-child(4) {
+            bottom: 10%;
+            right: 25%;
+            background: radial-gradient(circle at 30% 30%, var(--locket-gold), #b8941f);
+            color: white;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--magic-purple); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px var(--magic-purple); }
+        }
+
+        .locket-inscription {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .open-locket-btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--magic-purple), var(--magic-pink));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+        }
+
+        .open-locket-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.6);
+        }
+
+        /* Memory Showcase */
+        .memory-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .memory-crystal {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(106, 90, 249, 0.3);
+            backdrop-filter: blur(5px);
         }
 
-        .enchanted-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.4);
+        .memory-crystal:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(106, 90, 249, 0.4);
+            border-color: rgba(106, 90, 249, 0.7);
         }
 
-        .item-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            color: var(--magic1);
-        }
-
-        .item-title {
-            font-size: 1rem;
-            text-align: center;
-            color: var(--magic2);
-            font-weight: bold;
-        }
-
-        .message-scroll {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 30px;
-            margin: 40px 0;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid var(--accent1);
-        }
-
-        .message-scroll::before {
+        .memory-crystal::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 20px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
-            border-radius: 10px 10px 0 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--magic-pink), var(--magic-purple));
+        }
+
+        .crystal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--magic-blue);
+        }
+
+        .crystal-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--starlight);
+        }
+
+        .crystal-content {
+            line-height: 1.6;
+            color: #b8b8d0;
+        }
+
+        .message-bottle {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 107, 139, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .message-bottle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 107, 139, 0.1), transparent 50%);
         }
 
         .message {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.8;
-            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
             font-style: italic;
-            color: var(--ink);
         }
 
-        .spell-button {
+        .magic-wand {
             display: block;
             margin: 30px auto;
             padding: 15px 40px;
-            background: linear-gradient(45deg, var(--magic1), var(--magic2));
+            background: linear-gradient(45deg, var(--magic-purple), var(--magic-pink));
             color: white;
             border: none;
             border-radius: 30px;
             font-size: 1.2rem;
-            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
@@ -338,25 +360,17 @@
             overflow: hidden;
         }
 
-        .spell-button:hover {
+        .magic-wand:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(157, 78, 221, 0.6);
         }
 
-        .spell-button::after {
-            content: '';
+        .magic-wand::after {
+            content: '✨';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-        }
-
-        .spell-button:hover::after {
-            transform: rotate(45deg) translate(50%, 50%);
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
         }
 
         /* Modal Styles */
@@ -374,15 +388,16 @@
         }
 
         .modal-content {
-            background: var(--parchment);
-            border-radius: 15px;
+            background: linear-gradient(135deg, #1a1a3a, #2d1b69);
+            border-radius: 20px;
             padding: 30px;
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(157, 78, 221, 0.5);
+            box-shadow: 0 0 40px rgba(106, 90, 249, 0.5);
             position: relative;
             text-align: center;
-            border: 5px solid var(--gold);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .close-modal {
@@ -391,152 +406,154 @@
             right: 15px;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--magic2);
+            color: var(--starlight);
         }
 
         .modal-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: var(--magic1);
+            color: var(--magic-blue);
         }
 
         .modal-title {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--magic2);
+            color: var(--starlight);
         }
 
         .modal-text {
             line-height: 1.6;
             margin-bottom: 20px;
-            color: var(--ink);
+            color: #b8b8d0;
         }
 
-        /* Footer */
-        .storybook-footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--gold);
-            font-style: italic;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            margin-top: 40px;
+        /* Magical Particles */
+        .magical-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* Responsive */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 5px white;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
             
-            .milestone {
-                width: 100%;
-                margin-bottom: 40px;
-                text-align: center;
+            .magical-locket {
+                width: 300px;
+                height: 300px;
             }
             
-            .milestone.left, .milestone.right {
-                text-align: center;
+            .memory-orb {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
             }
             
-            .milestone-marker {
-                display: none;
+            .locket-center {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
             }
             
-            .enchanted-item {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .item-icon {
-                font-size: 2.5rem;
+            .memory-showcase {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-sparkles" id="floatingSparkles"></div>
+    <div class="magical-particles" id="magicalParticles"></div>
     
-    <div class="storybook-container">
-        <div class="storybook">
-            <div class="page">
-                <header>
-                    <h1>Enchanted Storybook <span class="heart">♥</span></h1>
-                    <p class="subtitle">4 Magical Months with Aki</p>
-                    <p>Our love story written in stardust and dreams</p>
-                </header>
-                
-                <div class="magical-timeline">
-                    <div class="timeline-path"></div>
-                    
-                    <div class="timeline-milestone">
-                        <div class="milestone left" onclick="showMemory(0)">
-                            <div class="milestone-icon">📖</div>
-                            <h3 class="milestone-title">First Chapter</h3>
-                            <p class="milestone-content">Our story began with a simple friend request and a message that would change everything...</p>
-                            <div class="milestone-marker"></div>
+    <div class="container">
+        <header>
+            <h1>Magical Memory Locket <span class="heart">♥</span></h1>
+            <p class="subtitle">4 Enchanted Months with Aki</p>
+            <p>Each memory carefully preserved in this mystical locket</p>
+        </header>
+        
+        <div class="magical-locket">
+            <div class="locket-outer" id="locketOuter">
+                <div class="locket-front">
+                    <div class="locket-design">
+                        <div class="memory-orbs">
+                            <div class="memory-orb" onclick="showMemory(0)">💬</div>
+                            <div class="memory-orb" onclick="showMemory(1)">🎮</div>
+                            <div class="memory-orb" onclick="showMemory(2)">🍳</div>
+                            <div class="memory-orb" onclick="showMemory(3)">🖼️</div>
                         </div>
-                    </div>
-                    
-                    <div class="timeline-milestone">
-                        <div class="milestone right" onclick="showMemory(1)">
-                            <div class="milestone-icon">🎮</div>
-                            <h3 class="milestone-title">Shared Adventures</h3>
-                            <p class="milestone-content">From Valorant streams to shared laughter, our connection grew stronger with every moment...</p>
-                            <div class="milestone-marker"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-milestone">
-                        <div class="milestone left" onclick="showMemory(2)">
-                            <div class="milestone-icon">🍳</div>
-                            <h3 class="milestone-title">Nourishing Love</h3>
-                            <p class="milestone-content">The first silog I gave you marked a special moment of care and connection between us...</p>
-                            <div class="milestone-marker"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-milestone">
-                        <div class="milestone right" onclick="showMemory(3)">
-                            <div class="milestone-icon">🖼️</div>
-                            <h3 class="milestone-title">Revealing Yourself</h3>
-                            <p class="milestone-content">That first picture you sent became my most treasured possession, a glimpse of the beautiful person I was falling for...</p>
-                            <div class="milestone-marker"></div>
+                        <div class="locket-center" id="locketCenter">
+                            ♥
                         </div>
                     </div>
                 </div>
-                
-                <div class="enchanted-objects">
-                    <div class="enchanted-item" onclick="showEnchantedMemory(0)">
-                        <div class="item-icon">🔮</div>
-                        <div class="item-title">Crystal Ball</div>
-                    </div>
-                    
-                    <div class="enchanted-item" onclick="showEnchantedMemory(1)">
-                        <div class="item-icon">✨</div>
-                        <div class="item-title">Stardust Jar</div>
-                    </div>
-                    
-                    <div class="enchanted-item" onclick="showEnchantedMemory(2)">
-                        <div class="item-icon">📜</div>
-                        <div class="item-title">Secret Scroll</div>
-                    </div>
-                    
-                    <div class="enchanted-item" onclick="showEnchantedMemory(3)">
-                        <div class="item-icon">💌</div>
-                        <div class="item-title">Love Letter</div>
-                    </div>
-                </div>
-                
-                <div class="message-scroll">
-                    <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
-                </div>
-                
-                <button class="spell-button" id="spellButton">Cast a Love Spell</button>
-                
-                <div class="storybook-footer">
-                    <p>And our story continues to unfold with each passing day...</p>
+                <div class="locket-back">
+                    <p class="locket-inscription">"In this locket, I keep our most precious memories - each one a sparkling gem in the necklace of our time together. Four months of laughter, connection, and growing love."</p>
+                    <button class="open-locket-btn" id="closeLocket">Close Locket</button>
                 </div>
             </div>
+        </div>
+        
+        <div class="memory-showcase">
+            <div class="memory-crystal" onclick="showMemory(0)">
+                <div class="crystal-icon">💬</div>
+                <h3 class="crystal-title">First Words</h3>
+                <p class="crystal-content">That first chat after waiting for a week for you to accept my friend request - my heart fluttered with excitement and nervous anticipation.</p>
+            </div>
+            
+            <div class="memory-crystal" onclick="showMemory(1)">
+                <div class="crystal-icon">🎮</div>
+                <h3 class="crystal-title">Gaming Laughter</h3>
+                <p class="crystal-content">Your Valorant streams where you'd get surprised and scream, then blame me for watching because it made you nervous - we shared so much laughter.</p>
+            </div>
+            
+            <div class="memory-crystal" onclick="showMemory(2)">
+                <div class="crystal-icon">🍳</div>
+                <h3 class="crystal-title">First Silog</h3>
+                <p class="crystal-content">Convincing you to let me treat you to silog took hours, but seeing how happy it made you was worth every minute of persuasion.</p>
+            </div>
+            
+            <div class="memory-crystal" onclick="showMemory(3)">
+                <div class="crystal-icon">🖼️</div>
+                <h3 class="crystal-title">First Picture</h3>
+                <p class="crystal-content">When you finally felt comfortable enough to share your picture, my heart raced with excitement - finally seeing the beautiful person I was falling for.</p>
+            </div>
+        </div>
+        
+        <div class="message-bottle">
+            <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
+            <button class="magic-wand" id="magicWand">Create New Memory</button>
         </div>
     </div>
     
@@ -544,181 +561,133 @@
     <div class="modal" id="memoryModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
-            <div class="modal-icon" id="modalIcon">📖</div>
-            <h2 class="modal-title" id="modalTitle">First Chapter</h2>
+            <div class="modal-icon" id="modalIcon">💬</div>
+            <h2 class="modal-title" id="modalTitle">First Words</h2>
             <p class="modal-text" id="modalText">This is where the memory description will appear.</p>
         </div>
     </div>
 
-    <!-- Enchanted Memory Modal -->
-    <div class="modal" id="enchantedModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeEnchantedModal">&times;</span>
-            <div class="modal-icon" id="enchantedIcon">🔮</div>
-            <h2 class="modal-title" id="enchantedTitle">Enchanted Memory</h2>
-            <p class="modal-text" id="enchantedText">This is where the enchanted memory will appear.</p>
-        </div>
-    </div>
-
     <script>
-        // Create floating sparkles
-        function createFloatingSparkles() {
-            const sparklesContainer = document.getElementById('floatingSparkles');
-            const sparkleCount = 50;
+        // Create magical particles
+        function createMagicalParticles() {
+            const particlesContainer = document.getElementById('magicalParticles');
+            const particleCount = 30;
             
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animation = `sparkleFloat ${Math.random() * 10 + 5}s linear infinite`;
-                sparkle.style.animationDelay = Math.random() * 10 + 's';
-                sparkle.style.backgroundColor = getRandomSparkleColor();
-                sparklesContainer.appendChild(sparkle);
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animation = `particleFloat ${Math.random() * 10 + 5}s linear infinite`;
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.backgroundColor = getRandomParticleColor();
+                particlesContainer.appendChild(particle);
             }
         }
         
-        function getRandomSparkleColor() {
-            const colors = ['#ffffff', '#9d4edd', '#c77dff', '#ff6b8b', '#4ecdc4', '#d4af37'];
+        function getRandomParticleColor() {
+            const colors = ['#ffffff', '#9d4edd', '#ff6b8b', '#4ecdc4', '#d4af37'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
         
-        // Memory data for timeline
-        const timelineMemories = [
+        // Memory data
+        const memories = [
             {
-                title: "First Chapter",
-                icon: "📖",
+                title: "First Words",
+                icon: "💬",
                 text: "Mahalll, do you remember the first time that we've chat each other in discord. Di ko malilimutan yon kasi 1 week akong naghintay na may lilya na mag accept ng friend request HAHAHAHAHA tapos nagchat pa ikaw sa akin kaya super kilig ako non."
             },
             {
-                title: "Shared Adventures",
+                title: "Gaming Laughter",
                 icon: "🎮",
                 text: "Idk mahal if tanda mo pa yung time na di ako pwedeng mag play ng valo sa bahay and then nakastream ikaw, and then nag whiff ikaw tapos napasigaw ikaw tas naingayan sayo si rjay non, tapos tawa din ako nang tawa kaya sinisi mo ako bat ka nagwhiff HAHAHAHAHAHA. Tapos sabi mo nanonood kasi ako kaya ka kinakabahan HAHAHHAHA."
             },
             {
-                title: "Nourishing Love",
+                title: "First Silog",
                 icon: "🍳",
                 text: "Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food."
             },
             {
-                title: "Revealing Yourself",
+                title: "First Picture",
                 icon: "🖼️",
                 text: "I always respect u talaga mahal to the point na ayaw kitang kulitin about sending me pics or your socials or even your name. Kaya kahit super nasasad ako kasi di ko pa ikaw kilala ganyan okie lang sa akin maghintay ganon. Then one day nag-iinom ikaw sa pobla tapos kasama mo si gab tapos nagsend ikaw ng pic mo mahal, which is yung wallpaper ko now, that time sobranggggg bilis ng heartbeat ko, sobra akong kinilig kasi finally you are comfy enough na to send your pic kahit paunti unti lang ganon."
             }
         ];
         
-        // Enchanted memories
-        const enchantedMemories = [
-            {
-                title: "Your Magical Laugh",
-                icon: "🔮",
-                text: "Honestly mahal, I find your laugh very attractive. I really love it whenever u are laughing kahit di ako ang reason or what. Super tuwang tuwa ako kapag masaya ikaw nahahawa ako sa tawa mo ganon HAHAHAHAHAHA. It's like a magical spell that instantly brightens my world."
-            },
-            {
-                title: "Stardust Moments",
-                icon: "✨",
-                text: "I love the little things you do without even thinking - how you always say I'm here kapag tinatawag ko ikaw, the way you adopt to my wordings, and how you know exactly when I need a lambing and kisses tapos lalambingin mo agad ako ganon. These small gestures are like stardust that makes our relationship shine brighter."
-            },
-            {
-                title: "Wisdom Scroll",
-                icon: "📜",
-                text: "You see the world in a way that constantly surprises and inspires me. Isa sa minamahal ko sa'yo ay yung perspective mo mahal, everytime you are telling me your pov I'm always in awe at how mature and how intelligent u are emotionally. I enjoy talking to u about such things kasi super sarap mo kausap sa mga ganyang bagay."
-            },
-            {
-                title: "Sealed With Love",
-                icon: "💌",
-                text: "Some of my favorite memories are the quiet ones - calling each other in comfortable silence, watching the movie in discord, just eenjoying each other's presence without needing to say a word. In those moments, I feel the deepest connection to you, as if our souls are communicating in a language only we understand."
-            }
-        ];
-        
-        // Show timeline memory
+        // Show memory
         function showMemory(index) {
-            const memory = timelineMemories[index];
+            const memory = memories[index];
             document.getElementById('modalIcon').textContent = memory.icon;
             document.getElementById('modalTitle').textContent = memory.title;
             document.getElementById('modalText').textContent = memory.text;
             document.getElementById('memoryModal').style.display = 'flex';
             
-            // Create magical sparkles
+            // Create magical particles
             for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
-                    createMagicalSparkle();
+                    createMagicalParticle();
                 }, i * 200);
             }
         }
         
-        // Show enchanted memory
-        function showEnchantedMemory(index) {
-            const memory = enchantedMemories[index];
-            document.getElementById('enchantedIcon').textContent = memory.icon;
-            document.getElementById('enchantedTitle').textContent = memory.title;
-            document.getElementById('enchantedText').textContent = memory.text;
-            document.getElementById('enchantedModal').style.display = 'flex';
-            
-            // Create magical sparkles
-            for (let i = 0; i < 8; i++) {
-                setTimeout(() => {
-                    createMagicalSparkle();
-                }, i * 150);
-            }
-        }
-        
-        // Create a single magical sparkle
-        function createMagicalSparkle() {
-            const sparklesContainer = document.getElementById('floatingSparkles');
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.animation = `sparkleFloat ${Math.random() * 5 + 3}s linear`;
-            sparkle.style.backgroundColor = getRandomSparkleColor();
-            sparklesContainer.appendChild(sparkle);
+        // Create a single magical particle
+        function createMagicalParticle() {
+            const particlesContainer = document.getElementById('magicalParticles');
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animation = `particleFloat ${Math.random() * 5 + 3}s linear`;
+            particle.style.backgroundColor = getRandomParticleColor();
+            particlesContainer.appendChild(particle);
             
             setTimeout(() => {
-                sparkle.remove();
+                particle.remove();
             }, 8000);
         }
         
-        // Close modals
+        // Locket functionality
+        document.getElementById('locketCenter').addEventListener('click', () => {
+            document.getElementById('locketOuter').classList.add('open');
+        });
+        
+        document.getElementById('closeLocket').addEventListener('click', () => {
+            document.getElementById('locketOuter').classList.remove('open');
+        });
+        
+        // Close modal
         document.getElementById('closeModal').addEventListener('click', () => {
             document.getElementById('memoryModal').style.display = 'none';
         });
         
-        document.getElementById('closeEnchantedModal').addEventListener('click', () => {
-            document.getElementById('enchantedModal').style.display = 'none';
-        });
-        
-        // Close modals when clicking outside
+        // Close modal when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === document.getElementById('memoryModal')) {
                 document.getElementById('memoryModal').style.display = 'none';
             }
-            if (e.target === document.getElementById('enchantedModal')) {
-                document.getElementById('enchantedModal').style.display = 'none';
-            }
         });
         
-        // Spell button
-        document.getElementById('spellButton').addEventListener('click', () => {
-            const spells = [
-                "I cast a spell for our love to grow stronger with each passing day",
-                "With this magic, I wish for endless laughter and joy in our relationship",
-                "I enchant our future with happiness, understanding, and endless affection",
-                "This spell ensures our connection remains as magical as it feels today",
-                "I weave a charm of protection around our beautiful relationship"
+        // Magic wand button
+        document.getElementById('magicWand').addEventListener('click', () => {
+            const newMemories = [
+                "I wish for our laughter to continue echoing through time",
+                "May our connection grow stronger with each shared sunrise",
+                "I enchant our future with endless understanding and patience",
+                "Let every challenge we face only bring us closer together",
+                "I bless our journey with countless more magical moments"
             ];
             
-            const randomSpell = spells[Math.floor(Math.random() * spells.length)];
-            alert(`🔮 ${randomSpell}, Aki! ✨`);
+            const randomMemory = newMemories[Math.floor(Math.random() * newMemories.length)];
+            alert(`✨ ${randomMemory}, Aki! ✨`);
             
-            // Create magical sparkles
+            // Create magical particles
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createMagicalSparkle();
+                    createMagicalParticle();
                 }, i * 150);
             }
         });
         
         // Initialize
-        createFloatingSparkles();
+        createMagicalParticles();
     </script>
 </body>
 </html>
