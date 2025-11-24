@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Garden of Love | 4 Months with Aki</title>
+    <title>Enchanted Storybook | 4 Months with Aki</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,60 +14,102 @@
         }
 
         :root {
-            --soil: #2c1810;
-            --stem: #8a6642;
-            --leaf: #4a7c59;
-            --flower1: #ff6b8b;
-            --flower2: #6a5af9;
-            --flower3: #4ecdc4;
-            --flower4: #ffd166;
-            --text: #f5f5f5;
-            --petal-light: #fffacd;
+            --parchment: #f5e8c8;
+            --ink: #3a2c1e;
+            --gold: #d4af37;
+            --magic1: #9d4edd;
+            --magic2: #5a189a;
+            --magic3: #c77dff;
+            --accent1: #ff6b8b;
+            --accent2: #4ecdc4;
         }
 
         body {
-            background: linear-gradient(to bottom, #1a0f0a, var(--soil));
-            color: var(--text);
+            background: linear-gradient(135deg, #1a0f0a 0%, #2d1b69 50%, #0f0f23 100%);
+            color: var(--ink);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        .container {
-            max-width: 1200px;
+        .storybook-container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 2;
         }
 
+        .storybook {
+            background: var(--parchment);
+            border-radius: 10px;
+            box-shadow: 
+                0 0 50px rgba(212, 175, 55, 0.5),
+                inset 0 0 50px rgba(245, 232, 200, 0.8);
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            padding: 40px;
+            margin: 20px 0;
+            border: 15px solid #8b7355;
+        }
+
+        .storybook::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 139, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page {
+            position: relative;
+            z-index: 2;
+        }
+
         header {
             text-align: center;
-            padding: 40px 0;
+            padding: 20px 0 40px;
             position: relative;
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--flower1), var(--flower2), var(--flower3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            color: var(--magic2);
+            text-shadow: 2px 2px 0px var(--gold);
+            font-family: 'Georgia', serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
         }
 
         .subtitle {
             font-size: 1.5rem;
-            margin-bottom: 20px;
-            opacity: 0.8;
+            margin-bottom: 10px;
+            color: var(--magic1);
+            font-style: italic;
         }
 
         .heart {
-            color: var(--flower1);
+            color: var(--accent1);
             display: inline-block;
             animation: heartbeat 1.5s infinite;
-            text-shadow: 0 0 10px var(--flower1);
+            text-shadow: 0 0 10px var(--accent1);
         }
 
         @keyframes heartbeat {
@@ -76,286 +118,248 @@
             100% { transform: scale(1); }
         }
 
-        /* Digital Garden */
-        .digital-garden {
+        /* Magical Timeline */
+        .magical-timeline {
             position: relative;
-            height: 600px;
             margin: 40px 0;
-            overflow: hidden;
-            border-radius: 20px;
-            background: rgba(44, 24, 16, 0.7);
-            box-shadow: 0 0 30px rgba(106, 90, 249, 0.2);
+            padding: 20px 0;
         }
 
-        .garden-background {
+        .timeline-path {
             position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--magic1), var(--magic2), var(--magic3));
+            transform: translateY(-50%);
+            z-index: 1;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--magic1);
+        }
+
+        .timeline-milestone {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: 60px 0;
+            z-index: 2;
+        }
+
+        .milestone {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .milestone:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.3);
+            border-color: var(--magic1);
+        }
+
+        .milestone.left {
+            text-align: right;
+        }
+
+        .milestone.right {
+            margin-left: auto;
+        }
+
+        .milestone-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--magic1);
+        }
+
+        .milestone-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--magic2);
+            font-weight: bold;
+        }
+
+        .milestone-content {
+            line-height: 1.6;
+            color: var(--ink);
+        }
+
+        .milestone-marker {
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            box-shadow: 0 0 10px var(--gold);
+            border: 3px solid var(--parchment);
+        }
+
+        .milestone.left .milestone-marker {
+            right: -50px;
+        }
+
+        .milestone.right .milestone-marker {
+            left: -50px;
+        }
+
+        /* Magical Elements */
+        .floating-sparkles {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
             z-index: 1;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(74, 124, 89, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 107, 139, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(106, 90, 249, 0.1) 0%, transparent 50%);
         }
 
-        .flower {
+        .sparkle {
             position: absolute;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        .flower:hover {
-            transform: scale(1.2);
-            filter: brightness(1.2);
-        }
-
-        .flower-stem {
-            width: 6px;
-            background: linear-gradient(to top, var(--stem), #6b4c2e);
-            border-radius: 3px 3px 0 0;
-            position: relative;
-        }
-
-        .flower-head {
-            width: 60px;
-            height: 60px;
-            border-radius: 50% 50% 50% 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            position: relative;
-            box-shadow: 0 0 15px currentColor;
-            margin-bottom: 5px;
-        }
-
-        .flower-label {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            white-space: nowrap;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            box-shadow: 0 0 5px white;
         }
 
-        .flower:hover .flower-label {
-            opacity: 1;
-        }
-
-        .petal {
-            position: absolute;
-            border-radius: 50%;
-            background: currentColor;
-            opacity: 0.8;
-        }
-
-        .central-flower {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: var(--flower1);
-            animation: pulse 3s infinite;
-            text-shadow: 0 0 20px var(--flower1);
-            z-index: 3;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        /* Memory Pond */
-        .memory-pond {
-            position: absolute;
-            bottom: 10%;
-            right: 10%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.4) 0%, rgba(106, 90, 249, 0.3) 30%, transparent 70%);
-            filter: blur(10px);
-            cursor: pointer;
-            z-index: 2;
-            animation: pondRipple 8s infinite alternate;
-            box-shadow: 
-                0 0 40px rgba(78, 205, 196, 0.5),
-                inset 0 0 30px rgba(106, 90, 249, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 20px;
-            transition: all 0.5s ease;
-            overflow: hidden;
-        }
-
-        @keyframes pondRipple {
-            0% { 
-                transform: scale(1);
-                box-shadow: 
-                    0 0 40px rgba(78, 205, 196, 0.5),
-                    inset 0 0 30px rgba(106, 90, 249, 0.3);
-            }
-            100% { 
-                transform: scale(1.05);
-                box-shadow: 
-                    0 0 60px rgba(78, 205, 196, 0.7),
-                    inset 0 0 40px rgba(106, 90, 249, 0.5);
-            }
-        }
-
-        .memory-pond:hover {
-            transform: scale(1.08);
-            filter: blur(8px);
-        }
-
-        .pond-text {
-            opacity: 0.8;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            font-weight: bold;
-            z-index: 3;
-        }
-
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            animation: rippleEffect 3s linear infinite;
-        }
-
-        @keyframes rippleEffect {
+        @keyframes sparkleFloat {
             0% {
-                width: 0;
-                height: 0;
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
                 opacity: 1;
             }
             100% {
-                width: 200px;
-                height: 200px;
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        .memory-garden {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
+        .enchanted-objects {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
         }
 
-        .garden-card {
-            background: rgba(60, 40, 30, 0.7);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+        .enchanted-item {
+            width: 150px;
+            height: 150px;
+            margin: 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(138, 102, 66, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .garden-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(138, 102, 66, 0.4);
-            border-color: rgba(138, 102, 66, 0.7);
+        .enchanted-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.4);
         }
 
-        .garden-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(45deg, var(--flower1), var(--flower2));
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--flower3);
-        }
-
-        .card-title {
-            font-size: 1.5rem;
+        .item-icon {
+            font-size: 3rem;
             margin-bottom: 10px;
-            color: var(--text);
+            color: var(--magic1);
         }
 
-        .card-content {
-            line-height: 1.6;
-            color: #e0d0c0;
-        }
-
-        .message-box {
-            background: rgba(60, 40, 30, 0.7);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
+        .item-title {
+            font-size: 1rem;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 107, 139, 0.3);
-            position: relative;
-            overflow: hidden;
+            color: var(--magic2);
+            font-weight: bold;
         }
 
-        .message-box::before {
+        .message-scroll {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--accent1);
+        }
+
+        .message-scroll::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(255, 107, 139, 0.1), transparent 50%);
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
+            border-radius: 10px 10px 0 0;
         }
 
         .message {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+            text-align: center;
+            font-style: italic;
+            color: var(--ink);
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--flower1), var(--flower2));
+        .spell-button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--magic1), var(--magic2));
             color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
             border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.4);
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.6);
+        .spell-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.6);
         }
 
+        .spell-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .spell-button:hover::after {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -370,15 +374,15 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #3a2515, #5a3520);
-            border-radius: 20px;
+            background: var(--parchment);
+            border-radius: 15px;
             padding: 30px;
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(138, 102, 66, 0.5);
+            box-shadow: 0 0 40px rgba(157, 78, 221, 0.5);
             position: relative;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 5px solid var(--gold);
         }
 
         .close-modal {
@@ -387,139 +391,152 @@
             right: 15px;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text);
+            color: var(--magic2);
         }
 
         .modal-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: var(--flower3);
+            color: var(--magic1);
         }
 
         .modal-title {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--text);
+            color: var(--magic2);
         }
 
         .modal-text {
             line-height: 1.6;
             margin-bottom: 20px;
-            color: #e0d0c0;
+            color: var(--ink);
         }
 
-        .floating-petals {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+        /* Footer */
+        .storybook-footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--gold);
+            font-style: italic;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 40px;
         }
 
-        .petal {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--petal-light);
-            border-radius: 50% 50% 50% 0;
-            opacity: 0.7;
-            box-shadow: 0 0 10px var(--petal-light);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
+        /* Responsive */
         @media screen and (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
             
-            .digital-garden {
-                height: 500px;
+            .milestone {
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
             }
             
-            .memory-garden {
-                grid-template-columns: 1fr;
+            .milestone.left, .milestone.right {
+                text-align: center;
             }
             
-            .memory-pond {
-                width: 150px;
-                height: 150px;
-                right: 5%;
-                bottom: 5%;
+            .milestone-marker {
+                display: none;
+            }
+            
+            .enchanted-item {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .item-icon {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-petals" id="floatingPetals"></div>
+    <div class="floating-sparkles" id="floatingSparkles"></div>
     
-    <div class="container">
-        <header>
-            <h1>Digital Garden of Love <span class="heart">♥</span></h1>
-            <p class="subtitle">4 Months Growing with Aki</p>
-            <p>Explore our journey through this digital garden</p>
-        </header>
-        
-        <div class="digital-garden" id="digitalGarden">
-            <div class="garden-background"></div>
-            
-            <!-- Memory Pond -->
-            <div class="memory-pond" id="memoryPond">
-                <div class="pond-text">Click to discover hidden memories</div>
-                <!-- Ripples will be added by JavaScript -->
+    <div class="storybook-container">
+        <div class="storybook">
+            <div class="page">
+                <header>
+                    <h1>Enchanted Storybook <span class="heart">♥</span></h1>
+                    <p class="subtitle">4 Magical Months with Aki</p>
+                    <p>Our love story written in stardust and dreams</p>
+                </header>
+                
+                <div class="magical-timeline">
+                    <div class="timeline-path"></div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone left" onclick="showMemory(0)">
+                            <div class="milestone-icon">📖</div>
+                            <h3 class="milestone-title">First Chapter</h3>
+                            <p class="milestone-content">Our story began with a simple friend request and a message that would change everything...</p>
+                            <div class="milestone-marker"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone right" onclick="showMemory(1)">
+                            <div class="milestone-icon">🎮</div>
+                            <h3 class="milestone-title">Shared Adventures</h3>
+                            <p class="milestone-content">From Valorant streams to shared laughter, our connection grew stronger with every moment...</p>
+                            <div class="milestone-marker"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone left" onclick="showMemory(2)">
+                            <div class="milestone-icon">🍳</div>
+                            <h3 class="milestone-title">Nourishing Love</h3>
+                            <p class="milestone-content">The first silog I gave you marked a special moment of care and connection between us...</p>
+                            <div class="milestone-marker"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-milestone">
+                        <div class="milestone right" onclick="showMemory(3)">
+                            <div class="milestone-icon">🖼️</div>
+                            <h3 class="milestone-title">Revealing Yourself</h3>
+                            <p class="milestone-content">That first picture you sent became my most treasured possession, a glimpse of the beautiful person I was falling for...</p>
+                            <div class="milestone-marker"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="enchanted-objects">
+                    <div class="enchanted-item" onclick="showEnchantedMemory(0)">
+                        <div class="item-icon">🔮</div>
+                        <div class="item-title">Crystal Ball</div>
+                    </div>
+                    
+                    <div class="enchanted-item" onclick="showEnchantedMemory(1)">
+                        <div class="item-icon">✨</div>
+                        <div class="item-title">Stardust Jar</div>
+                    </div>
+                    
+                    <div class="enchanted-item" onclick="showEnchantedMemory(2)">
+                        <div class="item-icon">📜</div>
+                        <div class="item-title">Secret Scroll</div>
+                    </div>
+                    
+                    <div class="enchanted-item" onclick="showEnchantedMemory(3)">
+                        <div class="item-icon">💌</div>
+                        <div class="item-title">Love Letter</div>
+                    </div>
+                </div>
+                
+                <div class="message-scroll">
+                    <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
+                </div>
+                
+                <button class="spell-button" id="spellButton">Cast a Love Spell</button>
+                
+                <div class="storybook-footer">
+                    <p>And our story continues to unfold with each passing day...</p>
+                </div>
             </div>
-            
-            <div class="central-flower">🌺</div>
-            
-            <!-- Flowers will be generated by JavaScript -->
-        </div>
-        
-        <div class="memory-garden">
-            <div class="garden-card" onclick="showMemory(0)">
-                <div class="card-icon">🌱</div>
-                <h3 class="card-title">First Chat with you</h3>
-                <p class="card-content">Mahalll, do you remember the first time that we've chat each other in discord. Di ko malilimutan yon kasi 1 week akong naghintay na may lilya na mag accept ng friend request HAHAHAHAHA tapos nagchat pa ikaw sa akin kaya super kilig ako non.</p>
-            </div>
-            
-            <div class="garden-card" onclick="showMemory(1)">
-                <div class="card-icon">🌿</div>
-                <h3 class="card-title">Shared Memories while playing</h3>
-                <p class="card-content">Idk mahal if tanda mo pa yung time na di ako pwedeng mag play ng valo sa bahay and then nakastream ikaw, and then nag whiff ikaw tapos napasigaw ikaw tas naingayan sayo si rjay non, tapos tawa din ako nang tawa kaya sinisi mo ako bat ka nagwhiff HAHAHAHAHAHA. Tapos sabi mo nanonood kasi ako kaya ka kinakabahan HAHAHHAHA.</p>
-            </div>
-            
-            <div class="garden-card" onclick="showMemory(2)">
-                <div class="card-icon">🌸</div>
-                <h3 class="card-title">First time giving u food.</h3>
-                <p class="card-content">Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food.</p>
-            </div>
-            
-            <div class="garden-card" onclick="showMemory(3)">
-                <div class="card-icon">💮</div>
-                <h3 class="card-title">First ever picture of you</h3>
-                <p class="card-content">I always respect u talaga mahal to the point na ayaw kitang kulitin about sending me pics or your socials or even your name. Kaya kahit super nasasad ako kasi di ko pa ikaw kilala ganyan okie lang sa akin maghintay ganon. Then one day nag-iinom ikaw sa pobla tapos kasama mo si gab tapos nagsend ikaw ng pic mo mahal, which is yung wallpaper ko now, that time sobranggggg bilis ng heartbeat ko, sobra akong kinilig kasi finally you are comfy enough na to send your pic kahit paunti unti lang ganon.</p>
-            </div>
-        </div>
-        
-        <div class="message-box">
-            <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
-            <button class="btn" id="wishBtn">Plant a New Memory</button>
         </div>
     </div>
     
@@ -527,234 +544,137 @@
     <div class="modal" id="memoryModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
-            <div class="modal-icon" id="modalIcon">🌱</div>
-            <h2 class="modal-title" id="modalTitle">First Glances</h2>
+            <div class="modal-icon" id="modalIcon">📖</div>
+            <h2 class="modal-title" id="modalTitle">First Chapter</h2>
             <p class="modal-text" id="modalText">This is where the memory description will appear.</p>
         </div>
     </div>
 
-    <!-- Pond Memory Modal -->
-    <div class="modal" id="pondModal">
+    <!-- Enchanted Memory Modal -->
+    <div class="modal" id="enchantedModal">
         <div class="modal-content">
-            <span class="close-modal" id="closePondModal">&times;</span>
-            <div class="modal-icon" id="pondIcon">💧</div>
-            <h2 class="modal-title" id="pondTitle">Hidden Memory</h2>
-            <p class="modal-text" id="pondText">This is where the pond memory will appear.</p>
+            <span class="close-modal" id="closeEnchantedModal">&times;</span>
+            <div class="modal-icon" id="enchantedIcon">🔮</div>
+            <h2 class="modal-title" id="enchantedTitle">Enchanted Memory</h2>
+            <p class="modal-text" id="enchantedText">This is where the enchanted memory will appear.</p>
         </div>
     </div>
 
     <script>
-        // Create floating petals
-        function createFloatingPetals() {
-            const petalsContainer = document.getElementById('floatingPetals');
-            const petalCount = 30;
+        // Create floating sparkles
+        function createFloatingSparkles() {
+            const sparklesContainer = document.getElementById('floatingSparkles');
+            const sparkleCount = 50;
             
-            for (let i = 0; i < petalCount; i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
-                petal.style.animationDelay = Math.random() * 10 + 's';
-                petal.style.backgroundColor = getRandomPetalColor();
-                petalsContainer.appendChild(petal);
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animation = `sparkleFloat ${Math.random() * 10 + 5}s linear infinite`;
+                sparkle.style.animationDelay = Math.random() * 10 + 's';
+                sparkle.style.backgroundColor = getRandomSparkleColor();
+                sparklesContainer.appendChild(sparkle);
             }
         }
         
-        function getRandomPetalColor() {
-            const colors = ['#ff6b8b', '#6a5af9', '#4ecdc4', '#ffd166', '#fffacd'];
+        function getRandomSparkleColor() {
+            const colors = ['#ffffff', '#9d4edd', '#c77dff', '#ff6b8b', '#4ecdc4', '#d4af37'];
             return colors[Math.floor(Math.random() * colors.length)];
         }
         
-        // Create pond ripples
-        function createPondRipples() {
-            const pond = document.getElementById('memoryPond');
-            
-            setInterval(() => {
-                const ripple = document.createElement('div');
-                ripple.className = 'ripple';
-                ripple.style.left = '50%';
-                ripple.style.top = '50%';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                pond.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 3000);
-            }, 1500);
-        }
+        // Memory data for timeline
+        const timelineMemories = [
+            {
+                title: "First Chapter",
+                icon: "📖",
+                text: "Mahalll, do you remember the first time that we've chat each other in discord. Di ko malilimutan yon kasi 1 week akong naghintay na may lilya na mag accept ng friend request HAHAHAHAHA tapos nagchat pa ikaw sa akin kaya super kilig ako non."
+            },
+            {
+                title: "Shared Adventures",
+                icon: "🎮",
+                text: "Idk mahal if tanda mo pa yung time na di ako pwedeng mag play ng valo sa bahay and then nakastream ikaw, and then nag whiff ikaw tapos napasigaw ikaw tas naingayan sayo si rjay non, tapos tawa din ako nang tawa kaya sinisi mo ako bat ka nagwhiff HAHAHAHAHAHA. Tapos sabi mo nanonood kasi ako kaya ka kinakabahan HAHAHHAHA."
+            },
+            {
+                title: "Nourishing Love",
+                icon: "🍳",
+                text: "Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food."
+            },
+            {
+                title: "Revealing Yourself",
+                icon: "🖼️",
+                text: "I always respect u talaga mahal to the point na ayaw kitang kulitin about sending me pics or your socials or even your name. Kaya kahit super nasasad ako kasi di ko pa ikaw kilala ganyan okie lang sa akin maghintay ganon. Then one day nag-iinom ikaw sa pobla tapos kasama mo si gab tapos nagsend ikaw ng pic mo mahal, which is yung wallpaper ko now, that time sobranggggg bilis ng heartbeat ko, sobra akong kinilig kasi finally you are comfy enough na to send your pic kahit paunti unti lang ganon."
+            }
+        ];
         
-        // Pond memories
-        const pondMemories = [
+        // Enchanted memories
+        const enchantedMemories = [
             {
-                title: "Your Laughter",
-                icon: "😊",
-                text: "Honestly mahal, I find your laugh very attractive. I really love it whenever u are laughing kahit di ako ang reason or what. Super tuwang tuwa ako kapag masaya ikaw nahahawa ako sa tawa mo ganon HAHAHAHAHAHA"
+                title: "Your Magical Laugh",
+                icon: "🔮",
+                text: "Honestly mahal, I find your laugh very attractive. I really love it whenever u are laughing kahit di ako ang reason or what. Super tuwang tuwa ako kapag masaya ikaw nahahawa ako sa tawa mo ganon HAHAHAHAHAHA. It's like a magical spell that instantly brightens my world."
             },
             {
-                title: "Small Gestures",
-                icon: "💖",
-                text: "I love the little things you do without even thinking - how you always say I'm here kapag tinatawag ko ikaw, the way you adopt to my wordings, and how you know exactly when I need a lambing and kisses tapos lalambingin mo agad ako ganon. These small gestures mean more to me than grand romantic gestures ever could."
+                title: "Stardust Moments",
+                icon: "✨",
+                text: "I love the little things you do without even thinking - how you always say I'm here kapag tinatawag ko ikaw, the way you adopt to my wordings, and how you know exactly when I need a lambing and kisses tapos lalambingin mo agad ako ganon. These small gestures are like stardust that makes our relationship shine brighter."
             },
             {
-                title: "Your Perspective",
-                icon: "🌍",
+                title: "Wisdom Scroll",
+                icon: "📜",
                 text: "You see the world in a way that constantly surprises and inspires me. Isa sa minamahal ko sa'yo ay yung perspective mo mahal, everytime you are telling me your pov I'm always in awe at how mature and how intelligent u are emotionally. I enjoy talking to u about such things kasi super sarap mo kausap sa mga ganyang bagay."
             },
             {
-                title: "Quiet Moments",
-                icon: "🤫",
-                text: "Some of my favorite memories are the quiet ones - calling each other in comfortable silence, watching the movie in discord, just eenjoying each other's presence without needing to say a word. In those moments, I feel the deepest connection to you."
-            },
-            {
-                title: "Your Strength",
-                icon: "💪",
-                text: "I admire your strength more than you know. The way you cope with those problems of yours, makes my admiration grow towards you. You have this positive attitude that makes me think that living this life is meaningful"
+                title: "Sealed With Love",
+                icon: "💌",
+                text: "Some of my favorite memories are the quiet ones - calling each other in comfortable silence, watching the movie in discord, just eenjoying each other's presence without needing to say a word. In those moments, I feel the deepest connection to you, as if our souls are communicating in a language only we understand."
             }
         ];
         
-        // Flower data
-        const flowers = [
-            {
-                month: "Month 1",
-                title: "Seed of Connection",
-                icon: "🌱",
-                text: "Our first month talking with each other was like planting a seed - full of potential, hope, and the excitement of what might grow. Every conversation we had makes me realize how pretty you are as a person. Being Aki is really unique, kasi why does no one makes my heart flutter except this baby.",
-                color: "var(--flower1)",
-                height: "200px",
-                position: { x: 100, y: 400 }
-            },
-            {
-                month: "Month 2",
-                title: "Sprouting Feelings",
-                icon: "🌿",
-                text: "In our second month talking with u, I felt the connection between us growing stronger like a sprout reaching for the sun. I felt the need of your company became more frequent than before. Dumating sa point na I thought I'm attention seeker HAHAHAHAHAHHA, kasi gustong gusto ko yung binibigyan mo ako ng pansin. We had our own language, inside jokes that no one can understand and I found myself naturally growing closer to you.",
-                color: "var(--flower2)",
-                height: "250px",
-                position: { x: 300, y: 350 }
-            },
-            {
-                month: "Month 3",
-                title: "Budding Romance",
-                icon: "🌷",
-                text: "By the third month talking with u, being your suitor makes me happy. You allowing me to enter your life is like I'm tending to a delicate bud, it may be risky and scary I still wanna nurture it closer to you. We understood each other's habit, celebrated each other's phases whether it is sad or happy, and provided warmth during those times that we wanted to give up.",
-                color: "var(--flower3)",
-                height: "300px",
-                position: { x: 500, y: 300 }
-            },
-            {
-                month: "Month 4",
-                title: "Blooming Love",
-                icon: "🌺",
-                text: "Now, four months in, I want you to know that loving you is really worth it, you are worth it, you are important and I will continue doing those things for you like spoiling you, complimenting you, comforting you, telling you how great you are not because I am sugarcoating things, but because you're really amazing. You've become one of my priorities, and every day with you will worth it because you are one of those blessings and gift that I wanna treasure.",
-                color: "var(--flower4)",
-                height: "350px",
-                position: { x: 700, y: 250 }
-            }
-        ];
-        
-        // Memory data for garden cards
-        const memories = [
-            {
-                title: "First Glances",
-                icon: "🌱",
-                text: "I still remember the first time our eyes met across the room. There was an instant connection, like two seeds planted in the same garden. In that moment, I knew there was something special about you that I needed to explore."
-            },
-            {
-                title: "Shared Dreams",
-                icon: "🌿",
-                text: "Those late-night conversations where we shared our deepest hopes and wildest dreams were magical. It felt like we were planting seeds of future possibilities together, creating our own garden that only we could understand."
-            },
-            {
-                title: "Adventures Together",
-                icon: "🌸",
-                text: "Every adventure with you feels like discovering a new flower in our garden. Whether it's trying a new restaurant or taking a spontaneous road trip, you make ordinary moments feel extraordinary. I love exploring life by your side."
-            },
-            {
-                title: "Future Visions",
-                icon: "💮",
-                text: "When we talk about the future, I see a beautiful garden unfolding before us. With you, every possibility seems within reach. I can't wait to continue growing our garden together, creating memories that will bloom forever like perennial flowers."
-            }
-        ];
-        
-        // Create flowers
-        function createFlowers() {
-            const digitalGarden = document.getElementById('digitalGarden');
-            
-            flowers.forEach((flower, index) => {
-                const flowerElement = document.createElement('div');
-                flowerElement.className = 'flower';
-                flowerElement.dataset.index = index;
-                
-                flowerElement.style.left = flower.position.x + 'px';
-                flowerElement.style.bottom = '0';
-                
-                flowerElement.innerHTML = `
-                    <div class="flower-head" style="background: radial-gradient(circle at 30% 30%, ${flower.color}, #000); color: ${flower.color}">
-                        ${flower.icon}
-                    </div>
-                    <div class="flower-stem" style="height: ${flower.height}"></div>
-                    <div class="flower-label">${flower.month}</div>
-                `;
-                
-                flowerElement.addEventListener('click', () => showFlowerMemory(index));
-                digitalGarden.appendChild(flowerElement);
-            });
-        }
-        
-        // Show flower memory
-        function showFlowerMemory(index) {
-            const flower = flowers[index];
-            document.getElementById('modalIcon').textContent = flower.icon;
-            document.getElementById('modalTitle').textContent = flower.title;
-            document.getElementById('modalText').textContent = flower.text;
-            document.getElementById('memoryModal').style.display = 'flex';
-            
-            // Create floating petals
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    createFloatingPetal();
-                }, i * 200);
-            }
-        }
-        
-        // Show garden memory
+        // Show timeline memory
         function showMemory(index) {
-            const memory = memories[index];
+            const memory = timelineMemories[index];
             document.getElementById('modalIcon').textContent = memory.icon;
             document.getElementById('modalTitle').textContent = memory.title;
             document.getElementById('modalText').textContent = memory.text;
             document.getElementById('memoryModal').style.display = 'flex';
+            
+            // Create magical sparkles
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createMagicalSparkle();
+                }, i * 200);
+            }
         }
         
-        // Show pond memory
-        function showPondMemory() {
-            const randomMemory = pondMemories[Math.floor(Math.random() * pondMemories.length)];
-            document.getElementById('pondIcon').textContent = randomMemory.icon;
-            document.getElementById('pondTitle').textContent = randomMemory.title;
-            document.getElementById('pondText').textContent = randomMemory.text;
-            document.getElementById('pondModal').style.display = 'flex';
+        // Show enchanted memory
+        function showEnchantedMemory(index) {
+            const memory = enchantedMemories[index];
+            document.getElementById('enchantedIcon').textContent = memory.icon;
+            document.getElementById('enchantedTitle').textContent = memory.title;
+            document.getElementById('enchantedText').textContent = memory.text;
+            document.getElementById('enchantedModal').style.display = 'flex';
             
-            // Create floating petals
+            // Create magical sparkles
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createFloatingPetal();
+                    createMagicalSparkle();
                 }, i * 150);
             }
         }
         
-        // Create a single floating petal
-        function createFloatingPetal() {
-            const petalsContainer = document.getElementById('floatingPetals');
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animation = `float ${Math.random() * 5 + 5}s linear`;
-            petal.style.backgroundColor = getRandomPetalColor();
-            petalsContainer.appendChild(petal);
+        // Create a single magical sparkle
+        function createMagicalSparkle() {
+            const sparklesContainer = document.getElementById('floatingSparkles');
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.animation = `sparkleFloat ${Math.random() * 5 + 3}s linear`;
+            sparkle.style.backgroundColor = getRandomSparkleColor();
+            sparklesContainer.appendChild(sparkle);
             
             setTimeout(() => {
-                petal.remove();
-            }, 10000);
+                sparkle.remove();
+            }, 8000);
         }
         
         // Close modals
@@ -762,8 +682,8 @@
             document.getElementById('memoryModal').style.display = 'none';
         });
         
-        document.getElementById('closePondModal').addEventListener('click', () => {
-            document.getElementById('pondModal').style.display = 'none';
+        document.getElementById('closeEnchantedModal').addEventListener('click', () => {
+            document.getElementById('enchantedModal').style.display = 'none';
         });
         
         // Close modals when clicking outside
@@ -771,61 +691,34 @@
             if (e.target === document.getElementById('memoryModal')) {
                 document.getElementById('memoryModal').style.display = 'none';
             }
-            if (e.target === document.getElementById('pondModal')) {
-                document.getElementById('pondModal').style.display = 'none';
+            if (e.target === document.getElementById('enchantedModal')) {
+                document.getElementById('enchantedModal').style.display = 'none';
             }
         });
         
-        // Wish button
-        document.getElementById('wishBtn').addEventListener('click', () => {
-            const wishes = [
-                "I wish for countless more months growing our garden together",
-                "I wish to always see the flowers bloom when you smile",
-                "I wish for our love to continue growing like a well-tended garden",
-                "I wish to always be your favorite person to share this garden with",
-                "I wish for our journey to be as beautiful and flourishing as spring"
+        // Spell button
+        document.getElementById('spellButton').addEventListener('click', () => {
+            const spells = [
+                "I cast a spell for our love to grow stronger with each passing day",
+                "With this magic, I wish for endless laughter and joy in our relationship",
+                "I enchant our future with happiness, understanding, and endless affection",
+                "This spell ensures our connection remains as magical as it feels today",
+                "I weave a charm of protection around our beautiful relationship"
             ];
             
-            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-            alert(`🌸 ${randomWish}, Aki! 🌸`);
+            const randomSpell = spells[Math.floor(Math.random() * spells.length)];
+            alert(`🔮 ${randomSpell}, Aki! ✨`);
             
-            // Create floating petals
+            // Create magical sparkles
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createFloatingPetal();
+                    createMagicalSparkle();
                 }, i * 150);
             }
         });
         
-        // Pond click event
-        document.getElementById('memoryPond').addEventListener('click', showPondMemory);
-        
-        // Animate flowers
-        function animateFlowers() {
-            const flowerElements = document.querySelectorAll('.flower');
-            
-            flowerElements.forEach((flower, index) => {
-                // Sway animation
-                flower.style.animation = `sway ${3 + index * 0.5}s ease-in-out infinite alternate`;
-                flower.style.transformOrigin = 'bottom center';
-            });
-        }
-        
-        // Add sway animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes sway {
-                0% { transform: rotate(-2deg); }
-                100% { transform: rotate(2deg); }
-            }
-        `;
-        document.head.appendChild(style);
-        
         // Initialize
-        createFloatingPetals();
-        createPondRipples();
-        createFlowers();
-        animateFlowers();
+        createFloatingSparkles();
     </script>
 </body>
 </html>
