@@ -6,12 +6,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
     :root { --font-size: 6px; --line-h: 6px; }
+
     html, body {
       height: 100%;
       margin: 0;
       background: #fff;
       color: #000;
     }
+
     body {
       display: flex;
       align-items: center;
@@ -19,7 +21,12 @@
       padding: 18px;
       box-sizing: border-box;
     }
-    .wrap { max-width: 900px; width: 100%; }
+
+    .wrap {
+      max-width: 900px;
+      width: 100%;
+    }
+
     pre#portrait {
       font-family: "Courier New", monospace;
       white-space: pre;
@@ -32,11 +39,13 @@
       padding: 8px;
       border: 1px solid #ccc;
     }
+
     @media (max-width: 420px) {
       :root { --font-size: 4px; --line-h: 4px; }
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <pre id="portrait">Generating portrait…</pre>
@@ -45,18 +54,18 @@
 <script>
 (() => {
 
-  // ---------------------------------------------
-  // CHANGE THIS TO: "Aki" or "Daniella"
-  // ---------------------------------------------
+  // ------------------------------------------------
+  // CHANGE THIS: Available options → "Aki" or "Daniella"
+  // ------------------------------------------------
   const MESSAGE = "Aki";
-  // ---------------------------------------------
+  // ------------------------------------------------
 
-  const IMAGE_SRC = "download (2).jpg"; 
-  const COLS = 150;      // slightly reduced for better clarity on white background
+  const IMAGE_SRC = "download (2).jpg";  // your image file
+  const COLS = 150; 
   const SCALE = 0.55;
-  const THRESH_LIGHT = 0.70;  // tuned for white background visibility
+  const THRESH_LIGHT = 0.70;
 
-  // Expand characters
+  // Expand characters until we have enough fill
   let chars = MESSAGE.split('');
   while (chars.length < 2000) chars.push(...chars);
 
@@ -90,7 +99,9 @@
       let row = "";
       for (let c = 0; c < canvas.width; c++) {
         const i = (r * canvas.width + c) * 4;
-        const rpx = data[i], gpx = data[i+1], bpx = data[i+2];
+        const rpx = data[i];
+        const gpx = data[i + 1];
+        const bpx = data[i + 2];
 
         const lum = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255;
 
@@ -110,7 +121,7 @@
 
   img.onerror = () => {
     portraitElem.textContent =
-      "ERROR: Image not found.\nPlace 'download (2).jpg' in the same folder as this HTML file.";
+      "ERROR: Image not found.\nMake sure 'download (2).jpg' is in the same folder.";
   };
 
 })();
