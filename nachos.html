@@ -1,693 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magical Memory Locket | 4 Months with Aki</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Playfair Display', 'Georgia', serif;
-        }
-
-        :root {
-            --locket-gold: #d4af37;
-            --locket-silver: #c0c0c0;
-            --magic-purple: #9d4edd;
-            --magic-pink: #ff6b8b;
-            --magic-blue: #4ecdc4;
-            --deep-space: #0f0f23;
-            --starlight: #fffacd;
-        }
-
-        body {
-            background: 
-                radial-gradient(circle at 20% 30%, #1a0f2e 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, #2d1b69 0%, transparent 50%),
-                var(--deep-space);
-            color: var(--starlight);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 0;
-            position: relative;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--locket-gold), var(--magic-pink), var(--magic-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            opacity: 0.8;
-            font-style: italic;
-        }
-
-        .heart {
-            color: var(--magic-pink);
-            display: inline-block;
-            animation: heartbeat 1.5s infinite;
-            text-shadow: 0 0 10px var(--magic-pink);
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Magical Locket */
-        .magical-locket {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            margin: 40px auto;
-            perspective: 1000px;
-        }
-
-        .locket-outer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            transition: transform 1.5s ease-in-out;
-        }
-
-        .locket-outer.open {
-            transform: rotateY(180deg);
-        }
-
-        .locket-front, .locket-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .locket-front {
-            background: 
-                radial-gradient(circle at 30% 30%, var(--locket-gold) 0%, #b8941f 30%, #8a6d0f 100%);
-            box-shadow: 
-                0 0 50px var(--locket-gold),
-                inset 0 0 30px rgba(255, 255, 255, 0.3);
-            border: 10px solid #b8941f;
-            cursor: pointer;
-        }
-
-        .locket-back {
-            background: 
-                radial-gradient(circle at 70% 70%, var(--locket-silver) 0%, #a8a8a8 30%, #787878 100%);
-            box-shadow: 
-                0 0 50px var(--locket-silver),
-                inset 0 0 30px rgba(255, 255, 255, 0.2);
-            border: 10px solid #a8a8a8;
-            transform: rotateY(180deg);
-            padding: 60px;
-            text-align: center;
-            flex-direction: column;
-        }
-
-        .locket-design {
-            position: relative;
-            width: 80%;
-            height: 80%;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, transparent 30%, rgba(212, 175, 55, 0.3) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .locket-center {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--magic-purple);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            box-shadow: 0 0 30px var(--magic-purple);
-            animation: pulse 3s infinite;
-            cursor: pointer;
-        }
-
-        .memory-orbs {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .memory-orb {
-            position: absolute;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.5s ease;
-            box-shadow: 0 0 20px currentColor;
-            animation: float 6s infinite ease-in-out;
-        }
-
-        .memory-orb:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 30px currentColor;
-            z-index: 10;
-        }
-
-        .memory-orb:nth-child(1) {
-            top: 10%;
-            left: 25%;
-            background: radial-gradient(circle at 30% 30%, var(--magic-pink), #d44d75);
-            color: white;
-            animation-delay: 0s;
-        }
-
-        .memory-orb:nth-child(2) {
-            top: 10%;
-            right: 25%;
-            background: radial-gradient(circle at 30% 30%, var(--magic-blue), #3daaa3);
-            color: white;
-            animation-delay: 1s;
-        }
-
-        .memory-orb:nth-child(3) {
-            bottom: 10%;
-            left: 25%;
-            background: radial-gradient(circle at 30% 30%, var(--magic-purple), #7d3db0);
-            color: white;
-            animation-delay: 2s;
-        }
-
-        .memory-orb:nth-child(4) {
-            bottom: 10%;
-            right: 25%;
-            background: radial-gradient(circle at 30% 30%, var(--locket-gold), #b8941f);
-            color: white;
-            animation-delay: 3s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--magic-purple); }
-            50% { transform: scale(1.05); box-shadow: 0 0 40px var(--magic-purple); }
-        }
-
-        .locket-inscription {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            font-style: italic;
-        }
-
-        .open-locket-btn {
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--magic-purple), var(--magic-pink));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
-        }
-
-        .open-locket-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(157, 78, 221, 0.6);
-        }
-
-        /* Memory Showcase */
-        .memory-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
-        }
-
-        .memory-crystal {
-            background: rgba(30, 30, 60, 0.7);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(106, 90, 249, 0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        .memory-crystal:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(106, 90, 249, 0.4);
-            border-color: rgba(106, 90, 249, 0.7);
-        }
-
-        .memory-crystal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(45deg, var(--magic-pink), var(--magic-purple));
-        }
-
-        .crystal-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--magic-blue);
-        }
-
-        .crystal-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--starlight);
-        }
-
-        .crystal-content {
-            line-height: 1.6;
-            color: #b8b8d0;
-        }
-
-        .message-bottle {
-            background: rgba(30, 30, 60, 0.7);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 0;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 107, 139, 0.3);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-        }
-
-        .message-bottle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(255, 107, 139, 0.1), transparent 50%);
-        }
-
-        .message {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            font-style: italic;
-        }
-
-        .magic-wand {
-            display: block;
-            margin: 30px auto;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, var(--magic-purple), var(--magic-pink));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .magic-wand:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.6);
-        }
-
-        .magic-wand::after {
-            content: '✨';
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #1a1a3a, #2d1b69);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 0 40px rgba(106, 90, 249, 0.5);
-            position: relative;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--starlight);
-        }
-
-        .modal-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--magic-blue);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--starlight);
-        }
-
-        .modal-text {
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #b8b8d0;
-        }
-
-        /* Magical Particles */
-        .magical-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0;
-            box-shadow: 0 0 5px white;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .magical-locket {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .memory-orb {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-            
-            .locket-center {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
-            }
-            
-            .memory-showcase {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Letter Portrait Generator (Simple)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin: 18px; color: #111; }
+    label { display:block; margin-top:10px; }
+    input[type="text"] { width:70px; font-size:16px; padding:4px; }
+    input[type="number"] { width:80px; }
+    button { margin-top:10px; padding:8px 12px; }
+    canvas { border:1px solid #ccc; display:block; margin-top:12px; max-width:100%; height:auto; }
+    pre { background:#f6f6f6; padding:8px; overflow:auto; max-height:220px; }
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  </style>
 </head>
 <body>
-    <div class="magical-particles" id="magicalParticles"></div>
-    
-    <div class="container">
-        <header>
-            <h1>Magical Memory Locket <span class="heart">♥</span></h1>
-            <p class="subtitle">4 Enchanted Months with Aki</p>
-            <p>Each memory carefully preserved in this mystical locket</p>
-        </header>
-        
-        <div class="magical-locket">
-            <div class="locket-outer" id="locketOuter">
-                <div class="locket-front">
-                    <div class="locket-design">
-                        <div class="memory-orbs">
-                            <div class="memory-orb" onclick="showMemory(0)">💬</div>
-                            <div class="memory-orb" onclick="showMemory(1)">🎮</div>
-                            <div class="memory-orb" onclick="showMemory(2)">🍳</div>
-                            <div class="memory-orb" onclick="showMemory(3)">🖼️</div>
-                        </div>
-                        <div class="locket-center" id="locketCenter">
-                            ♥
-                        </div>
-                    </div>
-                </div>
-                <div class="locket-back">
-                    <p class="locket-inscription">"In this locket, I keep our most precious memories - each one a sparkling gem in the necklace of our time together. Four months of laughter, connection, and growing love."</p>
-                    <button class="open-locket-btn" id="closeLocket">Close Locket</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="memory-showcase">
-            <div class="memory-crystal" onclick="showMemory(0)">
-                <div class="crystal-icon">💬</div>
-                <h3 class="crystal-title">First Words</h3>
-                <p class="crystal-content">That first chat after waiting for a week for you to accept my friend request - my heart fluttered with excitement and nervous anticipation.</p>
-            </div>
-            
-            <div class="memory-crystal" onclick="showMemory(1)">
-                <div class="crystal-icon">🎮</div>
-                <h3 class="crystal-title">Gaming Laughter</h3>
-                <p class="crystal-content">Your Valorant streams where you'd get surprised and scream, then blame me for watching because it made you nervous - we shared so much laughter.</p>
-            </div>
-            
-            <div class="memory-crystal" onclick="showMemory(2)">
-                <div class="crystal-icon">🍳</div>
-                <h3 class="crystal-title">First Silog</h3>
-                <p class="crystal-content">Convincing you to let me treat you to silog took hours, but seeing how happy it made you was worth every minute of persuasion.</p>
-            </div>
-            
-            <div class="memory-crystal" onclick="showMemory(3)">
-                <div class="crystal-icon">🖼️</div>
-                <h3 class="crystal-title">First Picture</h3>
-                <p class="crystal-content">When you finally felt comfortable enough to share your picture, my heart raced with excitement - finally seeing the beautiful person I was falling for.</p>
-            </div>
-        </div>
-        
-        <div class="message-bottle">
-            <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
-            <button class="magic-wand" id="magicWand">Create New Memory</button>
-        </div>
-    </div>
-    
-    <!-- Memory Modal -->
-    <div class="modal" id="memoryModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <div class="modal-icon" id="modalIcon">💬</div>
-            <h2 class="modal-title" id="modalTitle">First Words</h2>
-            <p class="modal-text" id="modalText">This is where the memory description will appear.</p>
-        </div>
-    </div>
 
-    <script>
-        // Create magical particles
-        function createMagicalParticles() {
-            const particlesContainer = document.getElementById('magicalParticles');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animation = `particleFloat ${Math.random() * 10 + 5}s linear infinite`;
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.backgroundColor = getRandomParticleColor();
-                particlesContainer.appendChild(particle);
-            }
+  <h2>Letter Portrait — Simple HTML</h2>
+
+  <div>
+    <label>Default image (uploaded):</label>
+    <img id="preview" alt="preview" src="/mnt/data/74154586-39f0-4a53-aaaf-c7d63e1dbe52.png" style="max-width:240px; border:1px solid #ddd; display:block;"/>
+  </div>
+
+  <label class="row">
+    <span>Or upload image:</span>
+    <input id="file" type="file" accept="image/*" />
+  </label>
+
+  <label class="row">
+    <span>Letter:</span>
+    <input id="letter" type="text" maxlength="1" value="A" />
+    <span>Columns (detail):</span>
+    <input id="cols" type="number" min="20" max="400" value="120" />
+    <span>Char height / width ratio (scale):</span>
+    <input id="scale" type="number" step="0.05" value="0.55" />
+  </label>
+
+  <div class="row">
+    <button id="generate">Generate Portrait</button>
+    <button id="downloadPng">Download PNG</button>
+    <button id="downloadTxt">Download Text</button>
+  </div>
+
+  <canvas id="outCanvas"></canvas>
+
+  <h4>Text preview (first lines)</h4>
+  <pre id="textPreview"></pre>
+
+<script>
+(function(){
+  const defaultImageSrc = "/mnt/data/74154586-39f0-4a53-aaaf-c7d63e1dbe52.png";
+  const fileInput = document.getElementById('file');
+  const previewImg = document.getElementById('preview');
+  const letterInput = document.getElementById('letter');
+  const colsInput = document.getElementById('cols');
+  const scaleInput = document.getElementById('scale');
+  const generateBtn = document.getElementById('generate');
+  const canvas = document.getElementById('outCanvas');
+  const txtPreview = document.getElementById('textPreview');
+  const downloadPngBtn = document.getElementById('downloadPng');
+  const downloadTxtBtn = document.getElementById('downloadTxt');
+
+  let currentImage = new Image();
+  currentImage.crossOrigin = "anonymous";
+  currentImage.src = defaultImageSrc;
+  previewImg.src = defaultImageSrc;
+
+  // if user uploads new file, use it
+  fileInput.addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    const url = URL.createObjectURL(f);
+    previewImg.src = url;
+    currentImage.src = url;
+  });
+
+  // utility: draw letter portrait
+  async function createLetterPortrait(img, options) {
+    const letter = (options.letter || 'A')[0] || 'A';
+    const cols = Math.max(10, Math.min(600, Math.floor(options.cols || 120)));
+    const scale = Math.max(0.1, Math.min(5, options.scale || 0.55));
+    const threshold = (typeof options.threshold === 'number') ? options.threshold : 0.92;
+
+    // compute grid
+    const W = img.naturalWidth || img.width;
+    const H = img.naturalHeight || img.height;
+    const cellWidth = W / cols;
+    const cellHeight = cellWidth / scale;
+    const rows = Math.max(1, Math.floor(H / cellHeight));
+
+    // offscreen small canvas to sample brightness
+    const small = document.createElement('canvas');
+    small.width = cols;
+    small.height = rows;
+    const sctx = small.getContext('2d');
+    // draw with cover-ish fit (preserve aspect by scaling to fit width)
+    sctx.drawImage(img, 0, 0, cols, rows);
+
+    const imageData = sctx.getImageData(0,0,cols,rows).data;
+
+    // create text lines and compute canvas size
+    const lines = [];
+    for (let r=0; r<rows; r++){
+      let rowChars = '';
+      for (let c=0; c<cols; c++){
+        const idx = (r*cols + c) * 4;
+        const rpx = imageData[idx], gpx = imageData[idx+1], bpx = imageData[idx+2];
+        const bw = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255; // brightness 0..1
+        if (bw < threshold) {
+          if (bw < 0.35) rowChars += letter.toUpperCase();
+          else if (bw < 0.6) rowChars += letter.toLowerCase();
+          else rowChars += letter;
+        } else {
+          rowChars += ' ';
         }
-        
-        function getRandomParticleColor() {
-            const colors = ['#ffffff', '#9d4edd', '#ff6b8b', '#4ecdc4', '#d4af37'];
-            return colors[Math.floor(Math.random() * colors.length)];
+      }
+      lines.push(rowChars);
+    }
+
+    // Render to canvas (text)
+    // choose a monospaced font and compute character size
+    const ctx = canvas.getContext('2d');
+    // temporary measure text size using a hidden canvas
+    const measureCanvas = document.createElement('canvas');
+    const mctx = measureCanvas.getContext('2d');
+
+    // pick a font size relative to cell height
+    // char height = we set to 10..40 depending on rows
+    // choose font size so canvas width = charWidth * cols fits reasonably
+    let fontSize = Math.max(6, Math.min(32, Math.round(14 * (120 / cols))));
+    mctx.font = `${fontSize}px "Courier New", monospace`;
+    const metrics = mctx.measureText(letter);
+    const charW = Math.ceil(metrics.width);
+    const charH = Math.ceil(fontSize * 1.1);
+
+    canvas.width = charW * cols;
+    canvas.height = charH * rows;
+
+    // white background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    // draw each letter with grayscale color based on brightness
+    for (let r=0; r<rows; r++){
+      for (let c=0; c<cols; c++){
+        const idx = (r*cols + c) * 4;
+        const rpx = imageData[idx], gpx = imageData[idx+1], bpx = imageData[idx+2];
+        const bw = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255;
+        if (bw < threshold) {
+          const fillVal = Math.round(bw * 255);
+          ctx.fillStyle = `rgb(${fillVal},${fillVal},${fillVal})`;
+          ctx.font = `${fontSize}px "Courier New", monospace`;
+          const x = c * charW;
+          const y = (r+1) * charH - Math.round(charH*0.18); // adjust baseline
+          ctx.fillText(letter, x, y);
         }
-        
-        // Memory data
-        const memories = [
-            {
-                title: "First Words",
-                icon: "💬",
-                text: "Mahalll, do you remember the first time that we've chat each other in discord. Di ko malilimutan yon kasi 1 week akong naghintay na may lilya na mag accept ng friend request HAHAHAHAHA tapos nagchat pa ikaw sa akin kaya super kilig ako non."
-            },
-            {
-                title: "Gaming Laughter",
-                icon: "🎮",
-                text: "Idk mahal if tanda mo pa yung time na di ako pwedeng mag play ng valo sa bahay and then nakastream ikaw, and then nag whiff ikaw tapos napasigaw ikaw tas naingayan sayo si rjay non, tapos tawa din ako nang tawa kaya sinisi mo ako bat ka nagwhiff HAHAHAHAHAHA. Tapos sabi mo nanonood kasi ako kaya ka kinakabahan HAHAHHAHA."
-            },
-            {
-                title: "First Silog",
-                icon: "🍳",
-                text: "Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food."
-            },
-            {
-                title: "First Picture",
-                icon: "🖼️",
-                text: "I always respect u talaga mahal to the point na ayaw kitang kulitin about sending me pics or your socials or even your name. Kaya kahit super nasasad ako kasi di ko pa ikaw kilala ganyan okie lang sa akin maghintay ganon. Then one day nag-iinom ikaw sa pobla tapos kasama mo si gab tapos nagsend ikaw ng pic mo mahal, which is yung wallpaper ko now, that time sobranggggg bilis ng heartbeat ko, sobra akong kinilig kasi finally you are comfy enough na to send your pic kahit paunti unti lang ganon."
-            }
-        ];
-        
-        // Show memory
-        function showMemory(index) {
-            const memory = memories[index];
-            document.getElementById('modalIcon').textContent = memory.icon;
-            document.getElementById('modalTitle').textContent = memory.title;
-            document.getElementById('modalText').textContent = memory.text;
-            document.getElementById('memoryModal').style.display = 'flex';
-            
-            // Create magical particles
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    createMagicalParticle();
-                }, i * 200);
-            }
-        }
-        
-        // Create a single magical particle
-        function createMagicalParticle() {
-            const particlesContainer = document.getElementById('magicalParticles');
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.animation = `particleFloat ${Math.random() * 5 + 3}s linear`;
-            particle.style.backgroundColor = getRandomParticleColor();
-            particlesContainer.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 8000);
-        }
-        
-        // Locket functionality
-        document.getElementById('locketCenter').addEventListener('click', () => {
-            document.getElementById('locketOuter').classList.add('open');
-        });
-        
-        document.getElementById('closeLocket').addEventListener('click', () => {
-            document.getElementById('locketOuter').classList.remove('open');
-        });
-        
-        // Close modal
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('memoryModal').style.display = 'none';
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === document.getElementById('memoryModal')) {
-                document.getElementById('memoryModal').style.display = 'none';
-            }
-        });
-        
-        // Magic wand button
-        document.getElementById('magicWand').addEventListener('click', () => {
-            const newMemories = [
-                "I wish for our laughter to continue echoing through time",
-                "May our connection grow stronger with each shared sunrise",
-                "I enchant our future with endless understanding and patience",
-                "Let every challenge we face only bring us closer together",
-                "I bless our journey with countless more magical moments"
-            ];
-            
-            const randomMemory = newMemories[Math.floor(Math.random() * newMemories.length)];
-            alert(`✨ ${randomMemory}, Aki! ✨`);
-            
-            // Create magical particles
-            for (let i = 0; i < 8; i++) {
-                setTimeout(() => {
-                    createMagicalParticle();
-                }, i * 150);
-            }
-        });
-        
-        // Initialize
-        createMagicalParticles();
-    </script>
+      }
+    }
+
+    return { lines, canvasWidth: canvas.width, canvasHeight: canvas.height };
+  }
+
+  generateBtn.addEventListener('click', async () => {
+    // ensure image is loaded
+    if (!currentImage.complete) {
+      await new Promise(res => currentImage.onload = res);
+    }
+    const opts = {
+      letter: letterInput.value || 'A',
+      cols: parseInt(colsInput.value,10) || 120,
+      scale: parseFloat(scaleInput.value) || 0.55,
+      threshold: 0.92
+    };
+
+    try {
+      const result = await createLetterPortrait(currentImage, opts);
+      // show text preview
+      txtPreview.textContent = result.lines.slice(0, 20).join("\n");
+    } catch (err) {
+      alert("Error generating portrait: " + err.message);
+      console.error(err);
+    }
+  });
+
+  downloadPngBtn.addEventListener('click', () => {
+    if (!canvas.width) { alert('Generate a portrait first.'); return; }
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'letter_portrait.png';
+    a.click();
+  });
+
+  downloadTxtBtn.addEventListener('click', () => {
+    if (!txtPreview.textContent) { alert('Generate first to get text output.'); return; }
+    const fullText = txtPreview.textContent; // currently only first lines; to produce whole content we must regenerate lines
+    // Better: regenerate full text quickly using same steps but output all lines
+    // We'll regenerate using current settings to get full lines
+    (async () => {
+      if (!currentImage.complete) await new Promise(res => currentImage.onload = res);
+      const opts = {
+        letter: letterInput.value || 'A',
+        cols: parseInt(colsInput.value,10) || 120,
+        scale: parseFloat(scaleInput.value) || 0.55,
+        threshold: 0.92
+      };
+      const result = await createLetterPortrait(currentImage, opts);
+      const txt = result.lines.join("\n");
+      const blob = new Blob([txt], {type: 'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'letter_portrait.txt';
+      a.click();
+      setTimeout(()=>URL.revokeObjectURL(url), 2000);
+    })();
+  });
+
+  // initial generate automatically after image loads to show something
+  currentImage.onload = () => {
+    previewImg.src = currentImage.src;
+    generateBtn.click();
+  };
+
+})();
+</script>
+
 </body>
 </html>
