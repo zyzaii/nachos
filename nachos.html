@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Love | 4 Months with Aki</title>
+    <title>Digital Garden of Love | 4 Months with Aki</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,25 +14,23 @@
         }
 
         :root {
-            --space: #0f0f23;
-            --nebula: #2d1b69;
-            --star: #fffacd;
-            --planet1: #ff6b8b;
-            --planet2: #6a5af9;
-            --planet3: #4ecdc4;
-            --planet4: #ffd166;
-            --text: #e6e6fa;
+            --soil: #2c1810;
+            --stem: #8a6642;
+            --leaf: #4a7c59;
+            --flower1: #ff6b8b;
+            --flower2: #6a5af9;
+            --flower3: #4ecdc4;
+            --flower4: #ffd166;
+            --text: #f5f5f5;
+            --petal-light: #fffacd;
         }
 
         body {
-            background: var(--space);
+            background: linear-gradient(to bottom, #1a0f0a, var(--soil));
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(45, 27, 105, 0.3) 0%, transparent 20%),
-                radial-gradient(circle at 90% 60%, rgba(255, 107, 139, 0.2) 0%, transparent 20%),
-                radial-gradient(circle at 40% 80%, rgba(106, 90, 249, 0.2) 0%, transparent 20%);
+            position: relative;
         }
 
         .container {
@@ -52,7 +50,7 @@
         h1 {
             font-size: 4rem;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--planet1), var(--planet2), var(--planet3));
+            background: linear-gradient(45deg, var(--flower1), var(--flower2), var(--flower3));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -66,10 +64,10 @@
         }
 
         .heart {
-            color: var(--planet1);
+            color: var(--flower1);
             display: inline-block;
             animation: heartbeat 1.5s infinite;
-            text-shadow: 0 0 10px var(--planet1);
+            text-shadow: 0 0 10px var(--flower1);
         }
 
         @keyframes heartbeat {
@@ -78,57 +76,67 @@
             100% { transform: scale(1); }
         }
 
-        .cosmic-journey {
+        /* Digital Garden */
+        .digital-garden {
             position: relative;
             height: 600px;
             margin: 40px 0;
             overflow: hidden;
             border-radius: 20px;
-            background: rgba(15, 15, 35, 0.7);
+            background: rgba(44, 24, 16, 0.7);
             box-shadow: 0 0 30px rgba(106, 90, 249, 0.2);
         }
 
-        .stars {
+        .garden-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(74, 124, 89, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 139, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(106, 90, 249, 0.1) 0%, transparent 50%);
         }
 
-        .star {
+        .flower {
             position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 5s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .planet {
-            position: absolute;
-            border-radius: 50%;
             cursor: pointer;
             transition: all 0.5s ease;
             z-index: 2;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .flower:hover {
+            transform: scale(1.2);
+            filter: brightness(1.2);
+        }
+
+        .flower-stem {
+            width: 6px;
+            background: linear-gradient(to top, var(--stem), #6b4c2e);
+            border-radius: 3px 3px 0 0;
+            position: relative;
+        }
+
+        .flower-head {
+            width: 60px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-size: 1.5rem;
-            box-shadow: 0 0 20px currentColor;
+            position: relative;
+            box-shadow: 0 0 15px currentColor;
+            margin-bottom: 5px;
         }
 
-        .planet:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 30px currentColor;
-        }
-
-        .planet-label {
+        .flower-label {
             position: absolute;
             bottom: -40px;
             left: 50%;
@@ -142,31 +150,26 @@
             transition: opacity 0.3s ease;
         }
 
-        .planet:hover .planet-label {
+        .flower:hover .flower-label {
             opacity: 1;
         }
 
-        .orbit {
+        .petal {
             position: absolute;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            animation: rotate 60s linear infinite;
+            background: currentColor;
+            opacity: 0.8;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .central-heart {
+        .central-flower {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 4rem;
-            color: var(--planet1);
+            color: var(--flower1);
             animation: pulse 3s infinite;
-            text-shadow: 0 0 20px var(--planet1);
+            text-shadow: 0 0 20px var(--flower1);
             z-index: 3;
         }
 
@@ -175,22 +178,22 @@
             50% { transform: translate(-50%, -50%) scale(1.1); }
         }
 
-        /* Memory Nebula */
-        .memory-nebula {
+        /* Memory Pond */
+        .memory-pond {
             position: absolute;
-            top: 20%;
+            bottom: 10%;
             right: 10%;
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(106, 90, 249, 0.4) 0%, rgba(255, 107, 139, 0.3) 30%, transparent 70%);
-            filter: blur(20px);
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.4) 0%, rgba(106, 90, 249, 0.3) 30%, transparent 70%);
+            filter: blur(10px);
             cursor: pointer;
             z-index: 2;
-            animation: nebulaPulse 8s infinite alternate;
+            animation: pondRipple 8s infinite alternate;
             box-shadow: 
-                0 0 60px rgba(106, 90, 249, 0.5),
-                inset 0 0 40px rgba(255, 107, 139, 0.3);
+                0 0 40px rgba(78, 205, 196, 0.5),
+                inset 0 0 30px rgba(106, 90, 249, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -199,43 +202,65 @@
             text-align: center;
             padding: 20px;
             transition: all 0.5s ease;
+            overflow: hidden;
         }
 
-        @keyframes nebulaPulse {
+        @keyframes pondRipple {
             0% { 
                 transform: scale(1);
                 box-shadow: 
-                    0 0 60px rgba(106, 90, 249, 0.5),
-                    inset 0 0 40px rgba(255, 107, 139, 0.3);
+                    0 0 40px rgba(78, 205, 196, 0.5),
+                    inset 0 0 30px rgba(106, 90, 249, 0.3);
             }
             100% { 
-                transform: scale(1.1);
+                transform: scale(1.05);
                 box-shadow: 
-                    0 0 80px rgba(106, 90, 249, 0.7),
-                    inset 0 0 50px rgba(255, 107, 139, 0.5);
+                    0 0 60px rgba(78, 205, 196, 0.7),
+                    inset 0 0 40px rgba(106, 90, 249, 0.5);
             }
         }
 
-        .memory-nebula:hover {
-            transform: scale(1.15);
-            filter: blur(15px);
+        .memory-pond:hover {
+            transform: scale(1.08);
+            filter: blur(8px);
         }
 
-        .nebula-text {
+        .pond-text {
             opacity: 0.8;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             font-weight: bold;
+            z-index: 3;
         }
 
-        .memory-constellation {
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: rippleEffect 3s linear infinite;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+
+        .memory-garden {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin: 50px 0;
         }
 
-        .constellation-card {
-            background: rgba(30, 30, 60, 0.7);
+        .garden-card {
+            background: rgba(60, 40, 30, 0.7);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -243,29 +268,29 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(106, 90, 249, 0.3);
+            border: 1px solid rgba(138, 102, 66, 0.3);
         }
 
-        .constellation-card:hover {
+        .garden-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(106, 90, 249, 0.4);
-            border-color: rgba(106, 90, 249, 0.7);
+            box-shadow: 0 10px 25px rgba(138, 102, 66, 0.4);
+            border-color: rgba(138, 102, 66, 0.7);
         }
 
-        .constellation-card::before {
+        .garden-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(45deg, var(--planet1), var(--planet2));
+            background: linear-gradient(45deg, var(--flower1), var(--flower2));
         }
 
         .card-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--planet3);
+            color: var(--flower3);
         }
 
         .card-title {
@@ -276,11 +301,11 @@
 
         .card-content {
             line-height: 1.6;
-            color: #b8b8d0;
+            color: #e0d0c0;
         }
 
         .message-box {
-            background: rgba(30, 30, 60, 0.7);
+            background: rgba(60, 40, 30, 0.7);
             border-radius: 20px;
             padding: 40px;
             margin: 50px 0;
@@ -313,7 +338,7 @@
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background: linear-gradient(45deg, var(--planet1), var(--planet2));
+            background: linear-gradient(45deg, var(--flower1), var(--flower2));
             color: white;
             border-radius: 30px;
             text-decoration: none;
@@ -345,12 +370,12 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #1a1a3a, #2d1b69);
+            background: linear-gradient(135deg, #3a2515, #5a3520);
             border-radius: 20px;
             padding: 30px;
             max-width: 500px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(106, 90, 249, 0.5);
+            box-shadow: 0 0 40px rgba(138, 102, 66, 0.5);
             position: relative;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -368,7 +393,7 @@
         .modal-icon {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: var(--planet3);
+            color: var(--flower3);
         }
 
         .modal-title {
@@ -380,10 +405,10 @@
         .modal-text {
             line-height: 1.6;
             margin-bottom: 20px;
-            color: #b8b8d0;
+            color: #e0d0c0;
         }
 
-        .shooting-stars {
+        .floating-petals {
             position: fixed;
             top: 0;
             left: 0;
@@ -393,23 +418,29 @@
             z-index: 1;
         }
 
-        .shooting-star {
+        .petal {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px white;
-            opacity: 0;
+            width: 15px;
+            height: 15px;
+            background: var(--petal-light);
+            border-radius: 50% 50% 50% 0;
+            opacity: 0.7;
+            box-shadow: 0 0 10px var(--petal-light);
         }
 
-        @keyframes shoot {
+        @keyframes float {
             0% {
-                transform: translateX(0) translateY(0);
-                opacity: 1;
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
             }
             100% {
-                transform: translateX(100vw) translateY(100vh);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -419,72 +450,68 @@
                 font-size: 2.5rem;
             }
             
-            .cosmic-journey {
+            .digital-garden {
                 height: 500px;
             }
             
-            .memory-constellation {
+            .memory-garden {
                 grid-template-columns: 1fr;
             }
             
-            .memory-nebula {
-                width: 180px;
-                height: 180px;
+            .memory-pond {
+                width: 150px;
+                height: 150px;
                 right: 5%;
-                top: 15%;
+                bottom: 5%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="shooting-stars" id="shootingStars"></div>
+    <div class="floating-petals" id="floatingPetals"></div>
     
     <div class="container">
         <header>
-            <h1>Cosmic Love <span class="heart">♥</span></h1>
-            <p class="subtitle">4 Months Orbiting Aki's Heart</p>
-            <p>Explore our journey through the cosmos</p>
+            <h1>Digital Garden of Love <span class="heart">♥</span></h1>
+            <p class="subtitle">4 Months Growing with Aki</p>
+            <p>Explore our journey through this digital garden</p>
         </header>
         
-        <div class="cosmic-journey" id="cosmicJourney">
-            <div class="stars" id="starsContainer"></div>
+        <div class="digital-garden" id="digitalGarden">
+            <div class="garden-background"></div>
             
-            <div class="orbit" style="width: 300px; height: 300px; top: 150px; left: 150px;"></div>
-            <div class="orbit" style="width: 450px; height: 450px; top: 75px; left: 75px;"></div>
-            <div class="orbit" style="width: 600px; height: 600px; top: 0; left: 0;"></div>
-            <div class="orbit" style="width: 750px; height: 750px; top: -75px; left: -75px;"></div>
-            
-            <!-- Memory Nebula -->
-            <div class="memory-nebula" id="memoryNebula">
-                <div class="nebula-text">Click to discover hidden memories</div>
+            <!-- Memory Pond -->
+            <div class="memory-pond" id="memoryPond">
+                <div class="pond-text">Click to discover hidden memories</div>
+                <!-- Ripples will be added by JavaScript -->
             </div>
             
-            <div class="central-heart">♥</div>
+            <div class="central-flower">🌺</div>
             
-            <!-- Planets will be generated by JavaScript -->
+            <!-- Flowers will be generated by JavaScript -->
         </div>
         
-        <div class="memory-constellation">
-            <div class="constellation-card" onclick="showMemory(0)">
-                <div class="card-icon">🌌</div>
+        <div class="memory-garden">
+            <div class="garden-card" onclick="showMemory(0)">
+                <div class="card-icon">🌱</div>
                 <h3 class="card-title">First Chat with you</h3>
                 <p class="card-content">Mahalll, do you remember the first time that we've chat each other in discord. Di ko malilimutan yon kasi 1 week akong naghintay na may lilya na mag accept ng friend request HAHAHAHAHA tapos nagchat pa ikaw sa akin kaya super kilig ako non.</p>
             </div>
             
-            <div class="constellation-card" onclick="showMemory(1)">
-                <div class="card-icon">💫</div>
+            <div class="garden-card" onclick="showMemory(1)">
+                <div class="card-icon">🌿</div>
                 <h3 class="card-title">Shared Memories while playing</h3>
                 <p class="card-content">Idk mahal if tanda mo pa yung time na di ako pwedeng mag play ng valo sa bahay and then nakastream ikaw, and then nag whiff ikaw tapos napasigaw ikaw tas naingayan sayo si rjay non, tapos tawa din ako nang tawa kaya sinisi mo ako bat ka nagwhiff HAHAHAHAHAHA. Tapos sabi mo nanonood kasi ako kaya ka kinakabahan HAHAHHAHA.</p>
             </div>
             
-            <div class="constellation-card" onclick="showMemory(2)">
-                <div class="card-icon">🪐</div>
+            <div class="garden-card" onclick="showMemory(2)">
+                <div class="card-icon">🌸</div>
                 <h3 class="card-title">First time giving u food.</h3>
-                <p class="card-content">Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwang tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food.</p>
+                <p class="card-content">Tanda mo yung first ever silog na libre ko sa'yo? Halos umabot ng 3 oras bago pa kita maconvince non na ililibre kita ng silog. Sabi ko pa non bat kapag kay rjay nagpapalibre ka tapos sa akin ayaw mo ganyan. Tuwa ako non kasi pumayag ka tapos kinikilig ako kasi super tuwang tuwa ka that time ganyan. Eh kinikilig ako kapag natutuwa ka sa isang bagay lalo na kapag about sa food.</p>
             </div>
             
-            <div class="constellation-card" onclick="showMemory(3)">
-                <div class="card-icon">🌠</div>
+            <div class="garden-card" onclick="showMemory(3)">
+                <div class="card-icon">💮</div>
                 <h3 class="card-title">First ever picture of you</h3>
                 <p class="card-content">I always respect u talaga mahal to the point na ayaw kitang kulitin about sending me pics or your socials or even your name. Kaya kahit super nasasad ako kasi di ko pa ikaw kilala ganyan okie lang sa akin maghintay ganon. Then one day nag-iinom ikaw sa pobla tapos kasama mo si gab tapos nagsend ikaw ng pic mo mahal, which is yung wallpaper ko now, that time sobranggggg bilis ng heartbeat ko, sobra akong kinilig kasi finally you are comfy enough na to send your pic kahit paunti unti lang ganon.</p>
             </div>
@@ -492,7 +519,7 @@
         
         <div class="message-box">
             <p class="message">Aki, my baby, lablab, mahal, and babe. I dont know how to thank you but still thank youuu hehehe. You know what, at first Im contemplating whether am I treating you right these past four months because honestly this relationship thingy is first time to me. Overthinking such things like "Am I doing right?", "Am I not too much for her, di ba sya naooverwhelm sa akin ganyan". But whenever I see that you're happy it makes my day and life happier than usual mahal. That's why I wanna thank you for staying with me for 4 months already hehe. Please bear with my kaartehan and my toyo minsan hehe. I wub u. I'll do anything to make you happy.</p>
-            <button class="btn" id="wishBtn">Make a Wish Upon a Star</button>
+            <button class="btn" id="wishBtn">Plant a New Memory</button>
         </div>
     </div>
     
@@ -500,60 +527,64 @@
     <div class="modal" id="memoryModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
-            <div class="modal-icon" id="modalIcon">🌌</div>
+            <div class="modal-icon" id="modalIcon">🌱</div>
             <h2 class="modal-title" id="modalTitle">First Glances</h2>
             <p class="modal-text" id="modalText">This is where the memory description will appear.</p>
         </div>
     </div>
 
-    <!-- Nebula Memory Modal -->
-    <div class="modal" id="nebulaModal">
+    <!-- Pond Memory Modal -->
+    <div class="modal" id="pondModal">
         <div class="modal-content">
-            <span class="close-modal" id="closeNebulaModal">&times;</span>
-            <div class="modal-icon" id="nebulaIcon">✨</div>
-            <h2 class="modal-title" id="nebulaTitle">Hidden Memory</h2>
-            <p class="modal-text" id="nebulaText">This is where the nebula memory will appear.</p>
+            <span class="close-modal" id="closePondModal">&times;</span>
+            <div class="modal-icon" id="pondIcon">💧</div>
+            <h2 class="modal-title" id="pondTitle">Hidden Memory</h2>
+            <p class="modal-text" id="pondText">This is where the pond memory will appear.</p>
         </div>
     </div>
 
     <script>
-        // Create stars
-        function createStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            const starCount = 200;
+        // Create floating petals
+        function createFloatingPetals() {
+            const petalsContainer = document.getElementById('floatingPetals');
+            const petalCount = 30;
             
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.width = Math.random() * 3 + 'px';
-                star.style.height = star.style.width;
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                starsContainer.appendChild(star);
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+                petal.style.animationDelay = Math.random() * 10 + 's';
+                petal.style.backgroundColor = getRandomPetalColor();
+                petalsContainer.appendChild(petal);
             }
         }
         
-        // Create shooting stars
-        function createShootingStars() {
-            const shootingStarsContainer = document.getElementById('shootingStars');
-            
-            setInterval(() => {
-                const shootingStar = document.createElement('div');
-                shootingStar.className = 'shooting-star';
-                shootingStar.style.left = Math.random() * 20 + 'vw';
-                shootingStar.style.top = Math.random() * 20 + 'vh';
-                shootingStar.style.animation = `shoot ${Math.random() * 3 + 2}s linear`;
-                shootingStarsContainer.appendChild(shootingStar);
-                
-                setTimeout(() => {
-                    shootingStar.remove();
-                }, 5000);
-            }, 2000);
+        function getRandomPetalColor() {
+            const colors = ['#ff6b8b', '#6a5af9', '#4ecdc4', '#ffd166', '#fffacd'];
+            return colors[Math.floor(Math.random() * colors.length)];
         }
         
-        // Nebula memories
-        const nebulaMemories = [
+        // Create pond ripples
+        function createPondRipples() {
+            const pond = document.getElementById('memoryPond');
+            
+            setInterval(() => {
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                pond.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 3000);
+            }, 1500);
+        }
+        
+        // Pond memories
+        const pondMemories = [
             {
                 title: "Your Laughter",
                 icon: "😊",
@@ -581,126 +612,112 @@
             }
         ];
         
-        // Planet data
-        const planets = [
+        // Flower data
+        const flowers = [
             {
                 month: "Month 1",
-                title: "New Discovery",
-                icon: "🪐",
-                text: "Our first month talking with each other was like discovering a new planet - full of wonder, excitement, and the thrill of the unknown. Every conversation we had makes me realize how pretty you are as a person. Being Aki is really unique, kasi why does no one makes my heart flutter except this baby.",
-                color: "var(--planet1)",
-                size: "80px",
-                orbit: 1,
-                angle: 0
+                title: "Seed of Connection",
+                icon: "🌱",
+                text: "Our first month talking with each other was like planting a seed - full of potential, hope, and the excitement of what might grow. Every conversation we had makes me realize how pretty you are as a person. Being Aki is really unique, kasi why does no one makes my heart flutter except this baby.",
+                color: "var(--flower1)",
+                height: "200px",
+                position: { x: 100, y: 400 }
             },
             {
                 month: "Month 2",
-                title: "Gravity Forms",
-                icon: "🌕",
-                text: "In our second month talking with u, I felt the connection between us growing stronger. I felt the need of your company became more frequent than before. Dumating sa point na I thought I'm attention seeker HAHAHAHAHAHHA, kasi gustong gusto ko yung binibigyan mo ako ng pansin. We had our own language, inside jokes that no one can understand and I found myself naturally orbiting closer to you.",
-                color: "var(--planet2)",
-                size: "70px",
-                orbit: 2,
-                angle: 90
+                title: "Sprouting Feelings",
+                icon: "🌿",
+                text: "In our second month talking with u, I felt the connection between us growing stronger like a sprout reaching for the sun. I felt the need of your company became more frequent than before. Dumating sa point na I thought I'm attention seeker HAHAHAHAHAHHA, kasi gustong gusto ko yung binibigyan mo ako ng pansin. We had our own language, inside jokes that no one can understand and I found myself naturally growing closer to you.",
+                color: "var(--flower2)",
+                height: "250px",
+                position: { x: 300, y: 350 }
             },
             {
                 month: "Month 3",
-                title: "Stable Orbit",
-                icon: "🛸",
-                text: "By the third month talking with u, being your suitor makes me happy. You allowing me to enter your life is like I'm entering an uncertain reality, it may be risky and scary I still wanna go and find my own way closer to you. We understood each other's habit, celebrated each other's phases whether it is sad or happy, and provided warmth during those times that we wanted to give up.",
-                color: "var(--planet3)",
-                size: "90px",
-                orbit: 3,
-                angle: 180
+                title: "Budding Romance",
+                icon: "🌷",
+                text: "By the third month talking with u, being your suitor makes me happy. You allowing me to enter your life is like I'm tending to a delicate bud, it may be risky and scary I still wanna nurture it closer to you. We understood each other's habit, celebrated each other's phases whether it is sad or happy, and provided warmth during those times that we wanted to give up.",
+                color: "var(--flower3)",
+                height: "300px",
+                position: { x: 500, y: 300 }
             },
             {
                 month: "Month 4",
-                title: "Celestial Harmony",
-                icon: "⭐",
+                title: "Blooming Love",
+                icon: "🌺",
                 text: "Now, four months in, I want you to know that loving you is really worth it, you are worth it, you are important and I will continue doing those things for you like spoiling you, complimenting you, comforting you, telling you how great you are not because I am sugarcoating things, but because you're really amazing. You've become one of my priorities, and every day with you will worth it because you are one of those blessings and gift that I wanna treasure.",
-                color: "var(--planet4)",
-                size: "75px",
-                orbit: 4,
-                angle: 270
+                color: "var(--flower4)",
+                height: "350px",
+                position: { x: 700, y: 250 }
             }
         ];
         
-        // Memory data for constellation cards
+        // Memory data for garden cards
         const memories = [
             {
                 title: "First Glances",
-                icon: "🌌",
-                text: "I still remember the first time our eyes met across the room. There was an instant connection, like two stars aligning after traveling through space for eons. In that moment, I knew there was something special about you that I needed to explore."
+                icon: "🌱",
+                text: "I still remember the first time our eyes met across the room. There was an instant connection, like two seeds planted in the same garden. In that moment, I knew there was something special about you that I needed to explore."
             },
             {
                 title: "Shared Dreams",
-                icon: "💫",
-                text: "Those late-night conversations where we shared our deepest hopes and wildest dreams were magical. It felt like we were charting new constellations together, creating our own patterns in the sky that only we could understand."
+                icon: "🌿",
+                text: "Those late-night conversations where we shared our deepest hopes and wildest dreams were magical. It felt like we were planting seeds of future possibilities together, creating our own garden that only we could understand."
             },
             {
                 title: "Adventures Together",
-                icon: "🪐",
-                text: "Every adventure with you feels like exploring a new planet. Whether it's trying a new restaurant or taking a spontaneous road trip, you make ordinary moments feel extraordinary. I love discovering the universe by your side."
+                icon: "🌸",
+                text: "Every adventure with you feels like discovering a new flower in our garden. Whether it's trying a new restaurant or taking a spontaneous road trip, you make ordinary moments feel extraordinary. I love exploring life by your side."
             },
             {
                 title: "Future Visions",
-                icon: "🌠",
-                text: "When we talk about the future, I see a beautiful galaxy unfolding before us. With you, every possibility seems within reach. I can't wait to continue building our cosmic journey together, creating memories that will shine forever like distant stars."
+                icon: "💮",
+                text: "When we talk about the future, I see a beautiful garden unfolding before us. With you, every possibility seems within reach. I can't wait to continue growing our garden together, creating memories that will bloom forever like perennial flowers."
             }
         ];
         
-        // Create planets
-        function createPlanets() {
-            const cosmicJourney = document.getElementById('cosmicJourney');
+        // Create flowers
+        function createFlowers() {
+            const digitalGarden = document.getElementById('digitalGarden');
             
-            planets.forEach((planet, index) => {
-                const planetElement = document.createElement('div');
-                planetElement.className = 'planet';
-                planetElement.dataset.index = index;
+            flowers.forEach((flower, index) => {
+                const flowerElement = document.createElement('div');
+                flowerElement.className = 'flower';
+                flowerElement.dataset.index = index;
                 
-                // Calculate position based on orbit and angle
-                const orbitRadius = [150, 225, 300, 375][planet.orbit - 1];
-                const centerX = 300;
-                const centerY = 300;
+                flowerElement.style.left = flower.position.x + 'px';
+                flowerElement.style.bottom = '0';
                 
-                const angleInRadians = (planet.angle * Math.PI) / 180;
-                const x = centerX + orbitRadius * Math.cos(angleInRadians) - parseInt(planet.size) / 2;
-                const y = centerY + orbitRadius * Math.sin(angleInRadians) - parseInt(planet.size) / 2;
-                
-                planetElement.style.width = planet.size;
-                planetElement.style.height = planet.size;
-                planetElement.style.background = `radial-gradient(circle at 30% 30%, ${planet.color}, #000)`;
-                planetElement.style.left = x + 'px';
-                planetElement.style.top = y + 'px';
-                planetElement.style.color = planet.color;
-                
-                planetElement.innerHTML = `
-                    ${planet.icon}
-                    <div class="planet-label">${planet.month}</div>
+                flowerElement.innerHTML = `
+                    <div class="flower-head" style="background: radial-gradient(circle at 30% 30%, ${flower.color}, #000); color: ${flower.color}">
+                        ${flower.icon}
+                    </div>
+                    <div class="flower-stem" style="height: ${flower.height}"></div>
+                    <div class="flower-label">${flower.month}</div>
                 `;
                 
-                planetElement.addEventListener('click', () => showPlanetMemory(index));
-                cosmicJourney.appendChild(planetElement);
+                flowerElement.addEventListener('click', () => showFlowerMemory(index));
+                digitalGarden.appendChild(flowerElement);
             });
         }
         
-        // Show planet memory
-        function showPlanetMemory(index) {
-            const planet = planets[index];
-            document.getElementById('modalIcon').textContent = planet.icon;
-            document.getElementById('modalTitle').textContent = planet.title;
-            document.getElementById('modalText').textContent = planet.text;
+        // Show flower memory
+        function showFlowerMemory(index) {
+            const flower = flowers[index];
+            document.getElementById('modalIcon').textContent = flower.icon;
+            document.getElementById('modalTitle').textContent = flower.title;
+            document.getElementById('modalText').textContent = flower.text;
             document.getElementById('memoryModal').style.display = 'flex';
             
-            // Create shooting stars
+            // Create floating petals
             for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
-                    createShootingStar();
+                    createFloatingPetal();
                 }, i * 200);
             }
         }
         
-        // Show constellation memory
+        // Show garden memory
         function showMemory(index) {
             const memory = memories[index];
             document.getElementById('modalIcon').textContent = memory.icon;
@@ -709,35 +726,35 @@
             document.getElementById('memoryModal').style.display = 'flex';
         }
         
-        // Show nebula memory
-        function showNebulaMemory() {
-            const randomMemory = nebulaMemories[Math.floor(Math.random() * nebulaMemories.length)];
-            document.getElementById('nebulaIcon').textContent = randomMemory.icon;
-            document.getElementById('nebulaTitle').textContent = randomMemory.title;
-            document.getElementById('nebulaText').textContent = randomMemory.text;
-            document.getElementById('nebulaModal').style.display = 'flex';
+        // Show pond memory
+        function showPondMemory() {
+            const randomMemory = pondMemories[Math.floor(Math.random() * pondMemories.length)];
+            document.getElementById('pondIcon').textContent = randomMemory.icon;
+            document.getElementById('pondTitle').textContent = randomMemory.title;
+            document.getElementById('pondText').textContent = randomMemory.text;
+            document.getElementById('pondModal').style.display = 'flex';
             
-            // Create a beautiful nebula effect with multiple shooting stars
+            // Create floating petals
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createShootingStar();
+                    createFloatingPetal();
                 }, i * 150);
             }
         }
         
-        // Create a single shooting star
-        function createShootingStar() {
-            const shootingStarsContainer = document.getElementById('shootingStars');
-            const shootingStar = document.createElement('div');
-            shootingStar.className = 'shooting-star';
-            shootingStar.style.left = Math.random() * 20 + 'vw';
-            shootingStar.style.top = Math.random() * 20 + 'vh';
-            shootingStar.style.animation = `shoot ${Math.random() * 3 + 2}s linear`;
-            shootingStarsContainer.appendChild(shootingStar);
+        // Create a single floating petal
+        function createFloatingPetal() {
+            const petalsContainer = document.getElementById('floatingPetals');
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animation = `float ${Math.random() * 5 + 5}s linear`;
+            petal.style.backgroundColor = getRandomPetalColor();
+            petalsContainer.appendChild(petal);
             
             setTimeout(() => {
-                shootingStar.remove();
-            }, 5000);
+                petal.remove();
+            }, 10000);
         }
         
         // Close modals
@@ -745,8 +762,8 @@
             document.getElementById('memoryModal').style.display = 'none';
         });
         
-        document.getElementById('closeNebulaModal').addEventListener('click', () => {
-            document.getElementById('nebulaModal').style.display = 'none';
+        document.getElementById('closePondModal').addEventListener('click', () => {
+            document.getElementById('pondModal').style.display = 'none';
         });
         
         // Close modals when clicking outside
@@ -754,66 +771,61 @@
             if (e.target === document.getElementById('memoryModal')) {
                 document.getElementById('memoryModal').style.display = 'none';
             }
-            if (e.target === document.getElementById('nebulaModal')) {
-                document.getElementById('nebulaModal').style.display = 'none';
+            if (e.target === document.getElementById('pondModal')) {
+                document.getElementById('pondModal').style.display = 'none';
             }
         });
         
         // Wish button
         document.getElementById('wishBtn').addEventListener('click', () => {
             const wishes = [
-                "I wish for countless more months exploring the universe with you",
-                "I wish to always see the stars in your eyes when you smile",
-                "I wish for our love to continue growing like an expanding galaxy",
-                "I wish to always be your favorite person to share constellations with",
-                "I wish for our journey to be as endless and beautiful as the cosmos"
+                "I wish for countless more months growing our garden together",
+                "I wish to always see the flowers bloom when you smile",
+                "I wish for our love to continue growing like a well-tended garden",
+                "I wish to always be your favorite person to share this garden with",
+                "I wish for our journey to be as beautiful and flourishing as spring"
             ];
             
             const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
-            alert(`✨ ${randomWish}, Aki! ✨`);
+            alert(`🌸 ${randomWish}, Aki! 🌸`);
             
-            // Create multiple shooting stars
+            // Create floating petals
             for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    createShootingStar();
+                    createFloatingPetal();
                 }, i * 150);
             }
         });
         
-        // Nebula click event
-        document.getElementById('memoryNebula').addEventListener('click', showNebulaMemory);
+        // Pond click event
+        document.getElementById('memoryPond').addEventListener('click', showPondMemory);
         
-        // Animate planets
-        function animatePlanets() {
-            const planetElements = document.querySelectorAll('.planet');
-            let angle = 0;
+        // Animate flowers
+        function animateFlowers() {
+            const flowerElements = document.querySelectorAll('.flower');
             
-            setInterval(() => {
-                angle += 0.5;
-                if (angle >= 360) angle = 0;
-                
-                planetElements.forEach((planet, index) => {
-                    const planetData = planets[index];
-                    const orbitRadius = [150, 225, 300, 375][planetData.orbit - 1];
-                    const centerX = 300;
-                    const centerY = 300;
-                    
-                    const planetAngle = (planetData.angle + angle) % 360;
-                    const angleInRadians = (planetAngle * Math.PI) / 180;
-                    const x = centerX + orbitRadius * Math.cos(angleInRadians) - parseInt(planetData.size) / 2;
-                    const y = centerY + orbitRadius * Math.sin(angleInRadians) - parseInt(planetData.size) / 2;
-                    
-                    planet.style.left = x + 'px';
-                    planet.style.top = y + 'px';
-                });
-            }, 50);
+            flowerElements.forEach((flower, index) => {
+                // Sway animation
+                flower.style.animation = `sway ${3 + index * 0.5}s ease-in-out infinite alternate`;
+                flower.style.transformOrigin = 'bottom center';
+            });
         }
         
+        // Add sway animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sway {
+                0% { transform: rotate(-2deg); }
+                100% { transform: rotate(2deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        
         // Initialize
-        createStars();
-        createShootingStars();
-        createPlanets();
-        animatePlanets();
+        createFloatingPetals();
+        createPondRipples();
+        createFlowers();
+        animateFlowers();
     </script>
 </body>
 </html>
