@@ -1,201 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Letter Portrait — From Your Message</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Courier New", monospace; margin: 12px; color:#111; }
-    h1 { font-size:18px; margin-bottom:6px; }
-    #canvas { border:1px solid #ccc; display:block; max-width:100%; height:auto; }
-    .controls { margin-top:8px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-    button { padding:8px 10px; cursor:pointer; }
-    pre { background:#f6f6f6; padding:8px; max-height:260px; overflow:auto; white-space:pre; }
-    label { font-size:13px; margin-right:6px; }
-    .info { margin-top:10px; color:#444; font-size:13px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portrait for Aki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .message {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-  <h1>Letter Portrait (made from your message)</h1>
-  <div class="info">This page automatically renders a portrait of the included image using characters from the message below. No upload needed.</div>
 
-  <!-- Canvas where portrait will be drawn -->
-  <canvas id="canvas"></canvas>
+<div class="container">
+    <img src="/mnt/data/download (2).jpg" alt="Portrait">
 
-  <div class="controls">
-    <button id="downloadPng">Download PNG</button>
-    <button id="downloadTxt">Download Text Portrait</button>
-    <label>Columns (detail)</label>
-    <input id="cols" type="number" min="40" max="700" value="140" style="width:80px" />
-    <label>Char aspect (height/width)</label>
-    <input id="scale" type="number" step="0.05" value="0.55" style="width:80px" />
-    <label>Threshold (0-1)</label>
-    <input id="threshold" type="number" step="0.01" value="0.92" min="0" max="1" style="width:80px" />
-  </div>
+    <div class="message">
+Hi babyyyy, suddenly I came up with this idea, creating a portrait of yours through the use of my message for you. Idk, I hope you will gonna read this pagkagising mo. I have a lot of doubts pagdating sa sarili ko, like will my effort gonna be enough para mapasaya ka, or to make you stay. I know I am not perfect but that doesn't change the fact that I really love you so much. This is a just because effort for you, lately i know stressed out ikaw, like super stress and I want to do things to lessen yon, and alam mo naman na online lang tayo nagkakameron ng interaction, so I'm trying to think of ways on how to show my support and care towards you. I realize na ang daming bagay ang naghehesitate ako kapag about sa iba pero kapag about sayo without hesitation ay gagawin ko.
 
-  <h3>Your message (used as characters):</h3>
-  <pre id="messagePreview"></pre>
+Kapag free time ko ganyan ikaw iniisip ko, like okay ka lang ba, like anong nararamdaman mo, anong inooverthink mo, nasasaktan ka ba, nahihirapan ka ba or what. And kapag ganon na ang dami kong tanong about that ayaw kong itanong sayo, I want you to open it up to me on your own kasi I know na kapag tinanong lang kita maiisip at maiisip mo lang mga problem mo. So much better siguro kung ikaw na lang mismo ang magsasabi about don para you are comfy enough ganon.
 
-  <h3>Text portrait preview (first 40 lines)</h3>
-  <pre id="textPreview"></pre>
+Di ko alam kung nagagawa ko ba ng ayos yung pagtrato ko sayo, kasi magkaiba naman tayo ng pov. Kumbaga tingin ko ayos na malay mo di pala yun yung approach na gusto mong gawin ko ganon. Kaya please be transparent sa kung anong gusto mo, kasi lahat ng yon ay gagawin ko para sayo.
 
-<script>
-(function(){
-  // Path to uploaded image (local path present in this environment). 
-  // The system that hosts this page will convert this to an accessible URL if needed.
-  const IMAGE_SRC = "/mnt/data/74154586-39f0-4a53-aaaf-c7d63e1dbe52.png";
+I remember all the small things that makes u happy and those small things that can lift up your mood, and yun yung tinatry kong gawin kapag di ikaw okie. Lab lab I am doing di para maoverwhelm ka kundi para marealize mo, maalala mo na sa akin ay may kakampi ka. Na may zairel ikaw na andito lang to support you all throughout your journey may it be a painful or stressful journey or what. I am always here lang supporting you and waiting for you.
 
-  // The full message you provided (copied verbatim). This will be used as the character pool.
-  const message = `Hi babyyyy, suddenly I came up with this idea, creating a portrait of yours through the use of my message for you. Idk, I hope you will gonna read this pagkagising mo. I have a lot of doubts pagdating sa sarili ko, like will my effort gonna be enough para mapasaya ka, or to  make you stay. I know I am not perfect but that doesn't change the fact that I really love you so much. This is a just because effort for you, lately i know stressed out ikaw, like super stress and I want to do things to lessen yon, and alam mo naman na online lang tayo nagkakameron ng interaction, so I'm trying to think of ways on how to show my support and care towards you. I realize na ang daming bagay ang naghehesitate ako kapag about sa iba pero kapag about sayo without hesitation ay gagawin ko. Kapag free time ko ganyan ikaw iniisip ko, like okay ka lang ba, like anong nararamdaman mo, anong inooverthink mo, nasasaktan ka ba, nahihirapan ka ba or what. And kapag ganon na ang dami kong tanong about that ayaw kong itanong sayo, I want you to open it up to me on your own kasi I know na kapag tinanong lang kita maiisip at maiisip mo lang mga problem mo. so much better siguro kung ikaw na lang mismo ang magsasabi about don para you are comfy enough ganon. di ko alam kung nagagawa ko ba ng ayos yung pagtrato ko sayo, kasi magkaiba naman tayo ng pov. kumbaga tingin ko ayos na malay mo di pala yun yung approach na gusto mong gawin ko ganon. kaya please be transparent sa kung anong gusto mo, kasi lahat ng yon ay gagawin ko para sayo. i remember all the small things that makes u happy and those small things that can lift up your mood, and yun yung tinatry kong gawin kapag di ikaw okie. lablab i am doing di para maoverwhelm ka kundi para marealize mo, maalala mo na sa akin ay may kakampi ka. na may zairel ikaw na andito lang to support you all throughout your journey may it be a painful or stressful journey or what. I am always here lang supporting you and waiting for you. Mahal kita hindi dahil sa kung papaano mo lang akong pasayahin sa mga banters mo, mahal kita kundi dahil bawat araw na nakakausap kita, na nakakalaro kita, na nakaka interact kita ay mas nakikita ko yung totoong aki. mas minamahal ko yung tunay na ikaw. yung mga flaws mo, kapag nainit ulo mo at nawawala ka sa mood, tatahimik ikaw or magsasabi ka na naiinis ka ganyan. or kapag super saya mo na tawa ka nang tawa or kapag nagtatampo ka na super cold mo or distant mo ganyan. lahat ng yan mahal ko, lahat ng ikaw, lahat ng ugali mo ay minamahal ko. kasi di ko naman planong mahalin ka ng dahil lang sa good traits mo, mamahalin ko ang lahat lahat sayo. lahat ng flaws and imperfections mo ay yayakapin ko, lahat ng weakness mo ay tatanggapin ko. lahat ng yon ay mamahalin ko ng buong buo. Kaya ikaw mahal wag kang mag-alala kasi at the end of the day ay may kakampi ka. at the end of the day ay may zairel na mamahalin ka. at the end of the day ay may isang taong handang magpatawa, magmukhang tanga sa mga jokes or kung ano man basta mapasaya ka lang. I WILL ALWAYS BE YOURS EVEN AT YOUR LOWEST AND DARKEST. Mahal kita at walang kahit anong makakatumbas don.`;
+Mahal kita hindi dahil sa kung papaano mo lang akong pasayahin sa mga banters mo, mahal kita kundi dahil bawat araw na nakakausap kita, na nakakalaro kita, na naka-interact kita ay mas nakikita ko yung totoong aki. Mas minamahal ko yung tunay na ikaw. Yung mga flaws mo, kapag nainit ulo mo at nawawala ka sa mood, tatahimik ikaw or magsasabi ka na naiinis ka ganyan. Or kapag super saya mo na tawa ka nang tawa or kapag nagtatampo ka na super cold mo or distant mo ganyan.
 
-  // Put message in preview
-  document.getElementById('messagePreview').textContent = message;
+Lahat ng yan mahal ko, lahat ng ikaw, lahat ng ugali mo ay minamahal ko. Kasi di ko naman planong mahalin ka ng dahil lang sa good traits mo, mamahalin ko ang lahat lahat sayo. Lahat ng flaws and imperfections mo ay yayakapin ko, lahat ng weakness mo ay tatanggapin ko. Lahat ng yon ay mamahalin ko ng buong buo.
 
-  const canvas = document.getElementById('canvas');
-  const textPreview = document.getElementById('textPreview');
-  const colsInput = document.getElementById('cols');
-  const scaleInput = document.getElementById('scale');
-  const thresholdInput = document.getElementById('threshold');
+Kaya ikaw mahal wag kang mag-alala kasi at the end of the day ay may kakampi ka. At the end of the day ay may zairel na mamahalin ka. At the end of the day ay may isang taong handang magpatawa, magmukhang tanga sa mga jokes or kung ano man basta mapasaya ka lang.
 
-  const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.src = IMAGE_SRC;
+I WILL ALWAYS BE YOURS EVEN AT YOUR LOWEST AND DARKEST. Mahal kita at walang kahit anong makakatumbas don.
+    </div>
+</div>
 
-  // Utility: convert RGB to luma brightness 0..1
-  function brightnessFromRGBA(r,g,b){
-    return (0.299*r + 0.587*g + 0.114*b) / 255;
-  }
-
-  // When image is loaded, render automatically
-  img.onload = async function() {
-    await render();
-  };
-
-  // Re-render if controls change
-  [colsInput, scaleInput, thresholdInput].forEach(el => el.addEventListener('change', () => render()));
-
-  async function render(){
-    if (!img.complete) return;
-    const cols = Math.max(40, Math.min(1200, parseInt(colsInput.value,10) || 140));
-    const scale = Math.max(0.1, Math.min(4, parseFloat(scaleInput.value) || 0.55));
-    const threshold = Math.max(0, Math.min(1, parseFloat(thresholdInput.value) || 0.92));
-
-    // Calculate rows based on image aspect and scale
-    const W = img.naturalWidth || img.width;
-    const H = img.naturalHeight || img.height;
-    const cellW = W / cols;
-    const cellH = cellW / scale;
-    const rows = Math.max(10, Math.round(H / cellH));
-
-    // Create a small sampling canvas
-    const small = document.createElement('canvas');
-    small.width = cols;
-    small.height = rows;
-    const sctx = small.getContext('2d');
-    // draw image fitted to small canvas
-    sctx.drawImage(img, 0, 0, cols, rows);
-    const imgData = sctx.getImageData(0,0,cols,rows).data;
-
-    // Build text lines using characters from message in sequence
-    const chars = message.replace(/\r/g, '').split(''); // keep spaces and punctuation
-    let pointer = 0;
-    const lines = [];
-    for (let r = 0; r < rows; r++){
-      let rowStr = '';
-      for (let c = 0; c < cols; c++){
-        const idx = (r*cols + c) * 4;
-        const rpx = imgData[idx], gpx = imgData[idx+1], bpx = imgData[idx+2];
-        const b = brightnessFromRGBA(rpx,gpx,bpx); // 0..1, 0 black
-        if (b < threshold) {
-          // select next non-newline character from message
-          // if message char is newline (shouldn't be), skip
-          let ch = chars[pointer % chars.length];
-          pointer++;
-          // Optionally vary case based on brightness for texture
-          if (/[A-Za-z]/.test(ch)) {
-            if (b < 0.35) ch = ch.toUpperCase();
-            else if (b < 0.6) ch = ch.toLowerCase();
-          }
-          rowStr += ch;
-        } else {
-          rowStr += ' ';
-        }
-      }
-      lines.push(rowStr);
-    }
-
-    // Render to visible canvas using monospaced font
-    // determine font size from measured char size
-    const measure = document.createElement('canvas').getContext('2d');
-    // guess a font size relative to cols
-    let fontSize = Math.max(6, Math.min(28, Math.round(14 * (140 / cols))));
-    measure.font = `${fontSize}px "Courier New", monospace`;
-    const metrics = measure.measureText('M');
-    const charW = Math.ceil(metrics.width);
-    const charH = Math.ceil(fontSize * 1.05);
-
-    canvas.width = charW * cols;
-    canvas.height = charH * lines.length;
-    const ctx = canvas.getContext('2d');
-
-    // white background
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    // draw letters. color mapped to brightness at same cell so darker areas have darker letters
-    for (let r=0; r<lines.length; r++){
-      for (let c=0; c<cols; c++){
-        const ch = lines[r].charAt(c);
-        if (ch !== ' ') {
-          const idx = (r*cols + c) * 4;
-          const rpx = imgData[idx], gpx = imgData[idx+1], bpx = imgData[idx+2];
-          const b = brightnessFromRGBA(rpx,gpx,bpx);
-          const fillVal = Math.round(b * 255);
-          ctx.fillStyle = `rgb(${fillVal},${fillVal},${fillVal})`;
-          ctx.font = `${fontSize}px "Courier New", monospace`;
-          const x = c * charW;
-          const y = (r+1) * charH - Math.round(charH * 0.16);
-          ctx.fillText(ch, x, y);
-        }
-      }
-    }
-
-    // show first N lines in text preview
-    const previewCount = Math.min(40, lines.length);
-    textPreview.textContent = lines.slice(0, previewCount).join("\n");
-
-    // store full portrait lines in dataset for download
-    canvas.dataset.fullTextPortrait = lines.join("\n");
-  }
-
-  // Download PNG
-  document.getElementById('downloadPng').addEventListener('click', function(){
-    if (!canvas.width) { alert('Portrait not ready yet.'); return; }
-    const a = document.createElement('a');
-    a.href = canvas.toDataURL('image/png');
-    a.download = 'portrait_from_message.png';
-    a.click();
-  });
-
-  // Download text portrait (full)
-  document.getElementById('downloadTxt').addEventListener('click', function(){
-    const txt = canvas.dataset.fullTextPortrait;
-    if (!txt) { alert('Portrait not ready yet.'); return; }
-    const blob = new Blob([txt], {type: 'text/plain;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'portrait_from_message.txt';
-    a.click();
-    setTimeout(()=>URL.revokeObjectURL(url), 3000);
-  });
-
-  // If image failed to load, show message
-  img.onerror = function(){
-    alert('Failed to load image at: ' + IMAGE_SRC + '\nIf you run this file locally, make sure that path is accessible from the browser. You can also replace IMAGE_SRC with a local file path or web URL.');
-  };
-
-})();
-</script>
 </body>
 </html>
