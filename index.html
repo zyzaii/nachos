@@ -2,28 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Portrait from Message (Aki)</title>
+  <title>ASCII Portrait</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    :root{--font-size:6px;--line-h:6px}
-    html,body{height:100%;margin:0;background:#fff;color:#000}
-    body{display:flex;align-items:center;justify-content:center;padding:18px;box-sizing:border-box}
-    .wrap{max-width:900px;width:100%;}
-    pre#portrait{
+    :root { --font-size: 6px; --line-h: 6px; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      color: #fff;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+    .wrap { max-width: 900px; width: 100%; }
+    pre#portrait {
       font-family: "Courier New", monospace;
       white-space: pre;
-      overflow:auto;
-      font-size:var(--font-size);
-      line-height:var(--line-h);
-      letter-spacing:0;
-      background:#fff;
-      margin:0;
-      padding:8px;
-      border:0;
+      overflow: auto;
+      font-size: var(--font-size);
+      line-height: var(--line-h);
+      background: #000;
+      color: #fff;
+      margin: 0;
+      padding: 8px;
+      border: 0;
     }
-    /* make portrait scale-friendly on smaller screens */
-    @media (max-width:420px){
-      :root{--font-size:4px;--line-h:4px}
+    @media (max-width: 420px) {
+      :root { --font-size: 4px; --line-h: 4px; }
     }
   </style>
 </head>
@@ -34,84 +44,76 @@
 
 <script>
 (() => {
-  // ----- CONFIG -----
-  const IMAGE_SRC = "download (2).jpg"; // local image path from your upload
-  const MESSAGE = `Hi babyyyy, suddenly I came up with this idea, creating a portrait of yours through the use of my message for you. Idk, I hope you will gonna read this pagkagising mo. I have a lot of doubts pagdating sa sarili ko, like will my effort gonna be enough para mapasaya ka, or to  make you stay. I know I am not perfect but that doesn't change the fact that I really love you so much. This is a just because effort for you, lately i know stressed out ikaw, like super stress and I want to do things to lessen yon, and alam mo naman na online lang tayo nagkakameron ng interaction, so I'm trying to think of ways on how to show my support and care towards you. I realize na ang daming bagay ang naghehesitate ako kapag about sa iba pero kapag about sayo without hesitation ay gagawin ko. Kapag free time ko ganyan ikaw iniisip ko, like okay ka lang ba, like anong nararamdaman mo, anong inooverthink mo, nasasaktan ka ba, nahihirapan ka ba or what. And kapag ganon na ang dami kong tanong about that ayaw kong itanong sayo, I want you to open it up to me on your own kasi I know na kapag tinanong lang kita maiisip at maiisip mo lang mga problem mo. so much better siguro kung ikaw na lang mismo ang magsasabi about don para you are comfy enough ganon. di ko alam kung nagagawa ko ba ng ayos yung pagtrato ko sayo, kasi magkaiba naman tayo ng pov. kumbaga tingin ko ayos na malay mo di pala yun yung approach na gusto mong gawin ko ganon. kaya please be transparent sa kung anong gusto mo, kasi lahat ng yon ay gagawin ko para sayo. i remember all the small things that makes u happy and those small things that can lift up your mood, and yun yung tinatry kong gawin kapag di ikaw okie. lablab i am doing di para maoverwhelm ka kundi para marealize mo, maalala mo na sa akin ay may kakampi ka. na may zairel ikaw na andito lang to support you all throughout your journey may it be a painful or stressful journey or what. I am always here lang supporting you and waiting for you. Mahal kita hindi dahil sa kung papaano mo lang akong pasayahin sa mga banters mo, mahal kita kundi dahil bawat araw na nakakausap kita, na nakakalaro kita, na nakaka interact kita ay mas nakikita ko yung totoong aki. mas minamahal ko yung tunay na ikaw. yung mga flaws mo, kapag nainit ulo mo at nawawala ka sa mood, tatahimik ikaw or magsasabi ka na naiinis ka ganyan. or kapag super saya mo na tawa ka nang tawa or kapag nagtatampo ka na super cold mo or distant mo ganyan. lahat ng yan mahal ko, lahat ng ikaw, lahat ng ugali mo ay minamahal ko. kasi di ko naman planong mahalin ka ng dahil lang sa good traits mo, mamahalin ko ang lahat lahat sayo. lahat ng flaws and imperfections mo ay yayakapin ko, lahat ng weakness mo ay tatanggapin ko. lahat ng yon ay mamahalin ko ng buong buo. Kaya ikaw mahal wag kang mag-alala kasi at the end of the day ay may kakampi ka. at the end of the day ay may zairel na mamahalin ka. at the end of the day ay may isang taong handang magpatawa, magmukhang tanga sa mga jokes or kung ano man basta mapasaya ka lang. I WILL ALWAYS BE YOURS EVEN AT YOUR LOWEST AND DARKEST. Mahal kita at walang kahit anong makakatumbas don.`;
-  const COLS = 160;            // change for more/less horizontal detail (higher = more detail)
-  const SCALE = 0.55;         // character height/width adjustment (usually ~0.5-0.6)
-  const THRESH_LIGHT = 0.92;  // fraction: above = light -> space; lower = create character
 
-  // ----- prepare message chars (we keep spaces/punctuation to preserve your letter's appearance) -----
-  const chars = MESSAGE.replace(/\r/g,'').split('');
-  // if message too short, repeat it to ensure enough characters
-  while (chars.length < 1000) chars.push(...chars);
+  // ---------------------------------------------
+  // CHANGE THIS TO: "Aki" or "Daniella"
+  // ---------------------------------------------
+  const MESSAGE = "Aki";
+  // ---------------------------------------------
 
-  // ----- load image -----
+  const IMAGE_SRC = "download (2).jpg"; 
+  const COLS = 160;
+  const SCALE = 0.55;
+  const THRESH_LIGHT = 0.65;  // lower threshold → more visible portrait
+
+  // Expand characters so we have enough for the ASCII output
+  let chars = MESSAGE.split('');
+  while (chars.length < 2000) chars.push(...chars);
+
   const img = new Image();
   img.crossOrigin = "anonymous";
   img.src = IMAGE_SRC;
 
-  const portraitElem = document.getElementById('portrait');
+  const portraitElem = document.getElementById("portrait");
 
   img.onload = () => {
-    // compute grid rows to respect aspect & scale
     const W = img.naturalWidth || img.width;
     const H = img.naturalHeight || img.height;
+
     const cellW = W / COLS;
     const cellH = cellW / SCALE;
-    const ROWS = Math.max(20, Math.round(H / cellH));
+    const ROWS = Math.round(H / cellH);
 
-    // sample into small canvas
-    const s = document.createElement('canvas');
-    s.width = COLS;
-    s.height = ROWS;
-    const sc = s.getContext('2d');
-    sc.drawImage(img, 0, 0, s.width, s.height);
-    const imageData = sc.getImageData(0,0,s.width,s.height).data;
+    const canvas = document.createElement("canvas");
+    canvas.width = COLS;
+    canvas.height = ROWS;
 
-    // build lines
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+    let out = "";
     let pointer = 0;
-    const totalCells = s.width * s.height;
-    // ensure we have enough characters
-    while (chars.length < totalCells*2) chars.push(...chars);
 
-    const lines = [];
-    for (let r=0; r<s.height; r++){
-      let row = '';
-      for (let c=0; c<s.width; c++){
-        const idx = (r * s.width + c) * 4;
-        const rpx = imageData[idx], gpx = imageData[idx+1], bpx = imageData[idx+2];
-        // luminance 0..1 (0 black, 1 white)
+    for (let r = 0; r < canvas.height; r++) {
+      let row = "";
+      for (let c = 0; c < canvas.width; c++) {
+        const i = (r * canvas.width + c) * 4;
+        const rpx = data[i], gpx = data[i+1], bpx = data[i+2];
+
         const lum = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255;
+
         if (lum > THRESH_LIGHT) {
-          row += ' ';
+          row += " ";
         } else {
-          // choose next char from message stream
           let ch = chars[pointer % chars.length];
           pointer++;
-          // texture: if alphabetic, use case to add depth
-          if (/[A-Za-z]/.test(ch)) {
-            if (lum < 0.35) ch = ch.toUpperCase();
-            else if (lum < 0.6) ch = ch.toLowerCase();
-          }
           row += ch;
         }
       }
-      lines.push(row);
+      out += row + "\n";
     }
 
-    // render final portrait text
-    portraitElem.textContent = lines.join("\n");
+    portraitElem.textContent = out;
   };
 
   img.onerror = () => {
-    portraitElem.textContent = "Could not load image at: " + IMAGE_SRC + "\nIf you run this file locally, make sure that path exists and is accessible from the browser. (If needed, place the image in the same folder and update IMAGE_SRC to the filename.)";
+    portraitElem.textContent = "ERROR: Image not found. Make sure 'download (2).jpg' is in the same folder.";
   };
-
-  // fallback while loading
-  portraitElem.textContent = "Loading photo and generating portrait — please wait…";
 
 })();
 </script>
+
 </body>
 </html>
