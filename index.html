@@ -1,750 +1,449 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Enhanced Letter Portrait Generator</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root {
-      --primary-color: #4a6fa5;
-      --secondary-color: #6b8cbc;
-      --accent-color: #ff6b6b;
-      --light-color: #f8f9fa;
-      --dark-color: #343a40;
-      --border-radius: 12px;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      margin: 0;
-      padding: 16px;
-      color: var(--dark-color);
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    
-    header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    
-    h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    
-    .subtitle {
-      margin: 8px 0 0;
-      opacity: 0.9;
-      font-size: 0.9rem;
-    }
-    
-    .content {
-      padding: 20px;
-    }
-    
-    .card {
-      background: var(--light-color);
-      border-radius: var(--border-radius);
-      padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    
-    .card-title {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      color: var(--primary-color);
-    }
-    
-    .preview-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    #preview {
-      max-width: 100%;
-      max-height: 200px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: none;
-    }
-    
-    .upload-area {
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 16px;
-      transition: all 0.3s;
-      background: #f9f9f9;
-    }
-    
-    .upload-area.active {
-      border-color: var(--primary-color);
-      background: #f0f5ff;
-    }
-    
-    .upload-icon {
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 8px;
-    }
-    
-    .upload-text {
-      margin-bottom: 12px;
-      color: #666;
-    }
-    
-    .file-input-wrapper {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-    
-    .file-input-wrapper input[type="file"] {
-      position: absolute;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-    
-    .file-input-button {
-      display: block;
-      padding: 10px 16px;
-      background: var(--primary-color);
-      color: white;
-      border-radius: 6px;
-      font-weight: 500;
-      text-align: center;
-      transition: background 0.3s;
-    }
-    
-    .file-input-button:hover {
-      background: var(--secondary-color);
-    }
-    
-    .controls-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    
-    @media (min-width: 480px) {
-      .controls-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .control-group {
-      margin-bottom: 12px;
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
-      color: #555;
-    }
-    
-    input[type="text"], input[type="number"], select {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 16px;
-      transition: border 0.3s;
-    }
-    
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
-    }
-    
-    .slider-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .slider-container input[type="range"] {
-      flex: 1;
-    }
-    
-    .slider-value {
-      min-width: 40px;
-      text-align: center;
-      font-weight: 600;
-      color: var(--primary-color);
-    }
-    
-    .color-options {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    
-    .color-option {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.2s;
-    }
-    
-    .color-option:hover {
-      transform: scale(1.1);
-    }
-    
-    .color-option.active {
-      border-color: var(--dark-color);
-      transform: scale(1.1);
-    }
-    
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    
-    button {
-      flex: 1;
-      min-width: 120px;
-      padding: 12px 16px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 16px;
-    }
-    
-    #generate {
-      background: var(--primary-color);
-      color: white;
-    }
-    
-    #generate:hover {
-      background: var(--secondary-color);
-      transform: translateY(-2px);
-    }
-    
-    #downloadPng {
-      background: #28a745;
-      color: white;
-    }
-    
-    #downloadPng:hover {
-      background: #218838;
-      transform: translateY(-2px);
-    }
-    
-    #downloadTxt {
-      background: #17a2b8;
-      color: white;
-    }
-    
-    #downloadTxt:hover {
-      background: #138496;
-      transform: translateY(-2px);
-    }
-    
-    .output-section {
-      margin-top: 24px;
-    }
-    
-    canvas {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-      height: auto;
-      background: white;
-    }
-    
-    .text-preview-container {
-      margin-top: 20px;
-    }
-    
-    pre {
-      background: #f6f6f6;
-      padding: 12px;
-      border-radius: 8px;
-      overflow: auto;
-      max-height: 200px;
-      font-size: 12px;
-      line-height: 1.2;
-      border: 1px solid #eee;
-    }
-    
-    .loading {
-      display: none;
-      text-align: center;
-      padding: 20px;
-      color: var(--primary-color);
-    }
-    
-    .loading-spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(74, 111, 165, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--primary-color);
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 10px;
-    }
-    
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    
-    footer {
-      text-align: center;
-      padding: 16px;
-      margin-top: 20px;
-      color: #666;
-      font-size: 0.85rem;
-      border-top: 1px solid #eee;
-    }
-    
-    /* Mobile-specific adjustments */
-    @media (max-width: 480px) {
-      body {
-        padding: 12px;
-      }
-      
-      .content {
-        padding: 16px;
-      }
-      
-      h1 {
-        font-size: 1.3rem;
-      }
-      
-      .card {
-        padding: 12px;
-      }
-      
-      button {
-        min-width: 100%;
-      }
-      
-      .buttons {
-        flex-direction: column;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mystery Box</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background: #0a0a0a;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #00ff00;
+        }
+        
+        .scene {
+            perspective: 1000px;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 2s;
+            cursor: pointer;
+        }
+        
+        .face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #1a1a1a;
+            border: 2px solid #00ff00;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .front  { transform: translateZ(150px); }
+        .back   { transform: rotateY(180deg) translateZ(150px); }
+        .right  { transform: rotateY(90deg) translateZ(150px); }
+        .left   { transform: rotateY(-90deg) translateZ(150px); }
+        .top    { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+        
+        .locked {
+            background: #2a1a1a;
+            border-color: #ff0000;
+        }
+        
+        .puzzle-interface {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            padding: 30px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            z-index: 100;
+        }
+        
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .pattern-cell {
+            width: 60px;
+            height: 60px;
+            background: #333;
+            border: 1px solid #00ff00;
+            cursor: pointer;
+        }
+        
+        .pattern-cell.active {
+            background: #00ff00;
+        }
+        
+        .code-input {
+            background: #0a0a0a;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+            width: 200px;
+        }
+        
+        .btn {
+            background: #00ff00;
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .final-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            z-index: 1000;
+        }
+        
+        .glitch-text {
+            font-size: 24px;
+            color: #00ff00;
+            animation: glitch 1s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Enhanced Letter Portrait Generator</h1>
-      <p class="subtitle">Create highly visible text-based portraits</p>
-    </header>
-    
-    <div class="content">
-      <div class="card">
-        <h3 class="card-title">Upload Image</h3>
-        
-        <div class="preview-container">
-          <img id="preview" alt="Image preview" />
-        </div>
-        
-        <div class="upload-area" id="uploadArea">
-          <div class="upload-icon">📁</div>
-          <p class="upload-text">Drag & drop your image here or click to browse</p>
-          <div class="file-input-wrapper">
-            <input id="file" type="file" accept="image/*" />
-            <div class="file-input-button">Choose Image</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="card">
-        <h3 class="card-title">Portrait Settings</h3>
-        
-        <div class="controls-grid">
-          <div class="control-group">
-            <label for="letter">Character</label>
-            <input id="letter" type="text" maxlength="1" value="A" />
-          </div>
-          
-          <div class="control-group">
-            <label for="cols">Columns (Detail)</label>
-            <input id="cols" type="number" min="20" max="400" value="100" />
-          </div>
-          
-          <div class="control-group">
-            <label for="scale">Character Ratio</label>
-            <input id="scale" type="number" step="0.05" min="0.1" max="2" value="0.6" />
-          </div>
-          
-          <div class="control-group">
-            <label for="contrast">Contrast</label>
-            <div class="slider-container">
-              <input id="contrast" type="range" min="1" max="5" step="0.1" value="2.5" />
-              <span class="slider-value" id="contrastValue">2.5</span>
+    <div class="scene">
+        <div class="box" id="mainBox">
+            <div class="face front">
+                <h2>MYSTERY BOX</h2>
+                <p>Click to examine</p>
+                <p style="font-size: 12px; margin-top: 20px;">There are secrets hidden within...</p>
             </div>
-          </div>
-          
-          <div class="control-group">
-            <label for="threshold">Visibility Threshold</label>
-            <div class="slider-container">
-              <input id="threshold" type="range" min="0.1" max="0.9" step="0.05" value="0.7" />
-              <span class="slider-value" id="thresholdValue">0.7</span>
+            <div class="face back locked">
+                <h2>🔒 PATTERN LOCK</h2>
+                <p>Draw the secret pattern</p>
             </div>
-          </div>
-          
-          <div class="control-group">
-            <label>Color Scheme</label>
-            <div class="color-options">
-              <div class="color-option active" style="background: #000000;" data-color="#000000" data-bg="#ffffff"></div>
-              <div class="color-option" style="background: #ffffff; border: 1px solid #ccc;" data-color="#ffffff" data-bg="#000000"></div>
-              <div class="color-option" style="background: #ff6b6b;" data-color="#ff6b6b" data-bg="#ffffff"></div>
-              <div class="color-option" style="background: #4a6fa5;" data-color="#4a6fa5" data-bg="#ffffff"></div>
-              <div class="color-option" style="background: #28a745;" data-color="#28a745" data-bg="#ffffff"></div>
+            <div class="face right locked">
+                <h2>🔒 CODE REQUIRED</h2>
+                <p>Enter the 4-digit code</p>
             </div>
-          </div>
-          
-          <div class="control-group">
-            <label for="renderMode">Render Mode</label>
-            <select id="renderMode">
-              <option value="grayscale">Grayscale Text</option>
-              <option value="solid">Solid Color</option>
-              <option value="inverted">Inverted Brightness</option>
-              <option value="binary">Black & White</option>
-            </select>
-          </div>
+            <div class="face left locked">
+                <h2>🔒 MEMORY TEST</h2>
+                <p>Remember the sequence</p>
+            </div>
+            <div class="face top locked">
+                <h2>🔒 FINAL CHALLENGE</h2>
+                <p>Answer the question</p>
+            </div>
+            <div class="face bottom">
+                <h2>INSTRUCTIONS</h2>
+                <p>Solve all puzzles to reveal the surprise</p>
+            </div>
         </div>
-        
-        <div class="buttons">
-          <button id="generate">Generate Portrait</button>
-          <button id="downloadPng">Download PNG</button>
-          <button id="downloadTxt">Download Text</button>
-        </div>
-        
-        <div class="loading" id="loading">
-          <div class="loading-spinner"></div>
-          Generating your portrait...
-        </div>
-      </div>
-      
-      <div class="output-section">
-        <div class="card">
-          <h3 class="card-title">Portrait Preview</h3>
-          <canvas id="outCanvas"></canvas>
-        </div>
-        
-        <div class="card text-preview-container">
-          <h3 class="card-title">Text Preview</h3>
-          <pre id="textPreview">Your portrait text will appear here after generation.</pre>
-        </div>
-      </div>
     </div>
-    
-    <footer>
-      <p>Enhanced portrait generator with better visibility controls</p>
-    </footer>
-  </div>
 
-  <script>
-    (function(){
-      const fileInput = document.getElementById('file');
-      const previewImg = document.getElementById('preview');
-      const uploadArea = document.getElementById('uploadArea');
-      const letterInput = document.getElementById('letter');
-      const colsInput = document.getElementById('cols');
-      const scaleInput = document.getElementById('scale');
-      const contrastInput = document.getElementById('contrast');
-      const contrastValue = document.getElementById('contrastValue');
-      const thresholdInput = document.getElementById('threshold');
-      const thresholdValue = document.getElementById('thresholdValue');
-      const renderModeSelect = document.getElementById('renderMode');
-      const colorOptions = document.querySelectorAll('.color-option');
-      const generateBtn = document.getElementById('generate');
-      const canvas = document.getElementById('outCanvas');
-      const txtPreview = document.getElementById('textPreview');
-      const downloadPngBtn = document.getElementById('downloadPng');
-      const downloadTxtBtn = document.getElementById('downloadTxt');
-      const loadingElem = document.getElementById('loading');
+    <!-- Pattern Lock Interface -->
+    <div class="puzzle-interface" id="patternLock">
+        <h3>Draw the Secret Pattern</h3>
+        <div class="pattern-grid" id="patternGrid">
+            <!-- Grid cells will be generated by JavaScript -->
+        </div>
+        <button class="btn" onclick="checkPattern()">Submit Pattern</button>
+        <button class="btn" onclick="closePuzzle()">Close</button>
+    </div>
 
-      let currentImage = new Image();
-      let portraitLines = [];
-      let textColor = '#000000';
-      let bgColor = '#ffffff';
+    <!-- Code Input Interface -->
+    <div class="puzzle-interface" id="codeInput">
+        <h3>Enter the 4-Digit Code</h3>
+        <input type="text" class="code-input" id="codeField" maxlength="4" placeholder="____">
+        <div>
+            <button class="btn" onclick="checkCode()">Submit Code</button>
+            <button class="btn" onclick="closePuzzle()">Close</button>
+        </div>
+    </div>
 
-      // Update slider values
-      contrastInput.addEventListener('input', () => {
-        contrastValue.textContent = contrastInput.value;
-      });
-      
-      thresholdInput.addEventListener('input', () => {
-        thresholdValue.textContent = thresholdInput.value;
-      });
+    <!-- Memory Game Interface -->
+    <div class="puzzle-interface" id="memoryGame">
+        <h3>Remember the Sequence</h3>
+        <div id="sequenceDisplay"></div>
+        <div class="pattern-grid" id="memoryGrid"></div>
+        <button class="btn" onclick="startMemoryGame()">Start</button>
+        <button class="btn" onclick="closePuzzle()">Close</button>
+    </div>
 
-      // Color selection
-      colorOptions.forEach(option => {
-        option.addEventListener('click', () => {
-          colorOptions.forEach(opt => opt.classList.remove('active'));
-          option.classList.add('active');
-          textColor = option.dataset.color;
-          bgColor = option.dataset.bg;
-        });
-      });
+    <!-- Question Interface -->
+    <div class="puzzle-interface" id="questionPuzzle">
+        <h3>Final Question</h3>
+        <p id="questionText">Where did we first meet?</p>
+        <input type="text" class="code-input" id="answerField" placeholder="Your answer">
+        <div>
+            <button class="btn" onclick="checkAnswer()">Submit Answer</button>
+            <button class="btn" onclick="closePuzzle()">Close</button>
+        </div>
+    </div>
 
-      // Enhanced file upload with drag & drop
-      fileInput.addEventListener('change', handleFileSelect);
-      
-      // Drag and drop functionality
-      uploadArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadArea.classList.add('active');
-      });
-      
-      uploadArea.addEventListener('dragleave', () => {
-        uploadArea.classList.remove('active');
-      });
-      
-      uploadArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadArea.classList.remove('active');
+    <!-- Final Surprise -->
+    <div class="final-message" id="finalMessage">
+        <h2 class="glitch-text">CONGRATULATIONS!</h2>
+        <p>You've unlocked the mystery!</p>
+        <div id="personalMessage">
+            <!-- Personalized message will appear here -->
+        </div>
+        <button class="btn" onclick="location.reload()">Play Again</button>
+    </div>
+
+    <script>
+        // Box rotation and interaction
+        const box = document.getElementById('mainBox');
+        let currentRotation = 0;
         
-        if (e.dataTransfer.files.length) {
-          fileInput.files = e.dataTransfer.files;
-          handleFileSelect(e);
-        }
-      });
-      
-      // Click on upload area to trigger file input
-      uploadArea.addEventListener('click', () => {
-        fileInput.click();
-      });
-
-      function handleFileSelect(e) {
-        const f = e.target.files && e.target.files[0];
-        if (!f) return;
-        
-        // Validate file type
-        if (!f.type.match('image.*')) {
-          alert('Please select an image file (JPEG, PNG, etc.)');
-          return;
-        }
-        
-        const url = URL.createObjectURL(f);
-        previewImg.src = url;
-        previewImg.style.display = 'block';
-        currentImage.src = url;
-        
-        // Auto-generate when image is loaded
-        currentImage.onload = () => {
-          generateBtn.click();
-        };
-      }
-
-      // Enhanced portrait generation with better visibility
-      async function createLetterPortrait(img, options) {
-        const letter = (options.letter || 'A')[0] || 'A';
-        const cols = Math.max(10, Math.min(600, Math.floor(options.cols || 100)));
-        const scale = Math.max(0.1, Math.min(5, options.scale || 0.6));
-        const contrast = parseFloat(options.contrast || 2.5);
-        const threshold = parseFloat(options.threshold || 0.7);
-        const renderMode = options.renderMode || 'grayscale';
-        const textColor = options.textColor || '#000000';
-        const bgColor = options.bgColor || '#ffffff';
-
-        // Compute grid
-        const W = img.naturalWidth || img.width;
-        const H = img.naturalHeight || img.height;
-        const cellWidth = W / cols;
-        const cellHeight = cellWidth / scale;
-        const rows = Math.max(1, Math.floor(H / cellHeight));
-
-        // Offscreen small canvas to sample brightness
-        const small = document.createElement('canvas');
-        small.width = cols;
-        small.height = rows;
-        const sctx = small.getContext('2d');
-        
-        // Draw with cover-ish fit (preserve aspect by scaling to fit width)
-        sctx.drawImage(img, 0, 0, cols, rows);
-        const imageData = sctx.getImageData(0,0,cols,rows).data;
-
-        // Create text lines and compute canvas size
-        const lines = [];
-        for (let r=0; r<rows; r++){
-          let rowChars = '';
-          for (let c=0; c<cols; c++){
-            const idx = (r*cols + c) * 4;
-            const rpx = imageData[idx], gpx = imageData[idx+1], bpx = imageData[idx+2];
-            let bw = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255; // brightness 0..1
+        box.addEventListener('click', (e) => {
+            const rect = box.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            // Apply contrast
-            bw = Math.pow((bw - 0.5) * contrast + 0.5, 1.5);
-            bw = Math.max(0, Math.min(1, bw));
-            
-            if (bw < threshold) {
-              if (bw < 0.25) rowChars += letter.toUpperCase();
-              else if (bw < 0.5) rowChars += letter.toLowerCase();
-              else rowChars += letter.toLowerCase();
+            // Determine which face was clicked based on position
+            if (x < 100) {
+                openPuzzle('left');
+            } else if (x > 200) {
+                openPuzzle('right');
+            } else if (y < 100) {
+                openPuzzle('top');
+            } else if (y > 200) {
+                // Bottom face - just rotate
+                rotateBox();
             } else {
-              rowChars += ' ';
+                // Center - check if back face is accessible
+                if (!document.querySelector('.back').classList.contains('locked')) {
+                    openPuzzle('back');
+                } else {
+                    rotateBox();
+                }
             }
-          }
-          lines.push(rowChars);
+        });
+        
+        function rotateBox() {
+            currentRotation += 90;
+            box.style.transform = `rotateY(${currentRotation}deg)`;
         }
-
-        // Render to canvas (text)
-        const ctx = canvas.getContext('2d');
         
-        // Choose a monospaced font and compute character size
-        const measureCanvas = document.createElement('canvas');
-        const mctx = measureCanvas.getContext('2d');
+        // Puzzle management
+        function openPuzzle(face) {
+            const puzzleId = face + 'Puzzle';
+            document.getElementById(puzzleId).style.display = 'block';
+            
+            // Initialize specific puzzles
+            if (face === 'back') initPatternLock();
+            if (face === 'right') initCodeInput();
+            if (face === 'left') initMemoryGame();
+        }
         
-        // Pick a font size relative to cell height
-        let fontSize = Math.max(6, Math.min(32, Math.round(14 * (120 / cols))));
-        mctx.font = `${fontSize}px "Courier New", monospace`;
-        const metrics = mctx.measureText(letter);
-        const charW = Math.ceil(metrics.width);
-        const charH = Math.ceil(fontSize * 1.1);
-
-        canvas.width = charW * cols;
-        canvas.height = charH * rows;
-
-        // Set background
-        ctx.fillStyle = bgColor;
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-
-        // Draw each letter with enhanced visibility
-        for (let r=0; r<rows; r++){
-          for (let c=0; c<cols; c++){
-            const idx = (r*cols + c) * 4;
-            const rpx = imageData[idx], gpx = imageData[idx+1], bpx = imageData[idx+2];
-            let bw = (0.299*rpx + 0.587*gpx + 0.114*bpx) / 255;
+        function closePuzzle() {
+            document.querySelectorAll('.puzzle-interface').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+        
+        // Pattern Lock Puzzle
+        function initPatternLock() {
+            const grid = document.getElementById('patternGrid');
+            grid.innerHTML = '';
             
-            // Apply contrast
-            bw = Math.pow((bw - 0.5) * contrast + 0.5, 1.5);
-            bw = Math.max(0, Math.min(1, bw));
-            
-            if (bw < threshold) {
-              let fillColor = textColor;
-              
-              if (renderMode === 'grayscale') {
-                // Enhanced grayscale with better contrast
-                const intensity = Math.round((1 - bw/threshold) * 255);
-                fillColor = `rgb(${intensity},${intensity},${intensity})`;
-              } else if (renderMode === 'inverted') {
-                // Inverted brightness for better visibility
-                const intensity = Math.round(bw * 255);
-                fillColor = `rgb(${intensity},${intensity},${intensity})`;
-              } else if (renderMode === 'binary') {
-                // Pure black and white for maximum contrast
-                fillColor = bw < threshold/2 ? '#000000' : '#333333';
-              }
-              // For 'solid' mode, we use the selected textColor
-              
-              ctx.fillStyle = fillColor;
-              ctx.font = `${fontSize}px "Courier New", monospace`;
-              const x = c * charW;
-              const y = (r+1) * charH - Math.round(charH*0.18);
-              ctx.fillText(letter, x, y);
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'pattern-cell';
+                cell.dataset.index = i;
+                cell.addEventListener('click', togglePatternCell);
+                grid.appendChild(cell);
             }
-          }
-        }
-
-        return { lines, canvasWidth: canvas.width, canvasHeight: canvas.height };
-      }
-
-      generateBtn.addEventListener('click', async () => {
-        // Ensure image is loaded
-        if (!currentImage.complete || !currentImage.src) {
-          alert('Please upload an image first.');
-          return;
-        }
-        
-        loadingElem.style.display = 'block';
-        
-        // Use setTimeout to allow UI to update
-        setTimeout(async () => {
-          try {
-            const opts = {
-              letter: letterInput.value || 'A',
-              cols: parseInt(colsInput.value,10) || 100,
-              scale: parseFloat(scaleInput.value) || 0.6,
-              contrast: parseFloat(contrastInput.value) || 2.5,
-              threshold: parseFloat(thresholdInput.value) || 0.7,
-              renderMode: renderModeSelect.value,
-              textColor: textColor,
-              bgColor: bgColor
-            };
-
-            const result = await createLetterPortrait(currentImage, opts);
-            portraitLines = result.lines;
             
-            // Show text preview
-            txtPreview.textContent = result.lines.slice(0, 20).join("\n");
-            
-            loadingElem.style.display = 'none';
-          } catch (err) {
-            alert("Error generating portrait: " + err.message);
-            console.error(err);
-            loadingElem.style.display = 'none';
-          }
-        }, 100);
-      });
-
-      downloadPngBtn.addEventListener('click', () => {
-        if (!canvas.width) {
-          alert('Generate a portrait first.');
-          return;
-        }
-        const a = document.createElement('a');
-        a.href = canvas.toDataURL('image/png');
-        a.download = 'enhanced_letter_portrait.png';
-        a.click();
-      });
-
-      downloadTxtBtn.addEventListener('click', () => {
-        if (!portraitLines.length) {
-          alert('Generate a portrait first to get text output.');
-          return;
+            // Reset pattern
+            window.currentPattern = [];
         }
         
-        const txt = portraitLines.join("\n");
-        const blob = new Blob([txt], {type: 'text/plain;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'enhanced_letter_portrait.txt';
-        a.click();
-        setTimeout(() => URL.revokeObjectURL(url), 2000);
-      });
-    })();
-  </script>
+        function togglePatternCell(e) {
+            const index = parseInt(e.target.dataset.index);
+            if (window.currentPattern.includes(index)) {
+                window.currentPattern = window.currentPattern.filter(i => i !== index);
+                e.target.classList.remove('active');
+            } else {
+                window.currentPattern.push(index);
+                e.target.classList.add('active');
+            }
+        }
+        
+        function checkPattern() {
+            // The correct pattern is a simple shape (like an L or cross)
+            const correctPattern = [0, 1, 2, 5, 8]; // Example: top row + right column
+            
+            if (JSON.stringify(window.currentPattern) === JSON.stringify(correctPattern)) {
+                document.querySelector('.back').classList.remove('locked');
+                alert('Pattern correct! This side is now unlocked.');
+                closePuzzle();
+            } else {
+                alert('Incorrect pattern. Try again!');
+                initPatternLock();
+            }
+        }
+        
+        // Code Input Puzzle
+        function initCodeInput() {
+            document.getElementById('codeField').value = '';
+        }
+        
+        function checkCode() {
+            const code = document.getElementById('codeField').value;
+            // The code could be a significant date (like 1215 for Dec 15)
+            if (code === '1215') {
+                document.querySelector('.right').classList.remove('locked');
+                alert('Code accepted! This side is now unlocked.');
+                closePuzzle();
+            } else {
+                alert('Incorrect code. Try again!');
+            }
+        }
+        
+        // Memory Game Puzzle
+        function initMemoryGame() {
+            document.getElementById('sequenceDisplay').textContent = 'Press Start to begin';
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'pattern-cell';
+                cell.dataset.index = i;
+                cell.addEventListener('click', checkMemorySequence);
+                grid.appendChild(cell);
+            }
+            
+            window.memorySequence = [];
+            window.userMemoryInput = [];
+        }
+        
+        function startMemoryGame() {
+            // Generate a random sequence of 5 lights
+            window.memorySequence = [];
+            for (let i = 0; i < 5; i++) {
+                window.memorySequence.push(Math.floor(Math.random() * 9));
+            }
+            
+            // Display the sequence
+            const display = document.getElementById('sequenceDisplay');
+            display.textContent = 'Watch carefully...';
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i >= window.memorySequence.length) {
+                    clearInterval(interval);
+                    display.textContent = 'Now repeat the sequence!';
+                    return;
+                }
+                
+                const index = window.memorySequence[i];
+                const cells = document.querySelectorAll('#memoryGrid .pattern-cell');
+                cells[index].classList.add('active');
+                
+                setTimeout(() => {
+                    cells[index].classList.remove('active');
+                }, 500);
+                
+                i++;
+            }, 1000);
+            
+            window.userMemoryInput = [];
+        }
+        
+        function checkMemorySequence(e) {
+            if (window.memorySequence.length === 0) return;
+            
+            const index = parseInt(e.target.dataset.index);
+            window.userMemoryInput.push(index);
+            
+            // Check if sequence is correct so far
+            for (let i = 0; i < window.userMemoryInput.length; i++) {
+                if (window.userMemoryInput[i] !== window.memorySequence[i]) {
+                    alert('Wrong sequence! Try again.');
+                    initMemoryGame();
+                    return;
+                }
+            }
+            
+            // Check if complete sequence is correct
+            if (window.userMemoryInput.length === window.memorySequence.length) {
+                document.querySelector('.left').classList.remove('locked');
+                alert('Perfect memory! This side is now unlocked.');
+                closePuzzle();
+            }
+        }
+        
+        // Question Puzzle
+        function checkAnswer() {
+            const answer = document.getElementById('answerField').value.toLowerCase();
+            // Personalize this with your own meaningful question/answer
+            if (answer.includes('coffee') || answer.includes('cafe')) {
+                document.querySelector('.top').classList.remove('locked');
+                showFinalSurprise();
+                closePuzzle();
+            } else {
+                alert('Incorrect answer. Try again!');
+            }
+        }
+        
+        // Final Surprise
+        function showFinalSurprise() {
+            document.getElementById('finalMessage').style.display = 'block';
+            
+            // Personalize this message
+            const personalMessage = document.getElementById('personalMessage');
+            personalMessage.innerHTML = `
+                <p style="margin: 20px 0; font-size: 18px;">
+                    You've solved all the puzzles! This shows how well you know me and how persistent you are. 
+                    I appreciate you so much and wanted to create something special to show it.
+                </p>
+                <p style="margin: 10px 0;">
+                    How about we go to that coffee shop where we first met this weekend? My treat! ☕
+                </p>
+            `;
+        }
+        
+        // Initialize the box
+        rotateBox();
+    </script>
 </body>
 </html>
