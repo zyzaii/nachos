@@ -3,1392 +3,937 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 Months - My Duelist 💕</title>
+    <title>Aki's Storybook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tungsten', 'Arial Narrow', sans-serif;
         }
         
-        @font-face {
-            font-family: 'Tungsten';
-            src: url('https://fonts.cdnfonts.com/s/19795/Tungsten-Bold.woff') format('woff');
+        :root {
+            --gold: #d4af37;
+            --pink: #ffb6c1;
+            --dark-red: #8b0000;
+            --light-pink: #fff0f5;
+            --paper: #f5e9d7;
+            --paper-edge: #e0d0b8;
         }
         
         body {
-            background: #0f1923;
-            color: #fff;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255, 70, 85, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.1) 0%, transparent 20%);
-        }
-        
-        .valorant-container {
-            max-width: 1000px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            position: relative;
+            overflow-x: hidden;
         }
         
-        .radiant-border {
-            border: 3px solid transparent;
-            border-image: linear-gradient(45deg, #ff4655, #0f1923, #0f1923, #ff4655) 1;
-            position: relative;
-            background: rgba(15, 25, 35, 0.9);
-        }
-        
-        .header-section {
-            text-align: center;
-            padding: 60px 40px 40px;
-            background: linear-gradient(180deg, #0f1923 0%, #1a2838 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff4655, #ece8e1, #0f1923);
-        }
-        
-        .valorant-logo {
-            font-size: 120px;
-            color: #ff4655;
-            text-shadow: 0 0 30px rgba(255, 70, 85, 0.5);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .months-counter {
-            font-size: 72px;
-            background: linear-gradient(135deg, #ff4655, #ff8e9d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: 4px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .months-counter::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 25%;
-            width: 50%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ff4655, transparent);
-        }
-        
-        .subtitle {
-            color: #ece8e1;
-            font-size: 24px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-        
-        .agent-card {
-            background: linear-gradient(145deg, #1a2838, #0f1923);
-            border-radius: 10px;
-            padding: 40px;
-            margin: 30px 0;
-            border: 2px solid #323c46;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .agent-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #ff4655, transparent);
-        }
-        
-        .agent-title {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .agent-icon {
-            width: 60px;
-            height: 60px;
-            background: #ff4655;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-        }
-        
-        .agent-name {
-            font-size: 36px;
-            color: #ece8e1;
-            letter-spacing: 3px;
-        }
-        
-        .agent-role {
-            color: #ff4655;
-            font-size: 18px;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
-        
-        .abilities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .ability {
-            background: rgba(255, 70, 85, 0.1);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid #ff4655;
-            transition: all 0.3s ease;
-        }
-        
-        .ability:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 70, 85, 0.2);
-            box-shadow: 0 10px 20px rgba(255, 70, 85, 0.2);
-        }
-        
-        .ability-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-        
-        .ability-name {
-            color: #ff4655;
-            font-size: 20px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        
-        .ability-desc {
-            color: #b8b8b8;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .map-section {
-            background: rgba(26, 40, 56, 0.8);
-            padding: 40px;
-            margin: 40px 0;
-            border-radius: 10px;
-            border: 2px solid #323c46;
-            position: relative;
-        }
-        
-        .map-title {
-            text-align: center;
-            font-size: 32px;
-            color: #ece8e1;
-            margin-bottom: 40px;
-            letter-spacing: 3px;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .map-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff4655, transparent);
-        }
-        
-        .memory-sites {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .site {
-            background: rgba(15, 25, 35, 0.8);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #323c46;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .site:hover {
-            border-color: #ff4655;
-            transform: scale(1.02);
-        }
-        
-        .site-marker {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: #ff4655;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        
-        .site-content {
-            margin-top: 15px;
-        }
-        
-        .site-content h4 {
-            color: #ece8e1;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .site-content p {
-            color: #b8b8b8;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .ultimate-section {
-            background: linear-gradient(135deg, rgba(255, 70, 85, 0.1), rgba(15, 25, 35, 0.9));
-            padding: 60px 40px;
-            margin: 40px 0;
-            text-align: center;
-            border-radius: 10px;
-            border: 3px solid transparent;
-            border-image: linear-gradient(45deg, #ff4655, #0f1923, #ff4655) 1;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ultimate-title {
-            font-size: 42px;
-            color: #ff4655;
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(255, 70, 85, 0.5);
-        }
-        
-        .ultimate-charge {
-            width: 100%;
-            height: 30px;
-            background: rgba(255, 70, 85, 0.2);
-            border-radius: 15px;
-            margin: 30px 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .ultimate-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #ff4655, #ff8e9d);
-            width: 100%;
-            border-radius: 15px;
-            position: relative;
-            animation: chargeUp 3s ease-in-out infinite;
-        }
-        
-        @keyframes chargeUp {
-            0%, 100% { width: 30%; }
-            50% { width: 100%; }
-        }
-        
-        .ultimate-progress::after {
-            content: 'ULTIMATE READY';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 70, 85, 0.8);
-        }
-        
-        .execute-btn {
-            background: linear-gradient(135deg, #ff4655, #ff2e43);
-            color: white;
-            border: none;
-            padding: 20px 50px;
-            font-size: 20px;
-            letter-spacing: 3px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
-        }
-        
-        .execute-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 70, 85, 0.5);
-            background: linear-gradient(135deg, #ff2e43, #ff4655);
-        }
-        
-        .weapon-skin {
-            background: rgba(26, 40, 56, 0.9);
-            padding: 40px;
-            margin: 40px 0;
-            border-radius: 10px;
-            border: 2px solid #323c46;
-            text-align: center;
-        }
-        
-        .skin-name {
-            color: #ffd700;
-            font-size: 28px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-        
-        .skin-preview {
-            width: 300px;
-            height: 150px;
-            background: linear-gradient(135deg, #1a2838, #0f1923);
-            margin: 0 auto 30px;
-            border-radius: 10px;
-            border: 3px solid #ffd700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .skin-preview::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%);
-            animation: shine 2s infinite;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .skin-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            color: #ff4655;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #b8b8b8;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        
-        .chat-section {
-            background: rgba(15, 25, 35, 0.9);
-            padding: 30px;
-            border-radius: 10px;
-            margin: 40px 0;
-            border: 2px solid #323c46;
-        }
-        
-        .chat-title {
-            color: #ff4655;
-            font-size: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .chat-message {
-            background: rgba(255, 70, 85, 0.1);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            border-left: 3px solid #ff4655;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .message-sender {
-            color: #ff4655;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .message-text {
-            color: #ece8e1;
-        }
-        
-        .radiant-effects {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .radiant-particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ff4655;
-            border-radius: 50%;
-            animation: floatParticle 10s linear infinite;
-        }
-        
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
-        }
-        
-        .rank-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            transform: rotate(15deg);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-            border: 3px solid white;
-        }
-        
-        /* PROPOSAL POPUP STYLES */
-        .proposal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 25, 35, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        
-        .proposal-popup {
-            background: linear-gradient(145deg, #0f1923, #1a2838);
-            border: 4px solid #ff4655;
-            border-radius: 20px;
+        .book-container {
             width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-width: 850px;
+            height: 600px;
             position: relative;
-            box-shadow: 0 25px 60px rgba(255, 70, 85, 0.4);
-            animation: popupAppear 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            margin: 0 auto 30px;
+            perspective: 1500px;
         }
         
-        @keyframes popupAppear {
-            0% { transform: scale(0.5) rotateX(-90deg); opacity: 0; }
-            100% { transform: scale(1) rotateX(0); opacity: 1; }
-        }
-        
-        .popup-header {
-            background: linear-gradient(90deg, #ff4655, #ff2e43);
-            padding: 40px;
-            text-align: center;
-            border-radius: 15px 15px 0 0;
+        .book {
+            width: 100%;
+            height: 100%;
             position: relative;
-            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
         }
         
-        .popup-header::before {
-            content: '';
+        .page {
             position: absolute;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            right: 0;
+            background-color: var(--paper);
+            border-radius: 5px 15px 15px 5px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            transform-origin: left center;
+            transition: transform 1s ease;
+            z-index: 1;
+        }
+        
+        .page.active {
+            z-index: 10;
+        }
+        
+        .page-content {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            animation: headerShine 3s infinite;
-        }
-        
-        @keyframes headerShine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .popup-valorant {
-            font-size: 80px;
-            color: white;
-            text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            margin-bottom: 20px;
-            animation: heartbeat 1.5s infinite;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        .popup-title {
-            font-size: 42px;
-            color: white;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .popup-subtitle {
-            font-size: 22px;
-            color: #ffd700;
-            letter-spacing: 2px;
-        }
-        
-        .popup-content {
             padding: 40px;
+            position: relative;
+            overflow-y: auto;
+            background-color: var(--paper);
         }
         
-        .mission-report {
-            background: rgba(255, 70, 85, 0.1);
-            padding: 30px;
-            border-radius: 15px;
+        .page-edge {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 15px;
+            height: 100%;
+            background: linear-gradient(to right, var(--paper-edge), #d4c4a8);
+            box-shadow: inset -3px 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px 0 0 5px;
+            z-index: 1;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.9rem;
+            color: #888;
+            font-family: 'Cinzel', serif;
+        }
+        
+        /* Cover Page */
+        .book-cover {
+            background: linear-gradient(135deg, var(--dark-red), #6a0c0c);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 100;
+        }
+        
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .book-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--gold);
             margin-bottom: 30px;
-            border-left: 5px solid #ff4655;
         }
         
-        .mission-title {
-            color: #ffd700;
-            font-size: 28px;
+        .cover-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+        
+        .open-book-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: var(--gold);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .open-book-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Page content styles */
+        .page-header {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--dark-red);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .page-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
             margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .mission-text {
-            color: #ece8e1;
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 15px;
         }
         
         .highlight {
-            color: #ff8e9d;
-            font-weight: bold;
-            font-style: italic;
+            background-color: rgba(212, 175, 55, 0.2);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
         }
         
-        .date-plan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+        .pink-highlight {
+            background-color: rgba(255, 182, 193, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
         }
         
-        .date-item {
-            background: rgba(26, 40, 56, 0.8);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid #323c46;
-            transition: all 0.3s ease;
+        .icon-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
         }
         
-        .date-item:hover {
-            border-color: #ff4655;
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(255, 70, 85, 0.3);
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 100px;
         }
         
-        .date-emoji {
-            font-size: 48px;
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .date-title {
-            color: #ffd700;
-            font-size: 22px;
+        .icon-item i {
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            letter-spacing: 1px;
+            color: var(--dark-red);
         }
         
-        .date-desc {
-            color: #b8b8b8;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        
-        .proposal-question {
+        .icon-label {
             text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255, 70, 85, 0.15), rgba(255, 215, 0, 0.1));
-            border-radius: 15px;
-            margin: 40px 0;
-            border: 3px solid #ff4655;
+            font-size: 0.9rem;
         }
         
-        .question-text {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        .timeline-event {
+            margin-bottom: 25px;
+            padding-left: 25px;
+            border-left: 3px solid var(--gold);
+            position: relative;
         }
         
-        .response-buttons {
+        .timeline-event::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background-color: var(--dark-red);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--dark-red);
+            font-family: 'Cinzel', serif;
+            margin-bottom: 5px;
+        }
+        
+        /* Controls */
+        .flip-controls {
             display: flex;
             justify-content: center;
             gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .response-btn {
-            padding: 20px 50px;
-            font-size: 22px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            min-width: 200px;
-        }
-        
-        .yes-btn {
-            background: linear-gradient(135deg, #00ff88, #00cc66);
-            color: #0f1923;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-        
-        .yes-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
-        }
-        
-        .no-btn {
-            background: linear-gradient(135deg, #ff4655, #ff2e43);
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
-        }
-        
-        .no-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 70, 85, 0.5);
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 70, 85, 0.2);
-            color: white;
-            border: 2px solid #ff4655;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .popup-close:hover {
-            background: #ff4655;
-            transform: rotate(90deg);
-        }
-        
-        .response-message {
-            display: none;
-            text-align: center;
-            padding: 40px;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .celebrate-emoji {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: bounce 1s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .success-title {
-            color: #00ff88;
-            font-size: 36px;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
-        }
-        
-        .success-message {
-            color: #ece8e1;
-            font-size: 20px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-        .back-btn {
-            background: linear-gradient(135deg, #ff4655, #ffd700);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
             margin-top: 20px;
         }
         
+        .flip-btn {
+            padding: 12px 25px;
+            background-color: var(--dark-red);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .flip-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flip-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .flip-btn.prev {
+            background-color: #333;
+        }
+        
+        .page-counter {
+            font-family: 'Cinzel', serif;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        /* Floating elements */
+        .music-note {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(360deg); }
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.2;
+            color: var(--pink);
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+        
+        .quote {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 30px;
+            color: var(--dark-red);
+            font-style: italic;
+        }
+        
+        .theme-selector {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .theme-btn {
+            padding: 8px 16px;
+            background-color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-btn.active {
+            background-color: var(--dark-red);
+            color: white;
+        }
+        
+        .page-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .page-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .months-counter {
-                font-size: 48px;
+            .book-container {
+                height: 500px;
             }
             
-            .valorant-logo {
-                font-size: 80px;
+            .book-title {
+                font-size: 2.2rem;
             }
             
-            .agent-name {
-                font-size: 28px;
+            .page-content {
+                padding: 25px;
             }
             
-            .abilities-grid {
-                grid-template-columns: 1fr;
+            .page-header {
+                font-size: 1.6rem;
             }
             
-            .memory-sites {
-                grid-template-columns: 1fr;
+            .icon-group {
+                justify-content: center;
             }
             
-            .ultimate-title {
-                font-size: 32px;
-            }
-            
-            .skin-preview {
-                width: 250px;
-                height: 120px;
-            }
-            
-            .popup-title {
-                font-size: 32px;
-            }
-            
-            .popup-subtitle {
-                font-size: 18px;
-            }
-            
-            .date-plan-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .response-buttons {
+            .flip-controls {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .book-container {
+                height: 450px;
             }
             
-            .response-btn {
-                width: 100%;
-                max-width: 300px;
+            .book-title {
+                font-size: 1.8rem;
             }
             
-            .question-text {
-                font-size: 24px;
+            .page-content {
+                padding: 20px;
+            }
+            
+            .page-header {
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Radiant Effects -->
-    <div class="radiant-effects" id="radiantEffects"></div>
-    
-    <!-- Proposal Popup -->
-    <div class="proposal-overlay" id="proposalOverlay">
-        <div class="proposal-popup">
-            <div class="popup-close" onclick="closeProposal()">✕</div>
-            
-            <div class="popup-header">
-                <div class="popup-valorant">💝</div>
-                <h2 class="popup-title">DATE PROPOSAL</h2>
-                <p class="popup-subtitle">FOR OPERATIVE: AKI • CLEARANCE: NACHOS</p>
+    <div class="book-container">
+        <div class="book">
+            <!-- Cover Page -->
+            <div class="page active" id="page-cover" data-page="0">
+                <div class="page-content book-cover">
+                    <div class="cover-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h1 class="book-title">The Story of Aki</h1>
+                    <p class="book-subtitle">A Chronicle of Firsts and Found Love</p>
+                    <p>Flip through the pages to discover our story</p>
+                    <button class="open-book-btn" id="openBookBtn">
+                        Open Book
+                    </button>
+                    
+                    <div class="theme-selector">
+                        <button class="theme-btn active" id="themeGot">Game of Thrones</button>
+                        <button class="theme-btn" id="themeTangled">Tangled</button>
+                    </div>
+                </div>
+                <div class="page-edge"></div>
+                <div class="page-number">Cover</div>
             </div>
             
-            <div class="popup-content" id="popupContent">
-                <div class="mission-report">
-                    <h3 class="mission-title">MISSION BRIEFING</h3>
-                    <p class="mission-text">
-                        <span class="highlight">Baby has successfully</span> stolen my heart completely. 
-                        <span class="highlight">24/7 lambing</span> protocols activated at maximum capacity.
-                    </p>
-                    <p class="mission-text">
-                        Operative notes: Superb skills in making my heart beat faster than normal rate. 
-                        Requires cereal milk for hyper gameplay. Silver 3 Valorant skills that impress daily. 
-                        Overall winrate: <span class="highlight">100% winrate kay zaizai yarn</span>.
-                    </p>
+            <!-- Page 1 -->
+            <div class="page" id="page-1" data-page="1" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page1-title">The First Message</h2>
+                    <div class="page-text">
+                        <p>It all began on <span class="highlight" id="date-text">July 10, at 8:00 PM</span>, with a simple sticker sent through Discord. Just a friendly "hi" that would change everything.</p>
+                        
+                        <p>We immediately connected over our last Valorant match, where she played as <span class="highlight">Sage</span> and I was <span class="highlight">Reyna</span>.</p>
+                        
+                        <p>Then came the moment of truth. I called her "babe" playfully, and she quickly said she couldn't be called that because she's gay. My response? <span class="highlight" id="response-text">"Who said I'm not gay too?"</span></p>
+                        
+                        <div class="quote" id="page1-quote">
+                            "And just like that, a connection was formed from a simple hello."
+                        </div>
+                    </div>
+                    
+                    <div class="icon-group">
+                        <div class="icon-item">
+                            <i class="fas fa-comment-dots"></i>
+                            <div class="icon-label">First Message</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-gamepad"></i>
+                            <div class="icon-label">Valorant Match</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-heart"></i>
+                            <div class="icon-label">Revelation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">1</div>
                 </div>
-                
-                <div class="date-plan-grid">
-                    <div class="date-item">
-                        <div class="date-emoji">🎮</div>
-                        <h3 class="date-title">VALORANT MARATHON</h3>
-                        <p class="date-desc">Unlimited gaming session with all your favorite snacks and drinks</p>
-                    </div>
-                    
-                    <div class="date-item">
-                        <div class="date-emoji">☕</div>
-                        <h3 class="date-title">COFFEE DATE</h3>
-                        <p class="date-desc">Your favorite coffee, that makes u giggle, and just us talking about random things</p>
-                    </div>
-                    
-                    <div class="date-item">
-                        <div class="date-emoji">🎬</div>
-                        <h3 class="date-title">VIRTUAL MOVIE NIGHT</h3>
-                        <p class="date-desc"> Watching your favorite movies together</p>
-                    </div>
-                    
-                    <div class="date-item">
-                        <div class="date-emoji">💋</div>
-                        <h3 class="date-title">UNLIMITED KISSES</h3>
-                        <p class="date-desc">All the kisses you want, whenever you want them</p>
-                    </div>
-                </div>
-                
-                <div class="proposal-question">
-                    <p class="mission-text" style="text-align: center; font-size: 24px; color: #ece8e1; margin-bottom: 30px;">
-                        You are my favorite person in this whole world baby,<br>
-                        always and foreverrrr. I wub uuuu so much 💕
-                    </p>
-                    
-                    <p class="question-text">
-                        Would you accept my date proposal to you baby? 👑
-                    </p>
-                    
-                    <div class="response-buttons">
-                        <button class="response-btn yes-btn" onclick="acceptProposal()">
-                            YES BABY! 💖
-                        </button>
-                        <button class="response-btn no-btn" onclick="playfulNo()">
-                            TEASE ME FIRST 😘
-                        </button>
-                    </div>
-                </div>
+                <div class="page-edge"></div>
             </div>
             
-            <div class="response-message" id="responseMessage">
-                <div class="celebrate-emoji" id="responseEmoji">🎉</div>
-                <h3 class="success-title" id="responseTitle">YAYYY! 💕💕💕</h3>
-                <p class="success-message" id="responseText">
-                    Baby said YESSS! 🥰<br><br>
-                    Our 5-month celebration is officially scheduled!<br>
-                    Get ready for the best Valorant marathon, coffee date,<br>
-                    movie night, and unlimited kisses!<br><br>
-                    I wub youuu so much baby! 💋
-                </p>
-                <button class="back-btn" onclick="closeProposal()">BACK TO MISSION</button>
+            <!-- Page 2 -->
+            <div class="page" id="page-2" data-page="2" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page2-title">Discovering Aki</h2>
+                    <div class="page-text">
+                        <p>After a week or two, she called me "baby" for the first time. It caught me completely off guard—I didn't know how to respond at first. But soon, it became the most comforting exchange between us.</p>
+                        
+                        <p>Our little conversations began every single day. Through these chats, I discovered:</p>
+                        
+                        <ul style="padding-left: 20px; margin: 15px 0;">
+                            <li>Her nickname is <span class="highlight">Aki</span> (she's cautious about sharing personal details)</li>
+                            <li>Her birthday is <span class="highlight">May 16</span>, and she's <span class="highlight">25 years old</span></li>
+                            <li>She loves <span class="highlight">cats and dogs</span> equally</li>
+                            <li>She dreams of traveling to <span class="highlight">Europe, Paris, Italy, Switzerland</span> and beyond</li>
+                        </ul>
+                        
+                        <p>She shared that <span class="highlight" id="risk-text">this was her first time taking a risk</span> letting someone of the same gender court her. That vulnerability made everything feel even more special.</p>
+                    </div>
+                    
+                    <div class="icon-group">
+                        <div class="icon-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div class="icon-label">May 16</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-paw"></i>
+                            <div class="icon-label">Cats & Dogs</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-plane"></i>
+                            <div class="icon-label">Travel Dreams</div>
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">2</div>
+                </div>
+                <div class="page-edge"></div>
+            </div>
+            
+            <!-- Page 3 -->
+            <div class="page" id="page-3" data-page="3" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page3-title">Her World of Joy</h2>
+                    <div class="page-text">
+                        <p>Aki finds comfort and happiness in the simplest things:</p>
+                        
+                        <p>When she's not in a good mood, <span class="highlight">sensory bears</span> help calm her. <span class="highlight">Food changes her mood</span> completely—she lights up with the right meal.</p>
+                        
+                        <p>She has a deep love for music, especially:</p>
+                        
+                        <div class="icon-group">
+                            <div class="icon-item">
+                                <i class="fas fa-music"></i>
+                                <div class="icon-label">One Direction</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-microphone"></i>
+                                <div class="icon-label">Niki</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-guitar"></i>
+                                <div class="icon-label">Jereena Montemayor</div>
+                            </div>
+                        </div>
+                        
+                        <p>She's also an avid watcher of movies and shows like <span class="highlight">Tangled, Game of Thrones, Stranger Things, and Frozen</span>.</p>
+                        
+                        <p>In Valorant, she has this adorable habit of saying <span class="highlight">"Let's gooo!"</span> and <span class="highlight">"We're winning!"</span> whenever her team is doing well.</p>
+                        
+                        <div class="quote">
+                            "She can appreciate the smallest things you do for her."
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">3</div>
+                </div>
+                <div class="page-edge"></div>
+            </div>
+            
+            <!-- Page 4 -->
+            <div class="page" id="page-4" data-page="4" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page4-title">Comforts & Cravings</h2>
+                    <div class="page-text">
+                        <p>Aki has very specific tastes when it comes to food—these are her happy places:</p>
+                        
+                        <div class="icon-group">
+                            <div class="icon-item">
+                                <i class="fas fa-coffee"></i>
+                                <div class="icon-label">McDo Coffee Cereal</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-utensils"></i>
+                                <div class="icon-label">Shake Shake BBQ Fries</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-drumstick-bite"></i>
+                                <div class="icon-label">Lawson Chimken</div>
+                            </div>
+                        </div>
+                        
+                        <p>One of the sweetest things about her: <span class="highlight">she doesn't want to eat alone</span>. She wants to share meals with someone at the same time, to not feel lonely.</p>
+                        
+                        <p>She also <span class="highlight">loves sleeping</span> and <span class="highlight">really appreciates surprises</span>, no matter how small.</p>
+                        
+                        <p>Her dream is to become a <span class="highlight">nurse</span> someday. I was there during her transition between jobs, witnessing her resilience.</p>
+                    </div>
+                    
+                    <div class="icon-group">
+                        <div class="icon-item">
+                            <i class="fas fa-bed"></i>
+                            <div class="icon-label">Loves Sleeping</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-gift"></i>
+                            <div class="icon-label">Loves Surprises</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-user-nurse"></i>
+                            <div class="icon-label">Nurse Dream</div>
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">4</div>
+                </div>
+                <div class="page-edge"></div>
+            </div>
+            
+            <!-- Page 5 -->
+            <div class="page" id="page-5" data-page="5" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page5-title">The Sound of Her Spirit</h2>
+                    <div class="page-text">
+                        <p>There are certain things about Aki that make her uniquely her:</p>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">Her Voice</div>
+                            <p>She has a beautiful singing voice and just speaking, her voice sounds so good. It's comforting and warm.</p>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">The Giggles</div>
+                            <p>When she eats something she loves, she has this adorable giggle. It's a sure sign the food has met her approval.</p>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">Hyper Mode</div>
+                            <p>When she gets excited and starts telling a lot of nonsense or random things, she gets hyper. The telltale sign? She starts singing <span class="highlight">"tralalelo tralala"</span>!</p>
+                        </div>
+                        
+                        <div class="timeline-event">
+                            <div class="timeline-date">Future Adventures</div>
+                            <p>She wants to travel alone, take breaks for a while, try hiking, and experience "a lot of things." Her adventurous spirit is captivating.</p>
+                        </div>
+                        
+                        <div class="quote">
+                            "Her 'tralalelo tralala' is the soundtrack to her happiest moments."
+                        </div>
+                    </div>
+                    
+                    <div class="icon-group">
+                        <div class="icon-item">
+                            <i class="fas fa-microphone-alt"></i>
+                            <div class="icon-label">Good Singer</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-laugh"></i>
+                            <div class="icon-label">Giggles</div>
+                        </div>
+                        <div class="icon-item">
+                            <i class="fas fa-hiking"></i>
+                            <div class="icon-label">Wants to Hike</div>
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">5</div>
+                </div>
+                <div class="page-edge"></div>
+            </div>
+            
+            <!-- Page 6 -->
+            <div class="page" id="page-6" data-page="6" style="display: none;">
+                <div class="page-content">
+                    <h2 class="page-header" id="page6-title">Our Continuing Story</h2>
+                    <div class="page-text">
+                        <p>From that first Discord message to the daily conversations, getting to know Aki has been a journey of discovering little pieces of magic.</p>
+                        
+                        <p>She taught me that love can begin with something as simple as a shared game of Valorant and grow through daily messages, shared dreams, and the courage to be vulnerable.</p>
+                        
+                        <p>The fact that I was her <span class="highlight">first risk</span> in letting someone of the same gender court her is an honor I don't take lightly.</p>
+                        
+                        <div class="icon-group">
+                            <div class="icon-item">
+                                <i class="fas fa-star"></i>
+                                <div class="icon-label">Our First Chat</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-heart"></i>
+                                <div class="icon-label">Growing Feelings</div>
+                            </div>
+                            <div class="icon-item">
+                                <i class="fas fa-road"></i>
+                                <div class="icon-label">Journey Ahead</div>
+                            </div>
+                        </div>
+                        
+                        <div class="quote" style="margin-top: 30px; font-size: 1.8rem;">
+                            "This is just the beginning of our story..."
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--gold);">
+                            <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem;">
+                                For Aki, who appreciates the smallest things
+                            </p>
+                            <button class="open-book-btn" id="restartBtn" style="margin-top: 20px;">
+                                Read Again
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="page-number">6</div>
+                </div>
+                <div class="page-edge"></div>
             </div>
         </div>
     </div>
     
-    <div class="valorant-container">
-        <div class="rank-badge">💕</div>
-        
-        <div class="radiant-border">
-            <div class="header-section">
-                <div class="valorant-logo">V</div>
-                <h1 class="months-counter">5 MONTHS</h1>
-                <div class="subtitle">
-                    WITH MY FAVORITE PERSON • A CELEBRATION OF US
-                </div>
-            </div>
-            
-            <!-- Agent Profile Section -->
-            <div class="agent-card">
-                <div class="agent-title">
-                    <div class="agent-icon">💕</div>
-                    <div>
-                        <div class="agent-name">AKI</div>
-                        <div class="agent-role">NACHOS • COFFEE ADDICT</div>
-                    </div>
-                </div>
-                
-                <div class="abilities-grid">
-                    <div class="ability">
-                        <div class="ability-icon">🤗</div>
-                        <div class="ability-name">CUDDLE ULTIMATE</div>
-                        <div class="ability-desc">
-                            Instant deployment of warm hugs. Requires babying to recharge. 
-                            Can completely melt stress meters.
-                        </div>
-                    </div>
-                    
-                    <div class="ability">
-                        <div class="ability-icon">☕</div>
-                        <div class="ability-name">COFFEE RUSH</div>
-                        <div class="ability-desc">
-                            Boosts happiness by 200%. Enhances all cuddle and kiss abilities. 
-                            Counters bad moods effectively.
-                        </div>
-                    </div>
-                    
-                    <div class="ability">
-                        <div class="ability-icon">💋</div>
-                        <div class="ability-name">KISS OF LIFE</div>
-                        <div class="ability-desc">
-                            Revives partner's mood instantly. Unlimited charges. 
-                            Special effect: Makes both players smile uncontrollably.
-                        </div>
-                    </div>
-                    
-                    <div class="ability">
-                        <div class="ability-icon">🎮</div>
-                        <div class="ability-name">VALORANT THERAPY</div>
-                        <div class="ability-desc">
-                            Stress relief ability. Requires snacks. 
-                            Synergizes with coffee for maximum effect.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Memory Map Section -->
-            <div class="map-section">
-                <div class="map-title">MEMORY SITES</div>
-                
-                <div class="memory-sites">
-                    <div class="site">
-                        <div class="site-marker">SITE A</div>
-                        <div class="site-content">
-                            <h4>First Coffee Spawn</h4>
-                            <p>Everytime I hear your voice light up talking about your clutching game over cereal mccies coffee. That every moment I knew I wanted to hear that voice every day.</p>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="site">
-                        <div class="site-marker">MID</div>
-                        <div class="site-content">
-                            <h4>Gaming HQ</h4>
-                            <p>Late nights watching you play Valorant, celebrating your headshots together. Seeing your competitive side is incredibly attractive.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="site">
-                        <div class="site-marker">SITE B</div>
-                        <div class="site-content">
-                            <h4>Home Base</h4>
-                            <p>Every midnight coffee, every "good morning" text, every kiss you ask for - this is where our love respawns daily.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Ultimate Section -->
-            <div class="ultimate-section">
-                <div class="ultimate-title">5-MONTH ULTIMATE</div>
-                <div class="ultimate-charge">
-                    <div class="ultimate-progress"></div>
-                </div>
-                <button class="execute-btn" onclick="executeUltimate()">
-                    EXECUTE SURPRISE
-                </button>
-            </div>
-            
-            <!-- Weapon Skin (Special Gift) -->
-            <div class="weapon-skin">
-                <div class="skin-name">"NACHO'S HEART" BUDDY</div>
-                <div class="skin-preview">💝</div>
-                <div class="skin-stats">
-                    <div class="stat">
-                        <div class="stat-value">150</div>
-                        <div class="stat-label">DAYS TOGETHER</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">∞</div>
-                        <div class="stat-label">KISSES AVAILABLE</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label">BABYING RATE</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Team Chat -->
-            <div class="chat-section">
-                <div class="chat-title">TEAM CHAT [LOVE PROTOCOL]</div>
-                
-                
-                <div class="chat-message">
-                    <div class="message-sender">[System]</div>
-                    <div class="message-text">Player "Aki" has stolen Player "Zaizaii"'s heart permanently</div>
-                </div>
-            </div>
-            
-            <!-- Add New Message -->
-            <div class="chat-section">
-                <div class="chat-title">SEND MESSAGE TO AKI</div>
-                <input type="text" id="newMessage" placeholder="Type your love message..." 
-                       style="width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.1); 
-                       border: 2px solid #323c46; border-radius: 5px; color: white; margin-bottom: 15px;">
-                <button class="execute-btn" onclick="sendMessage()" style="padding: 10px 30px; font-size: 16px;">
-                    SEND TO NACHOS
-                </button>
-            </div>
-        </div>
+    <div class="flip-controls">
+        <button class="flip-btn prev" id="prevBtn" disabled>
+            <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <button class="flip-btn" id="nextBtn">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+    
+    <div class="page-counter">
+        Page <span id="currentPage">1</span> of <span id="totalPages">7</span>
+    </div>
+    
+    <div class="page-indicators" id="pageIndicators">
+        <!-- Generated by JavaScript -->
     </div>
 
     <script>
-        // Create radiant particles
-        function createParticles() {
-            const container = document.getElementById('radiantEffects');
-            const colors = ['#ff4655', '#ff8e9d', '#ffd700', '#1e90ff'];
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'radiant-particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.width = Math.random() * 3 + 2 + 'px';
-                particle.style.height = particle.style.width;
-                container.appendChild(particle);
-            }
-        }
+        // Book state
+        let currentPageIndex = 0;
+        const totalPages = 7; // Cover + 6 pages
+        let isGotTheme = true;
         
-        // Execute ultimate - Shows proposal popup
-        function executeUltimate() {
-            const overlay = document.getElementById('proposalOverlay');
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Reset content
-            document.getElementById('popupContent').style.display = 'block';
-            document.getElementById('responseMessage').style.display = 'none';
-            
-            // Create celebration effects
-            createProposalEffects();
-        }
-        
-        // Close proposal popup
-        function closeProposal() {
-            const overlay = document.getElementById('proposalOverlay');
-            overlay.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Accept proposal
-        function acceptProposal() {
-            document.getElementById('popupContent').style.display = 'none';
-            const response = document.getElementById('responseMessage');
-            
-            // Update response message
-            document.getElementById('responseEmoji').textContent = '🎉';
-            document.getElementById('responseTitle').textContent = 'BABY SAID YES! 💕';
-            document.getElementById('responseText').innerHTML = `
-                Yayyy! I'm so happy baby! 💖<br><br>
-                Our 5-month celebration is officially ON!<br>
-                Get ready for the best Valorant marathon, Virtual Coffee Date,<br>
-                Virtual Movie Night, and Unlimited Kisses!<br><br>
-                I wub youuu so much baby! 💋
-            `;
-            
-            response.style.display = 'block';
-            
-            // Create massive celebration
-            createCelebration();
-        }
-        
-        // Playful no (tease)
-        function playfulNo() {
-            document.getElementById('popupContent').style.display = 'none';
-            const response = document.getElementById('responseMessage');
-            
-            // Update response message
-            document.getElementById('responseEmoji').textContent = '😘';
-            document.getElementById('responseTitle').textContent = 'TEASING ZAIZAI? 😉';
-            document.getElementById('responseText').innerHTML = `
-                You can't say no to your baby! 💕<br><br>
-                I know you want to say yes...<br>
-                Come on baby, say YES to our date! 👑<br><br>
-                I wub youuu! 😘
-            `;
-            
-            response.style.display = 'block';
-            
-            // Create teasing hearts
-            createTeasingHearts();
-        }
-        
-        // Create proposal effects
-        function createProposalEffects() {
-            const effects = ['💖', '💕', '💗', '💓', '💞', '💝'];
-            
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    const effect = document.createElement('div');
-                    effect.style.position = 'fixed';
-                    effect.style.left = '50%';
-                    effect.style.top = '50%';
-                    effect.style.fontSize = Math.random() * 40 + 30 + 'px';
-                    effect.style.zIndex = '1001';
-                    effect.style.pointerEvents = 'none';
-                    effect.style.animation = `proposalFloat ${Math.random() * 2 + 1}s ease-out forwards`;
-                    effect.textContent = effects[Math.floor(Math.random() * effects.length)];
-                    
-                    // Set random destination
-                    effect.style.setProperty('--tx', `${(Math.random() - 0.5) * 200}vw`);
-                    effect.style.setProperty('--ty', `${(Math.random() - 0.5) * 200}vh`);
-                    
-                    document.body.appendChild(effect);
-                    
-                    setTimeout(() => effect.remove(), 2000);
-                }, i * 100);
-            }
-            
-            // Add animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes proposalFloat {
-                    0% {
-                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Create celebration
-        function createCelebration() {
-            const celebration = ['🎉', '✨', '🌟', '🥳', '🎊', '💫', '💥'];
-            
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const effect = document.createElement('div');
-                    effect.style.position = 'fixed';
-                    effect.style.left = '50%';
-                    effect.style.top = '50%';
-                    effect.style.fontSize = Math.random() * 50 + 40 + 'px';
-                    effect.style.zIndex = '1001';
-                    effect.style.pointerEvents = 'none';
-                    effect.style.animation = `celebrate ${Math.random() * 1.5 + 1}s ease-out forwards`;
-                    effect.textContent = celebration[Math.floor(Math.random() * celebration.length)];
-                    
-                    // Set random destination
-                    effect.style.setProperty('--tx', `${(Math.random() - 0.5) * 250}vw`);
-                    effect.style.setProperty('--ty', `${(Math.random() - 0.5) * 250}vh`);
-                    
-                    document.body.appendChild(effect);
-                    
-                    setTimeout(() => effect.remove(), 2000);
-                }, i * 80);
-            }
-            
-            // Add animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes celebrate {
-                    0% {
-                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translate(var(--tx), var(--ty)) scale(2) rotate(720deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Create teasing hearts
-        function createTeasingHearts() {
-            const hearts = ['😘', '💕', '👀', '😉', '💖'];
-            
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.style.position = 'fixed';
-                    heart.style.left = '50%';
-                    heart.style.top = '50%';
-                    heart.style.fontSize = Math.random() * 40 + 30 + 'px';
-                    heart.style.zIndex = '1001';
-                    heart.style.pointerEvents = 'none';
-                    heart.style.animation = `tease ${Math.random() * 2 + 1}s ease-out forwards`;
-                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                    
-                    // Set random destination
-                    heart.style.setProperty('--tx', `${(Math.random() - 0.5) * 150}vw`);
-                    heart.style.setProperty('--ty', `${(Math.random() - 0.5) * 150}vh`);
-                    
-                    document.body.appendChild(heart);
-                    
-                    setTimeout(() => heart.remove(), 2000);
-                }, i * 150);
-            }
-            
-            // Add animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes tease {
-                    0% {
-                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translate(var(--tx), var(--ty)) scale(1.8) rotate(540deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Send message from chat
-        function sendMessage() {
-            const input = document.getElementById('newMessage');
-            const message = input.value.trim();
-            
-            if (message) {
-                // Create chat message
-                const chatSection = document.querySelector('.chat-section');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'chat-message';
-                messageDiv.innerHTML = `
-                    <div class="message-sender">[Me]</div>
-                    <div class="message-text">${message}</div>
-                `;
-                
-                chatSection.parentNode.insertBefore(messageDiv, chatSection.nextSibling);
-                
-                // Create system response
-                setTimeout(() => {
-                    const responseDiv = document.createElement('div');
-                    responseDiv.className = 'chat-message';
-                    responseDiv.innerHTML = `
-                        <div class="message-sender">[Aki's Heart]</div>
-                        <div class="message-text">Message received. Happiness +100% 💖</div>
-                    `;
-                    messageDiv.parentNode.insertBefore(responseDiv, messageDiv.nextSibling);
-                    
-                    // Scroll to new messages
-                    responseDiv.scrollIntoView({ behavior: 'smooth' });
-                }, 1000);
-                
-                // Clear input
-                input.value = '';
-                
-                // Create heart effect
-                createHeartEffect();
-            } else {
-                alert("Type a message for your favorite person! 💕");
-            }
-        }
-        
-        function createHeartEffect() {
-            const heart = document.createElement('div');
-            heart.textContent = '💖';
-            heart.style.position = 'fixed';
-            heart.style.top = '50%';
-            heart.style.left = '50%';
-            heart.style.fontSize = '60px';
-            heart.style.opacity = '0';
-            heart.style.zIndex = '1000';
-            heart.style.pointerEvents = 'none';
-            heart.style.transform = 'translate(-50%, -50%)';
-            heart.style.animation = 'heartPop 1s ease-out forwards';
-            
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 1000);
-            
-            // Add heart animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes heartPop {
-                    0% {
-                        transform: translate(-50%, -50%) scale(0);
-                        opacity: 0;
-                    }
-                    50% {
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translate(-50%, -150%) scale(1.5);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Get DOM elements
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentPageSpan = document.getElementById('currentPage');
+        const totalPagesSpan = document.getElementById('totalPages');
+        const openBookBtn = document.getElementById('openBookBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        const themeGotBtn = document.getElementById('themeGot');
+        const themeTangledBtn = document.getElementById('themeTangled');
+        const pageIndicators = document.getElementById('pageIndicators');
         
         // Initialize
-        window.onload = function() {
-            createParticles();
-            
-            // Welcome message
-            setTimeout(() => {
-                alert("🎮 Welcome to your Valorant-themed 5-month celebration, Aki!\n\nYou're my favorite Reyna, Deadlock, Clove, and Ally Flasher player.  My Coffee Partner, Food Enjoyer and Music Lover. Let's celebrate us! 💕");
-            }, 1000);
-            
-            // Auto-scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        totalPagesSpan.textContent = totalPages;
+        createPageIndicators();
+        updatePageCounter();
+        
+        // Theme-specific content
+        const themeContent = {
+            got: {
+                page1Title: "The First Message",
+                page1Quote: "\"And just like that, a connection was formed from a simple hello.\"",
+                page2Title: "Discovering Aki",
+                page3Title: "Her World of Joy",
+                page4Title: "Comforts & Cravings",
+                page5Title: "The Sound of Her Spirit",
+                page6Title: "Our Continuing Story",
+                responseText: "\"Who said I'm not gay too?\"",
+                riskText: "this was her first time taking a risk",
+                highlightClass: "highlight"
+            },
+            tangled: {
+                page1Title: "Once Upon a Discord Message",
+                page1Quote: "\"And like Rapunzel letting down her hair, she began to open up.\"",
+                page2Title: "Getting to Know the Real Aki",
+                page3Title: "Her Kingdom of Joy",
+                page4Title: "Favorite Feasts",
+                page5Title: "The Lanterns in Her Eyes",
+                page6Title: "Our Ever-After Story",
+                responseText: "\"Who said I'm not gay too?\" with a smile she couldn't yet see",
+                riskText: "this was her first time letting someone see the real her",
+                highlightClass: "pink-highlight"
+            }
         };
+        
+        // Set theme
+        function setTheme(isGot) {
+            isGotTheme = isGot;
+            const theme = isGot ? themeContent.got : themeContent.tangled;
+            
+            // Update buttons
+            themeGotBtn.classList.toggle('active', isGot);
+            themeTangledBtn.classList.toggle('active', !isGot);
+            
+            // Update all page titles
+            document.getElementById('page1-title').textContent = theme.page1Title;
+            document.getElementById('page2-title').textContent = theme.page2Title;
+            document.getElementById('page3-title').textContent = theme.page3Title;
+            document.getElementById('page4-title').textContent = theme.page4Title;
+            document.getElementById('page5-title').textContent = theme.page5Title;
+            document.getElementById('page6-title').textContent = theme.page6Title;
+            
+            // Update quotes and special text
+            document.getElementById('page1-quote').textContent = theme.page1Quote;
+            document.getElementById('response-text').textContent = theme.responseText;
+            document.getElementById('risk-text').textContent = theme.riskText;
+            
+            // Update highlight classes
+            const allHighlights = document.querySelectorAll('.highlight, .pink-highlight');
+            allHighlights.forEach(el => {
+                el.classList.remove('highlight', 'pink-highlight');
+                el.classList.add(theme.highlightClass);
+            });
+            
+            // Update cover based on theme
+            const coverIcon = document.querySelector('.book-cover .cover-icon i');
+            const bookTitle = document.querySelector('.book-cover .book-title');
+            
+            if (isGot) {
+                coverIcon.className = 'fas fa-crown';
+                bookTitle.textContent = 'The Story of Aki';
+                document.querySelector('.book-cover .book-subtitle').textContent = 'A Chronicle of Firsts and Found Love';
+                document.querySelector('.book-cover').style.background = 'linear-gradient(135deg, var(--dark-red), #6a0c0c)';
+            } else {
+                coverIcon.className = 'fas fa-star';
+                bookTitle.textContent = "Aki's Fairytale";
+                document.querySelector('.book-cover .book-subtitle').textContent = 'A Story of Letting Down Hair and Opening Hearts';
+                document.querySelector('.book-cover').style.background = 'linear-gradient(135deg, #ff7eb3, #ff758c)';
+            }
+        }
+        
+        // Create page indicators
+        function createPageIndicators() {
+            pageIndicators.innerHTML = '';
+            for (let i = 0; i < totalPages; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = `page-indicator ${i === 0 ? 'active' : ''}`;
+                indicator.dataset.page = i;
+                indicator.addEventListener('click', () => goToPage(i));
+                pageIndicators.appendChild(indicator);
+            }
+        }
+        
+        // Update page indicators
+        function updatePageIndicators() {
+            const indicators = document.querySelectorAll('.page-indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentPageIndex);
+            });
+        }
+        
+        // Go to specific page
+        function goToPage(pageIndex) {
+            // Don't go beyond bounds
+            if (pageIndex < 0 || pageIndex >= totalPages) return;
+            
+            // Hide current page
+            pages[currentPageIndex].style.display = 'none';
+            pages[currentPageIndex].classList.remove('active');
+            
+            // Update current page
+            currentPageIndex = pageIndex;
+            
+            // Show new page
+            pages[currentPageIndex].style.display = 'flex';
+            pages[currentPageIndex].classList.add('active');
+            
+            // Update button states
+            prevBtn.disabled = currentPageIndex === 0;
+            nextBtn.disabled = currentPageIndex === totalPages - 1;
+            
+            // Update page counter (add 1 for display since we start at 0)
+            updatePageCounter();
+            
+            // Update page indicators
+            updatePageIndicators();
+            
+            // Add floating elements
+            addFloatingElements();
+        }
+        
+        // Update page counter
+        function updatePageCounter() {
+            currentPageSpan.textContent = currentPageIndex + 1;
+        }
+        
+        // Add floating elements to current page
+        function addFloatingElements() {
+            // Remove existing floating elements
+            const existingElements = document.querySelectorAll('.music-note, .heart');
+            existingElements.forEach(el => el.remove());
+            
+            // Get the current page
+            const currentPage = pages[currentPageIndex];
+            const pageContent = currentPage.querySelector('.page-content');
+            
+            if (!pageContent) return;
+            
+            // Add music notes for music-related pages
+            if (currentPageIndex === 3 || currentPageIndex === 1) {
+                for (let i = 0; i < 5; i++) {
+                    const note = document.createElement('div');
+                    note.className = 'music-note';
+                    note.innerHTML = '<i class="fas fa-music"></i>';
+                    note.style.left = `${Math.random() * 90}%`;
+                    note.style.top = `${Math.random() * 90}%`;
+                    note.style.fontSize = `${Math.random() * 1 + 1}rem`;
+                    note.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                    note.style.animationDelay = `${Math.random() * 5}s`;
+                    note.style.opacity = `${Math.random() * 0.2 + 0.1}`;
+                    pageContent.appendChild(note);
+                }
+            }
+            
+            // Add hearts for love-related pages
+            if (currentPageIndex === 1 || currentPageIndex === 6 || currentPageIndex === 2) {
+                for (let i = 0; i < 4; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '<i class="fas fa-heart"></i>';
+                    heart.style.left = `${Math.random() * 90}%`;
+                    heart.style.top = `${Math.random() * 90}%`;
+                    heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
+                    heart.style.animationDuration = `${Math.random() * 25 + 15}s`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    heart.style.opacity = `${Math.random() * 0.15 + 0.05}`;
+                    pageContent.appendChild(heart);
+                }
+            }
+        }
+        
+        // Event Listeners
+        prevBtn.addEventListener('click', () => goToPage(currentPageIndex - 1));
+        nextBtn.addEventListener('click', () => goToPage(currentPageIndex + 1));
+        
+        openBookBtn.addEventListener('click', () => {
+            goToPage(1); // Start at page 1 (after cover)
+        });
+        
+        if (restartBtn) {
+            restartBtn.addEventListener('click', () => {
+                goToPage(0); // Go back to cover
+            });
+        }
+        
+        themeGotBtn.addEventListener('click', () => setTheme(true));
+        themeTangledBtn.addEventListener('click', () => setTheme(false));
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentPageIndex < totalPages - 1) {
+                goToPage(currentPageIndex + 1);
+            } else if (e.key === 'ArrowLeft' && currentPageIndex > 0) {
+                goToPage(currentPageIndex - 1);
+            }
+        });
+        
+        // Initialize with Game of Thrones theme
+        setTheme(true);
+        
+        // Add initial floating elements
+        setTimeout(() => addFloatingElements(), 100);
     </script>
 </body>
 </html>
