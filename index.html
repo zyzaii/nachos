@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aki's Storybook</title>
+    <title>Minimal Christmas Letters</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,926 +14,762 @@
         }
         
         :root {
+            --navy: #0a1929;
+            --dark-green: #0c3b2e;
+            --forest-green: #1b5e20;
+            --sage: #a5d6a7;
+            --cream: #fefaf6;
+            --rose: #f8bbd9;
             --gold: #d4af37;
-            --pink: #ffb6c1;
-            --dark-red: #8b0000;
-            --light-pink: #fff0f5;
-            --paper: #f5e9d7;
-            --paper-edge: #e0d0b8;
+            --light-gold: #f4e4c1;
+            --gray: #e8e8e8;
+            --text: #2c3e50;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
             min-height: 100vh;
+        }
+        
+        /* Elegant Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, var(--navy) 0%, var(--dark-green) 100%);
+            padding: 30px 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        
-        .book-container {
-            width: 90%;
-            max-width: 850px;
-            height: 600px;
-            position: relative;
-            margin: 0 auto 30px;
-            perspective: 1500px;
-        }
-        
-        .book {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1s ease;
-        }
-        
-        .page {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: var(--paper);
-            border-radius: 5px 15px 15px 5px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            transform-origin: left center;
-            transition: transform 1s ease;
-            z-index: 1;
-        }
-        
-        .page.active {
-            z-index: 10;
-        }
-        
-        .page-content {
-            width: 100%;
-            height: 100%;
-            padding: 40px;
-            position: relative;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            height: 100vh;
             overflow-y: auto;
-            background-color: var(--paper);
-        }
-        
-        .page-edge {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 15px;
-            height: 100%;
-            background: linear-gradient(to right, var(--paper-edge), #d4c4a8);
-            box-shadow: inset -3px 0 5px rgba(0, 0, 0, 0.1);
-            border-radius: 5px 0 0 5px;
-            z-index: 1;
-        }
-        
-        .page-number {
-            position: absolute;
-            bottom: 20px;
-            right: 30px;
-            font-size: 0.9rem;
-            color: #888;
-            font-family: 'Cinzel', serif;
-        }
-        
-        /* Cover Page */
-        .book-cover {
-            background: linear-gradient(135deg, var(--dark-red), #6a0c0c);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
             z-index: 100;
         }
         
-        .book-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        }
-        
-        .book-subtitle {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            color: var(--gold);
+        .logo {
+            text-align: center;
+            padding: 0 20px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 30px;
         }
         
-        .cover-icon {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            color: var(--gold);
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--cream);
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
         
-        .open-book-btn {
-            margin-top: 30px;
-            padding: 12px 30px;
-            background-color: var(--gold);
-            border: none;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
+        .logo p {
+            color: var(--sage);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+        
+        .nav-links {
+            flex: 1;
+        }
+        
+        .nav-item {
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            color: var(--cream);
+            text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border-left: 3px solid transparent;
         }
         
-        .open-book-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--gold);
+            padding-left: 33px;
         }
         
-        /* Page content styles */
-        .page-header {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--dark-red);
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--gold);
+        .nav-item.active {
+            background: rgba(165, 214, 167, 0.1);
+            border-left: 3px solid var(--gold);
+            color: var(--light-gold);
         }
         
-        .page-text {
+        .nav-icon {
             font-size: 1.1rem;
+            margin-right: 15px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .nav-text {
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+        
+        /* Minimal Decoration */
+        .nav-decoration {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            margin: 15px 30px;
+        }
+        
+        /* Christmas Hint */
+        .christmas-hint {
+            background: rgba(212, 175, 55, 0.1);
+            margin: 20px 25px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .christmas-hint p {
+            color: var(--light-gold);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .christmas-hint i {
+            color: var(--gold);
+            margin-right: 8px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 900px;
+        }
+        
+        /* Header */
+        .content-header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .content-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--navy);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .content-header p {
+            color: #5a6c7d;
+            font-size: 1rem;
+            max-width: 600px;
+        }
+        
+        /* Letter Cards */
+        .letter-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+        
+        .letter-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--forest-green));
+        }
+        
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .letter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--navy);
+            font-weight: 500;
+        }
+        
+        .letter-icon {
+            color: var(--gold);
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .letter-content {
+            color: #4a5568;
             line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .letter-content p {
             margin-bottom: 20px;
         }
         
-        .highlight {
-            background-color: rgba(212, 175, 55, 0.2);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
+        .letter-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--forest-green);
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
         }
         
-        .pink-highlight {
-            background-color: rgba(255, 182, 193, 0.3);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: 600;
-        }
-        
-        .icon-group {
-            display: flex;
-            justify-content: space-around;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        .icon-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 10px;
-            width: 100px;
-        }
-        
-        .icon-item i {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            color: var(--dark-red);
-        }
-        
-        .icon-label {
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        .timeline-event {
-            margin-bottom: 25px;
-            padding-left: 25px;
-            border-left: 3px solid var(--gold);
-            position: relative;
-        }
-        
-        .timeline-event::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background-color: var(--dark-red);
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            color: var(--dark-red);
-            font-family: 'Cinzel', serif;
-            margin-bottom: 5px;
-        }
-        
-        /* Controls */
-        .flip-controls {
+        /* Subtle Christmas Elements */
+        .subtle-christmas {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            margin: 40px 0;
+            gap: 20px;
         }
         
-        .flip-btn {
+        .christmas-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            opacity: 0.6;
+        }
+        
+        .christmas-dot:nth-child(2) {
+            background: var(--forest-green);
+        }
+        
+        .christmas-dot:nth-child(3) {
+            background: var(--rose);
+        }
+        
+        /* Action Button */
+        .action-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
             padding: 12px 25px;
-            background-color: var(--dark-red);
-            color: white;
-            border: none;
             border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .flip-btn:hover:not(:disabled) {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .flip-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .flip-btn.prev {
-            background-color: #333;
-        }
-        
-        .page-counter {
-            font-family: 'Cinzel', serif;
-            color: white;
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        
-        /* Floating elements */
-        .music-note {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0.3;
-            animation: float 15s infinite linear;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(360deg); }
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0.2;
-            color: var(--pink);
-            animation: float 20s infinite linear;
-            pointer-events: none;
-        }
-        
-        .quote {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            text-align: center;
-            margin: 30px;
-            color: var(--dark-red);
-            font-style: italic;
-        }
-        
-        .theme-selector {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .theme-btn {
-            padding: 8px 16px;
-            background-color: white;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-btn.active {
-            background-color: var(--dark-red);
-            color: white;
-        }
-        
-        .page-indicators {
-            display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 15px;
+            margin: 30px auto 0;
         }
         
-        .page-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
+        .action-btn:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            z-index: 1000;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .page-indicator.active {
-            background-color: white;
-            transform: scale(1.2);
         }
         
         /* Responsive */
-        @media (max-width: 768px) {
-            .book-container {
-                height: 500px;
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                width: 260px;
             }
             
-            .book-title {
-                font-size: 2.2rem;
+            .sidebar.active {
+                transform: translateX(0);
             }
             
-            .page-content {
-                padding: 25px;
+            .main-content {
+                margin-left: 0;
+                padding: 30px;
             }
             
-            .page-header {
-                font-size: 1.6rem;
-            }
-            
-            .icon-group {
-                justify-content: center;
-            }
-            
-            .flip-controls {
-                flex-direction: column;
+            .mobile-toggle {
+                display: flex;
                 align-items: center;
-                gap: 15px;
+                justify-content: center;
             }
         }
         
-        @media (max-width: 480px) {
-            .book-container {
-                height: 450px;
-            }
-            
-            .book-title {
-                font-size: 1.8rem;
-            }
-            
-            .page-content {
+        @media (max-width: 768px) {
+            .main-content {
                 padding: 20px;
             }
             
-            .page-header {
-                font-size: 1.4rem;
+            .letter-card {
+                padding: 25px;
             }
+            
+            .content-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Romantic Accent */
+        .romantic-accent {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        
+        .accent-1 {
+            top: 20%;
+            right: 5%;
+            background: var(--rose);
+            border-radius: 50%;
+        }
+        
+        .accent-2 {
+            bottom: 10%;
+            left: 5%;
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        
+        /* Print-friendly */
+        @media print {
+            .sidebar, .action-btn, .mobile-toggle {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 0;
+            }
+            
+            .letter-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Elegant Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <div class="book-container">
-        <div class="book">
-            <!-- Cover Page -->
-            <div class="page active" id="page-cover" data-page="0">
-                <div class="page-content book-cover">
-                    <div class="cover-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h1 class="book-title">The Story of Aki</h1>
-                    <p class="book-subtitle">A Chronicle of Firsts and Found Love</p>
-                    <p>Flip through the pages to discover our story</p>
-                    <button class="open-book-btn" id="openBookBtn">
-                        Open Book
-                    </button>
-                    
-                    <div class="theme-selector">
-                        <button class="theme-btn active" id="themeGot">Game of Thrones</button>
-                        <button class="theme-btn" id="themeTangled">Tangled</button>
-                    </div>
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Elegant Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="logo">
+            <h1>Christmas Letters</h1>
+            <p>Heartfelt messages for the season</p>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#surprise" class="nav-item active" data-letter="surprise">
+                <div class="nav-icon"><i class="fas fa-gift"></i></div>
+                <div class="nav-text">Christmas Surprise</div>
+            </a>
+            
+            <a href="#appreciation" class="nav-item" data-letter="appreciation">
+                <div class="nav-icon"><i class="fas fa-heart"></i></div>
+                <div class="nav-text">Appreciation</div>
+            </a>
+            
+            <a href="#apology" class="nav-item" data-letter="apology">
+                <div class="nav-icon"><i class="fas fa-dove"></i></div>
+                <div class="nav-text">Apology</div>
+            </a>
+            
+            <div class="nav-decoration"></div>
+            
+            <a href="#proposal" class="nav-item" data-letter="proposal">
+                <div class="nav-icon"><i class="fas fa-gem"></i></div>
+                <div class="nav-text">Proposal</div>
+            </a>
+            
+            <a href="#confession" class="nav-item" data-letter="confession">
+                <div class="nav-icon"><i class="fas fa-star"></i></div>
+                <div class="nav-text">Confession</div>
+            </a>
+        </div>
+        
+        <div class="christmas-hint">
+            <p><i class="fas fa-tree"></i> Each letter carries the spirit of Christmas. Click to read and share.</p>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Romantic Accents -->
+        <div class="romantic-accent accent-1"></div>
+        <div class="romantic-accent accent-2"></div>
+        
+        <!-- Content Header -->
+        <div class="content-header">
+            <h2 id="currentTitle">Christmas Surprise</h2>
+            <p id="currentDescription">A special holiday message filled with warmth and affection</p>
+        </div>
+        
+        <!-- Letter Cards Container -->
+        <div id="letterContainer">
+            <!-- Christmas Surprise Letter (default) -->
+            <div class="letter-card" id="surprise">
+                <div class="letter-header">
+                    <h3 class="letter-title">A Christmas Surprise</h3>
+                    <div class="letter-icon"><i class="fas fa-gift"></i></div>
                 </div>
-                <div class="page-edge"></div>
-                <div class="page-number">Cover</div>
+                
+                <div class="letter-content">
+                    <p>My dearest,</p>
+                    
+                    <p>As snow settles softly on the windowpane and Christmas lights begin to glow, I find myself reflecting on the gift that you are in my life. This holiday season, I wanted to create something special—a surprise that captures just how much you mean to me.</p>
+                    
+                    <p>There's a quiet magic in the air this time of year, a gentle reminder of what truly matters. It's in the warmth of shared moments, the comfort of familiar traditions, and the joy of giving from the heart.</p>
+                    
+                    <p>My Christmas surprise for you isn't wrapped in paper or tied with ribbon. It's the promise of my presence, my unwavering support, and a love that grows deeper with each passing season.</p>
+                    
+                    <p>May this Christmas bring you peace, and may the new year ahead be filled with shared dreams and beautiful moments.</p>
+                </div>
+                
+                <div class="letter-signature">With all my love</div>
             </div>
             
-            <!-- Page 1 -->
-            <div class="page" id="page-1" data-page="1" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page1-title">The First Message</h2>
-                    <div class="page-text">
-                        <p>It all began on <span class="highlight" id="date-text">July 10, at 8:00 PM</span>, with a simple sticker sent through Discord. Just a friendly "hi" that would change everything.</p>
-                        
-                        <p>We immediately connected over our last Valorant match, where she played as <span class="highlight">Sage</span> and I was <span class="highlight">Reyna</span>.</p>
-                        
-                        <p>Then came the moment of truth. I called her "babe" playfully, and she quickly said she couldn't be called that because she's gay. My response? <span class="highlight" id="response-text">"Who said I'm not gay too?"</span></p>
-                        
-                        <div class="quote" id="page1-quote">
-                            "And just like that, a connection was formed from a simple hello."
-                        </div>
-                    </div>
-                    
-                    <div class="icon-group">
-                        <div class="icon-item">
-                            <i class="fas fa-comment-dots"></i>
-                            <div class="icon-label">First Message</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-gamepad"></i>
-                            <div class="icon-label">Valorant Match</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-heart"></i>
-                            <div class="icon-label">Revelation</div>
-                        </div>
-                    </div>
-                    
-                    <div class="page-number">1</div>
+            <!-- Appreciation Letter -->
+            <div class="letter-card" id="appreciation" style="display: none;">
+                <div class="letter-header">
+                    <h3 class="letter-title">With Gratitude</h3>
+                    <div class="letter-icon"><i class="fas fa-heart"></i></div>
                 </div>
-                <div class="page-edge"></div>
+                
+                <div class="letter-content">
+                    <p>Dear you,</p>
+                    
+                    <p>In the quiet moments of this Christmas season, I find my thoughts turning to you with profound gratitude. Your presence in my life has been a gift beyond measure, one that I cherish more with each passing day.</p>
+                    
+                    <p>Thank you for the kindness you've shown, the patience you've extended, and the understanding you've offered. Your support has been a steady light through both calm and challenging times.</p>
+                    
+                    <p>This Christmas, I want you to know how deeply I appreciate you—not just for what you do, but for who you are. Your spirit, your warmth, your gentle strength.</p>
+                    
+                    <p>May the coming year bring you as much joy as you've brought into my life.</p>
+                </div>
+                
+                <div class="letter-signature">With heartfelt thanks</div>
             </div>
             
-            <!-- Page 2 -->
-            <div class="page" id="page-2" data-page="2" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page2-title">Discovering Aki</h2>
-                    <div class="page-text">
-                        <p>After a week or two, she called me "baby" for the first time. It caught me completely off guard—I didn't know how to respond at first. But soon, it became the most comforting exchange between us.</p>
-                        
-                        <p>Our little conversations began every single day. Through these chats, I discovered:</p>
-                        
-                        <ul style="padding-left: 20px; margin: 15px 0;">
-                            <li>Her nickname is <span class="highlight">Aki</span> (she's cautious about sharing personal details)</li>
-                            <li>Her birthday is <span class="highlight">May 16</span>, and she's <span class="highlight">25 years old</span></li>
-                            <li>She loves <span class="highlight">cats and dogs</span> equally</li>
-                            <li>She dreams of traveling to <span class="highlight">Europe, Paris, Italy, Switzerland</span> and beyond</li>
-                        </ul>
-                        
-                        <p>She shared that <span class="highlight" id="risk-text">this was her first time taking a risk</span> letting someone of the same gender court her. That vulnerability made everything feel even more special.</p>
-                    </div>
-                    
-                    <div class="icon-group">
-                        <div class="icon-item">
-                            <i class="fas fa-birthday-cake"></i>
-                            <div class="icon-label">May 16</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-paw"></i>
-                            <div class="icon-label">Cats & Dogs</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-plane"></i>
-                            <div class="icon-label">Travel Dreams</div>
-                        </div>
-                    </div>
-                    
-                    <div class="page-number">2</div>
+            <!-- Apology Letter -->
+            <div class="letter-card" id="apology" style="display: none;">
+                <div class="letter-header">
+                    <h3 class="letter-title">Seeking Forgiveness</h3>
+                    <div class="letter-icon"><i class="fas fa-dove"></i></div>
                 </div>
-                <div class="page-edge"></div>
+                
+                <div class="letter-content">
+                    <p>My dear friend,</p>
+                    
+                    <p>As Christmas approaches—a time of reconciliation and new beginnings—I find myself reflecting on my actions and the hurt I've caused. I write this letter with a humble heart, seeking your forgiveness.</p>
+                    
+                    <p>I recognize now the impact of my words/actions, and I deeply regret the pain they brought you. It was never my intention, and I take full responsibility for my mistake.</p>
+                    
+                    <p>This season reminds us of the importance of forgiveness and second chances. I hope with time and genuine effort, I can earn back your trust and restore what was damaged.</p>
+                    
+                    <p>Please know how truly sorry I am, and how much I value our relationship.</p>
+                </div>
+                
+                <div class="letter-signature">With sincere apologies</div>
             </div>
             
-            <!-- Page 3 -->
-            <div class="page" id="page-3" data-page="3" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page3-title">Her World of Joy</h2>
-                    <div class="page-text">
-                        <p>Aki finds comfort and happiness in the simplest things:</p>
-                        
-                        <p>When she's not in a good mood, <span class="highlight">sensory bears</span> help calm her. <span class="highlight">Food changes her mood</span> completely—she lights up with the right meal.</p>
-                        
-                        <p>She has a deep love for music, especially:</p>
-                        
-                        <div class="icon-group">
-                            <div class="icon-item">
-                                <i class="fas fa-music"></i>
-                                <div class="icon-label">One Direction</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-microphone"></i>
-                                <div class="icon-label">Niki</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-guitar"></i>
-                                <div class="icon-label">Jereena Montemayor</div>
-                            </div>
-                        </div>
-                        
-                        <p>She's also an avid watcher of movies and shows like <span class="highlight">Tangled, Game of Thrones, Stranger Things, and Frozen</span>.</p>
-                        
-                        <p>In Valorant, she has this adorable habit of saying <span class="highlight">"Let's gooo!"</span> and <span class="highlight">"We're winning!"</span> whenever her team is doing well.</p>
-                        
-                        <div class="quote">
-                            "She can appreciate the smallest things you do for her."
-                        </div>
-                    </div>
-                    
-                    <div class="page-number">3</div>
+            <!-- Proposal Letter -->
+            <div class="letter-card" id="proposal" style="display: none;">
+                <div class="letter-header">
+                    <h3 class="letter-title">My Christmas Wish</h3>
+                    <div class="letter-icon"><i class="fas fa-gem"></i></div>
                 </div>
-                <div class="page-edge"></div>
+                
+                <div class="letter-content">
+                    <p>My love,</p>
+                    
+                    <p>Beneath the Christmas stars and amidst the quiet magic of this season, I find myself overcome with one simple truth: I want to spend every Christmas with you.</p>
+                    
+                    <p>You are the most beautiful gift life has given me. Your laughter is my favorite carol, your presence my greatest comfort, and your love the miracle I never dared hope for.</p>
+                    
+                    <p>As we celebrate this season of miracles, I want to ask for the greatest miracle of all—the chance to build a life with you, to create our own traditions, and to grow old together sharing countless Christmases.</p>
+                    
+                    <p>Will you make me the happiest person alive? Will you marry me?</p>
+                </div>
+                
+                <div class="letter-signature">Forever yours</div>
             </div>
             
-            <!-- Page 4 -->
-            <div class="page" id="page-4" data-page="4" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page4-title">Comforts & Cravings</h2>
-                    <div class="page-text">
-                        <p>Aki has very specific tastes when it comes to food—these are her happy places:</p>
-                        
-                        <div class="icon-group">
-                            <div class="icon-item">
-                                <i class="fas fa-coffee"></i>
-                                <div class="icon-label">McDo Coffee Cereal</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-utensils"></i>
-                                <div class="icon-label">Shake Shake BBQ Fries</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-drumstick-bite"></i>
-                                <div class="icon-label">Lawson Chimken</div>
-                            </div>
-                        </div>
-                        
-                        <p>One of the sweetest things about her: <span class="highlight">she doesn't want to eat alone</span>. She wants to share meals with someone at the same time, to not feel lonely.</p>
-                        
-                        <p>She also <span class="highlight">loves sleeping</span> and <span class="highlight">really appreciates surprises</span>, no matter how small.</p>
-                        
-                        <p>Her dream is to become a <span class="highlight">nurse</span> someday. I was there during her transition between jobs, witnessing her resilience.</p>
-                    </div>
-                    
-                    <div class="icon-group">
-                        <div class="icon-item">
-                            <i class="fas fa-bed"></i>
-                            <div class="icon-label">Loves Sleeping</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-gift"></i>
-                            <div class="icon-label">Loves Surprises</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-user-nurse"></i>
-                            <div class="icon-label">Nurse Dream</div>
-                        </div>
-                    </div>
-                    
-                    <div class="page-number">4</div>
+            <!-- Confession Letter -->
+            <div class="letter-card" id="confession" style="display: none;">
+                <div class="letter-header">
+                    <h3 class="letter-title">My Heart's Truth</h3>
+                    <div class="letter-icon"><i class="fas fa-star"></i></div>
                 </div>
-                <div class="page-edge"></div>
-            </div>
-            
-            <!-- Page 5 -->
-            <div class="page" id="page-5" data-page="5" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page5-title">The Sound of Her Spirit</h2>
-                    <div class="page-text">
-                        <p>There are certain things about Aki that make her uniquely her:</p>
-                        
-                        <div class="timeline-event">
-                            <div class="timeline-date">Her Voice</div>
-                            <p>She has a beautiful singing voice and just speaking, her voice sounds so good. It's comforting and warm.</p>
-                        </div>
-                        
-                        <div class="timeline-event">
-                            <div class="timeline-date">The Giggles</div>
-                            <p>When she eats something she loves, she has this adorable giggle. It's a sure sign the food has met her approval.</p>
-                        </div>
-                        
-                        <div class="timeline-event">
-                            <div class="timeline-date">Hyper Mode</div>
-                            <p>When she gets excited and starts telling a lot of nonsense or random things, she gets hyper. The telltale sign? She starts singing <span class="highlight">"tralalelo tralala"</span>!</p>
-                        </div>
-                        
-                        <div class="timeline-event">
-                            <div class="timeline-date">Future Adventures</div>
-                            <p>She wants to travel alone, take breaks for a while, try hiking, and experience "a lot of things." Her adventurous spirit is captivating.</p>
-                        </div>
-                        
-                        <div class="quote">
-                            "Her 'tralalelo tralala' is the soundtrack to her happiest moments."
-                        </div>
-                    </div>
+                
+                <div class="letter-content">
+                    <p>Dear you,</p>
                     
-                    <div class="icon-group">
-                        <div class="icon-item">
-                            <i class="fas fa-microphone-alt"></i>
-                            <div class="icon-label">Good Singer</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-laugh"></i>
-                            <div class="icon-label">Giggles</div>
-                        </div>
-                        <div class="icon-item">
-                            <i class="fas fa-hiking"></i>
-                            <div class="icon-label">Wants to Hike</div>
-                        </div>
-                    </div>
+                    <p>In the spirit of Christmas honesty and opening our hearts, I need to share something I've been holding inside. My feelings for you have grown into something deeper than friendship.</p>
                     
-                    <div class="page-number">5</div>
+                    <p>You bring light to my days in ways you may not realize. Your smile, your kindness, the way you see the world—it all matters to me more than I've been able to express.</p>
+                    
+                    <p>I understand this might change things between us, and I respect whatever feelings you may have in return. Our friendship means the world to me, and I would never want to jeopardize it.</p>
+                    
+                    <p>I simply needed you to know how special you are to me.</p>
                 </div>
-                <div class="page-edge"></div>
-            </div>
-            
-            <!-- Page 6 -->
-            <div class="page" id="page-6" data-page="6" style="display: none;">
-                <div class="page-content">
-                    <h2 class="page-header" id="page6-title">Our Continuing Story</h2>
-                    <div class="page-text">
-                        <p>From that first Discord message to the daily conversations, getting to know Aki has been a journey of discovering little pieces of magic.</p>
-                        
-                        <p>She taught me that love can begin with something as simple as a shared game of Valorant and grow through daily messages, shared dreams, and the courage to be vulnerable.</p>
-                        
-                        <p>The fact that I was her <span class="highlight">first risk</span> in letting someone of the same gender court her is an honor I don't take lightly.</p>
-                        
-                        <div class="icon-group">
-                            <div class="icon-item">
-                                <i class="fas fa-star"></i>
-                                <div class="icon-label">Our First Chat</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-heart"></i>
-                                <div class="icon-label">Growing Feelings</div>
-                            </div>
-                            <div class="icon-item">
-                                <i class="fas fa-road"></i>
-                                <div class="icon-label">Journey Ahead</div>
-                            </div>
-                        </div>
-                        
-                        <div class="quote" style="margin-top: 30px; font-size: 1.8rem;">
-                            "This is just the beginning of our story..."
-                        </div>
-                        
-                        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--gold);">
-                            <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem;">
-                                For Aki, who appreciates the smallest things
-                            </p>
-                            <button class="open-book-btn" id="restartBtn" style="margin-top: 20px;">
-                                Read Again
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="page-number">6</div>
-                </div>
-                <div class="page-edge"></div>
+                
+                <div class="letter-signature">Always</div>
             </div>
         </div>
-    </div>
-    
-    <div class="flip-controls">
-        <button class="flip-btn prev" id="prevBtn" disabled>
-            <i class="fas fa-arrow-left"></i> Previous
+        
+        <!-- Subtle Christmas Decoration -->
+        <div class="subtle-christmas">
+            <div class="christmas-dot"></div>
+            <div class="christmas-dot"></div>
+            <div class="christmas-dot"></div>
+        </div>
+        
+        <!-- Action Button -->
+        <button class="action-btn" id="printButton">
+            <i class="fas fa-print"></i> Print This Letter
         </button>
-        <button class="flip-btn" id="nextBtn">
-            Next <i class="fas fa-arrow-right"></i>
-        </button>
-    </div>
-    
-    <div class="page-counter">
-        Page <span id="currentPage">1</span> of <span id="totalPages">7</span>
-    </div>
-    
-    <div class="page-indicators" id="pageIndicators">
-        <!-- Generated by JavaScript -->
-    </div>
+    </main>
 
     <script>
-        // Book state
-        let currentPageIndex = 0;
-        const totalPages = 7; // Cover + 6 pages
-        let isGotTheme = true;
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navItems = document.querySelectorAll('.nav-item');
+        const letterCards = document.querySelectorAll('.letter-card');
+        const currentTitle = document.getElementById('currentTitle');
+        const currentDescription = document.getElementById('currentDescription');
+        const printButton = document.getElementById('printButton');
         
-        // Get DOM elements
-        const pages = document.querySelectorAll('.page');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const currentPageSpan = document.getElementById('currentPage');
-        const totalPagesSpan = document.getElementById('totalPages');
-        const openBookBtn = document.getElementById('openBookBtn');
-        const restartBtn = document.getElementById('restartBtn');
-        const themeGotBtn = document.getElementById('themeGot');
-        const themeTangledBtn = document.getElementById('themeTangled');
-        const pageIndicators = document.getElementById('pageIndicators');
-        
-        // Initialize
-        totalPagesSpan.textContent = totalPages;
-        createPageIndicators();
-        updatePageCounter();
-        
-        // Theme-specific content
-        const themeContent = {
-            got: {
-                page1Title: "The First Message",
-                page1Quote: "\"And just like that, a connection was formed from a simple hello.\"",
-                page2Title: "Discovering Aki",
-                page3Title: "Her World of Joy",
-                page4Title: "Comforts & Cravings",
-                page5Title: "The Sound of Her Spirit",
-                page6Title: "Our Continuing Story",
-                responseText: "\"Who said I'm not gay too?\"",
-                riskText: "this was her first time taking a risk",
-                highlightClass: "highlight"
+        // Titles and descriptions for each letter type
+        const letterInfo = {
+            surprise: {
+                title: "Christmas Surprise",
+                description: "A special holiday message filled with warmth and affection"
             },
-            tangled: {
-                page1Title: "Once Upon a Discord Message",
-                page1Quote: "\"And like Rapunzel letting down her hair, she began to open up.\"",
-                page2Title: "Getting to Know the Real Aki",
-                page3Title: "Her Kingdom of Joy",
-                page4Title: "Favorite Feasts",
-                page5Title: "The Lanterns in Her Eyes",
-                page6Title: "Our Ever-After Story",
-                responseText: "\"Who said I'm not gay too?\" with a smile she couldn't yet see",
-                riskText: "this was her first time letting someone see the real her",
-                highlightClass: "pink-highlight"
+            appreciation: {
+                title: "With Gratitude",
+                description: "A letter expressing heartfelt appreciation"
+            },
+            apology: {
+                title: "Seeking Forgiveness",
+                description: "A sincere apology for the holiday season"
+            },
+            proposal: {
+                title: "My Christmas Wish",
+                description: "A romantic proposal for a lifetime together"
+            },
+            confession: {
+                title: "My Heart's Truth",
+                description: "Sharing true feelings this Christmas"
             }
         };
         
-        // Set theme
-        function setTheme(isGot) {
-            isGotTheme = isGot;
-            const theme = isGot ? themeContent.got : themeContent.tangled;
-            
-            // Update buttons
-            themeGotBtn.classList.toggle('active', isGot);
-            themeTangledBtn.classList.toggle('active', !isGot);
-            
-            // Update all page titles
-            document.getElementById('page1-title').textContent = theme.page1Title;
-            document.getElementById('page2-title').textContent = theme.page2Title;
-            document.getElementById('page3-title').textContent = theme.page3Title;
-            document.getElementById('page4-title').textContent = theme.page4Title;
-            document.getElementById('page5-title').textContent = theme.page5Title;
-            document.getElementById('page6-title').textContent = theme.page6Title;
-            
-            // Update quotes and special text
-            document.getElementById('page1-quote').textContent = theme.page1Quote;
-            document.getElementById('response-text').textContent = theme.responseText;
-            document.getElementById('risk-text').textContent = theme.riskText;
-            
-            // Update highlight classes
-            const allHighlights = document.querySelectorAll('.highlight, .pink-highlight');
-            allHighlights.forEach(el => {
-                el.classList.remove('highlight', 'pink-highlight');
-                el.classList.add(theme.highlightClass);
-            });
-            
-            // Update cover based on theme
-            const coverIcon = document.querySelector('.book-cover .cover-icon i');
-            const bookTitle = document.querySelector('.book-cover .book-title');
-            
-            if (isGot) {
-                coverIcon.className = 'fas fa-crown';
-                bookTitle.textContent = 'The Story of Aki';
-                document.querySelector('.book-cover .book-subtitle').textContent = 'A Chronicle of Firsts and Found Love';
-                document.querySelector('.book-cover').style.background = 'linear-gradient(135deg, var(--dark-red), #6a0c0c)';
-            } else {
-                coverIcon.className = 'fas fa-star';
-                bookTitle.textContent = "Aki's Fairytale";
-                document.querySelector('.book-cover .book-subtitle').textContent = 'A Story of Letting Down Hair and Opening Hearts';
-                document.querySelector('.book-cover').style.background = 'linear-gradient(135deg, #ff7eb3, #ff758c)';
-            }
-        }
-        
-        // Create page indicators
-        function createPageIndicators() {
-            pageIndicators.innerHTML = '';
-            for (let i = 0; i < totalPages; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = `page-indicator ${i === 0 ? 'active' : ''}`;
-                indicator.dataset.page = i;
-                indicator.addEventListener('click', () => goToPage(i));
-                pageIndicators.appendChild(indicator);
-            }
-        }
-        
-        // Update page indicators
-        function updatePageIndicators() {
-            const indicators = document.querySelectorAll('.page-indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentPageIndex);
-            });
-        }
-        
-        // Go to specific page
-        function goToPage(pageIndex) {
-            // Don't go beyond bounds
-            if (pageIndex < 0 || pageIndex >= totalPages) return;
-            
-            // Hide current page
-            pages[currentPageIndex].style.display = 'none';
-            pages[currentPageIndex].classList.remove('active');
-            
-            // Update current page
-            currentPageIndex = pageIndex;
-            
-            // Show new page
-            pages[currentPageIndex].style.display = 'flex';
-            pages[currentPageIndex].classList.add('active');
-            
-            // Update button states
-            prevBtn.disabled = currentPageIndex === 0;
-            nextBtn.disabled = currentPageIndex === totalPages - 1;
-            
-            // Update page counter (add 1 for display since we start at 0)
-            updatePageCounter();
-            
-            // Update page indicators
-            updatePageIndicators();
-            
-            // Add floating elements
-            addFloatingElements();
-        }
-        
-        // Update page counter
-        function updatePageCounter() {
-            currentPageSpan.textContent = currentPageIndex + 1;
-        }
-        
-        // Add floating elements to current page
-        function addFloatingElements() {
-            // Remove existing floating elements
-            const existingElements = document.querySelectorAll('.music-note, .heart');
-            existingElements.forEach(el => el.remove());
-            
-            // Get the current page
-            const currentPage = pages[currentPageIndex];
-            const pageContent = currentPage.querySelector('.page-content');
-            
-            if (!pageContent) return;
-            
-            // Add music notes for music-related pages
-            if (currentPageIndex === 3 || currentPageIndex === 1) {
-                for (let i = 0; i < 5; i++) {
-                    const note = document.createElement('div');
-                    note.className = 'music-note';
-                    note.innerHTML = '<i class="fas fa-music"></i>';
-                    note.style.left = `${Math.random() * 90}%`;
-                    note.style.top = `${Math.random() * 90}%`;
-                    note.style.fontSize = `${Math.random() * 1 + 1}rem`;
-                    note.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                    note.style.animationDelay = `${Math.random() * 5}s`;
-                    note.style.opacity = `${Math.random() * 0.2 + 0.1}`;
-                    pageContent.appendChild(note);
-                }
-            }
-            
-            // Add hearts for love-related pages
-            if (currentPageIndex === 1 || currentPageIndex === 6 || currentPageIndex === 2) {
-                for (let i = 0; i < 4; i++) {
-                    const heart = document.createElement('div');
-                    heart.className = 'heart';
-                    heart.innerHTML = '<i class="fas fa-heart"></i>';
-                    heart.style.left = `${Math.random() * 90}%`;
-                    heart.style.top = `${Math.random() * 90}%`;
-                    heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
-                    heart.style.animationDuration = `${Math.random() * 25 + 15}s`;
-                    heart.style.animationDelay = `${Math.random() * 5}s`;
-                    heart.style.opacity = `${Math.random() * 0.15 + 0.05}`;
-                    pageContent.appendChild(heart);
-                }
-            }
-        }
-        
-        // Event Listeners
-        prevBtn.addEventListener('click', () => goToPage(currentPageIndex - 1));
-        nextBtn.addEventListener('click', () => goToPage(currentPageIndex + 1));
-        
-        openBookBtn.addEventListener('click', () => {
-            goToPage(1); // Start at page 1 (after cover)
+        // Mobile toggle functionality
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mobileToggle.innerHTML = sidebar.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
         
-        if (restartBtn) {
-            restartBtn.addEventListener('click', () => {
-                goToPage(0); // Go back to cover
+        // Navigation functionality
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Get the letter type from data attribute
+                const letterType = item.getAttribute('data-letter');
+                
+                // Update active nav item
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Update content header
+                currentTitle.textContent = letterInfo[letterType].title;
+                currentDescription.textContent = letterInfo[letterType].description;
+                
+                // Show selected letter, hide others
+                letterCards.forEach(card => {
+                    if (card.id === letterType) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Close sidebar on mobile after selection
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('active');
+                    mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Scroll to top of content
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        }
+        });
         
-        themeGotBtn.addEventListener('click', () => setTheme(true));
-        themeTangledBtn.addEventListener('click', () => setTheme(false));
-        
-        // Add keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && currentPageIndex < totalPages - 1) {
-                goToPage(currentPageIndex + 1);
-            } else if (e.key === 'ArrowLeft' && currentPageIndex > 0) {
-                goToPage(currentPageIndex - 1);
+        // Print functionality
+        printButton.addEventListener('click', () => {
+            // Find which letter is currently visible
+            const visibleLetter = Array.from(letterCards).find(card => 
+                card.style.display !== 'none'
+            );
+            
+            if (visibleLetter) {
+                // Create a print-friendly version
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Christmas Letter</title>
+                        <style>
+                            body { 
+                                font-family: 'Georgia', serif; 
+                                line-height: 1.7; 
+                                color: #333; 
+                                max-width: 700px; 
+                                margin: 40px auto; 
+                                padding: 20px;
+                            }
+                            .letter-title { 
+                                font-size: 28px; 
+                                color: #0a1929; 
+                                margin-bottom: 30px; 
+                                border-bottom: 1px solid #ddd; 
+                                padding-bottom: 10px;
+                            }
+                            .letter-content { 
+                                font-size: 16px; 
+                                margin-bottom: 30px;
+                            }
+                            .letter-signature { 
+                                font-family: 'Cormorant Garamond', serif; 
+                                font-size: 20px; 
+                                color: #1b5e20; 
+                                text-align: right; 
+                                margin-top: 50px;
+                            }
+                            @media print {
+                                body { margin: 0; padding: 20px; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1 class="letter-title">${visibleLetter.querySelector('.letter-title').textContent}</h1>
+                        <div class="letter-content">
+                            ${visibleLetter.querySelector('.letter-content').innerHTML}
+                        </div>
+                        <div class="letter-signature">
+                            ${visibleLetter.querySelector('.letter-signature').innerHTML}
+                        </div>
+                        <p style="text-align: center; margin-top: 50px; color: #777; font-size: 12px;">
+                            Shared with love this Christmas season
+                        </p>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                
+                // Wait a moment for content to load, then print
+                setTimeout(() => {
+                    printWindow.print();
+                }, 250);
             }
         });
         
-        // Initialize with Game of Thrones theme
-        setTheme(true);
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(e.target) && 
+                !mobileToggle.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
         
-        // Add initial floating elements
-        setTimeout(() => addFloatingElements(), 100);
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Add subtle hover effect to nav items on desktop
+        if (window.innerWidth > 768) {
+            navItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        }
+        
+        // Add a subtle fade-in animation for letters
+        letterCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
     </script>
 </body>
 </html>
