@@ -1,612 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>formal invitation · Valentine’s Eve</title>
-  <!-- refined serif & sans-serif pair -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- canvas-confetti for elegant celebration -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
-  <style>
-    /* ---------- reset & luxurious atmosphere ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for aki · with love</title>
+    <!-- Google Fonts for a romantic, handwritten feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #1a1c1e;  /* deep charcoal */
-      background: radial-gradient(circle at 30% 30%, #2b2f33, #141618);
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      color: #e8e6e1;
-      position: relative;
-    }
+        body {
+            background: #fce4e4;  /* soft blush base */
+            background-image: radial-gradient(circle at 10% 20%, rgba(255, 220, 220, 0.4) 0%, transparent 30%),
+                              radial-gradient(circle at 90% 70%, rgba(255, 200, 210, 0.3) 0%, transparent 35%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+        }
 
-    /* subtle gold glitter overlay (floating particles) */
-    .glitter-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .glitter-bg i {
-      position: absolute;
-      color: rgba(212, 175, 55, 0.08);
-      font-size: 1.8rem;
-      animation: floatGlitter 24s infinite linear;
-    }
-    @keyframes floatGlitter {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.2; }
-      100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-    }
+        .letter-card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.9);
+            backdrop-filter: blur(2px);
+            background: #fffcf9;
+            border-radius: 32px 32px 28px 28px;
+            box-shadow: 0 20px 40px rgba(180, 100, 120, 0.2),
+                        0 8px 18px rgba(90, 40, 50, 0.1),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding: 2.8rem 2.5rem;
+            position: relative;
+            border: 2px solid rgba(255, 220, 220, 0.5);
+            transition: all 0.2s ease;
+        }
 
-    /* ---------- envelope container (elegant) ---------- */
-    .envelope-wrapper {
-      position: relative;
-      z-index: 30;
-      max-width: 720px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      perspective: 1400px;
-    }
+        /* subtle decorative hearts */
+        .letter-card::before {
+            content: "✧ ✦ ✧";
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.4rem;
+            letter-spacing: 8px;
+            color: #f9b0b0;
+            opacity: 0.5;
+            font-family: 'Dancing Script', cursive;
+        }
 
-    .envelope {
-      position: relative;
-      width: 100%;
-      max-width: 620px;
-      background: #faf7f2;  /* antique parchment */
-      background: linear-gradient(165deg, #f6f1e9, #fefcf7);
-      border-radius: 16px 16px 16px 16px;
-      box-shadow: 0 40px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px #d4b87a inset, 0 0 0 3px rgba(212, 184, 122, 0.2);
-      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
+        .letter-card::after {
+            content: "";
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            right: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #fbb1c2, #fca4b7, #fbb1c2, transparent);
+        }
 
-    /* wax seal effect (flap) */
-    .flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #e2d5c0;  /* warm flap */
-      clip-path: polygon(0% 0%, 100% 0%, 50% 32%);
-      border-radius: 16px 16px 0 0;
-      transform-origin: top center;
-      transition: transform 0.7s ease-out;
-      transform: rotateX(0deg);
-      box-shadow: 0 -6px 12px rgba(0,0,0,0.08);
-      z-index: 20;
-      border-bottom: 2px solid #bfa27b;
-    }
+        /* header / title */
+        .to-aki {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    /* gold wax heart seal */
-    .wax-seal {
-      position: absolute;
-      top: 8%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
-      background: #e1b87c;
-      background: radial-gradient(circle at 35% 35%, #f5d79c, #b48c54);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 18px rgba(140, 90, 30, 0.3), inset -2px -2px 8px #896a38, inset 3px 3px 12px #ffeac2;
-      z-index: 30;
-      transition: all 0.4s;
-      border: 1px solid #eccf97;
-    }
+        .to-aki h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #ab4e6b;
+            text-shadow: 2px 2px 0 #ffe2e9, 4px 4px 8px rgba(200, 120, 140, 0.2);
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
 
-    .wax-seal i {
-      font-size: 2.8rem;
-      color: #412e1a;
-      text-shadow: 0 2px 4px #dbb065;
-      transform: rotate(-5deg);
-    }
+        .to-aki .sub {
+            font-size: 1.1rem;
+            color: #b8737a;
+            background: #ffeef0;
+            display: inline-block;
+            padding: 0.2rem 2rem;
+            border-radius: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 6px #ffd9df;
+        }
 
-    .envelope-body {
-      position: relative;
-      padding: 3.2rem 2.4rem 2.8rem;
-      background: #fefaf5;
-      border-radius: 16px;
-      margin: 8px;
-      box-shadow: inset 0 2px 10px rgba(180, 140, 100, 0.15);
-      color: #2f2a24;
-      transition: opacity 0.5s, transform 0.7s;
-      z-index: 10;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid #e9d6be;
-    }
+        /* main letter text */
+        .letter-body {
+            color: #3d2b2f;
+            font-size: 1.15rem;
+            line-height: 1.75;
+            font-weight: 400;
+        }
 
-    /* inside letter – hidden until open */
-    .letter-content {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s 0.2s, transform 0.6s 0.2s;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+        .letter-body p {
+            margin: 1.4rem 0;
+            text-indent: 1.8em;
+        }
 
-    .envelope.open .flap {
-      transform: rotateX(-180deg);
-    }
+        .letter-body p:first-of-type {
+            margin-top: 0.2rem;
+        }
 
-    .envelope.open .wax-seal {
-      opacity: 0;
-      transform: translateX(-50%) scale(0.6);
-      pointer-events: none;
-    }
+        .letter-body .no-indent {
+            text-indent: 0;
+        }
 
-    .envelope.open .letter-content {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #a1445e;
+            text-align: right;
+            margin-top: 2.2rem;
+            border-top: 2px dashed #fec9d0;
+            padding-top: 1.2rem;
+            padding-right: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
 
-    .envelope:not(.open) .letter-content {
-      pointer-events: none;
-    }
+        .signature span {
+            font-size: 1.3rem;
+            font-family: 'Quicksand', sans-serif;
+            color: #89505b;
+            font-weight: 300;
+            margin-right: 0.6rem;
+        }
 
-    /* refined hint text */
-    .open-hint {
-      position: absolute;
-      bottom: 18px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #836e51;
-      opacity: 0.7;
-      z-index: 40;
-      transition: opacity 0.3s;
-      background: rgba(255, 250, 240, 0.3);
-      backdrop-filter: blur(4px);
-      padding: 6px 18px;
-      width: fit-content;
-      margin: 0 auto 14px;
-      border-radius: 40px;
-      border: 0.5px solid #c1a77e;
-      font-family: 'Montserrat', sans-serif;
-    }
+        /* small heart divider */
+        .heart-divider {
+            text-align: center;
+            margin: 1.8rem 0 1.4rem;
+            font-size: 1.8rem;
+            color: #f9a8b8;
+            opacity: 0.8;
+        }
 
-    .envelope.open .open-hint {
-      opacity: 0;
-    }
+        .heart-divider i {
+            font-size: 1.2rem;
+            margin: 0 6px;
+            color: #f58b9f;
+        }
 
-    /* ---------- formal typography ---------- */
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 600;
-      color: #5f4a36;
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.5px;
-      border-bottom: 2px solid #dac09a;
-      display: inline-block;
-      padding-bottom: 6px;
-    }
+        /* a little note for customisation */
+        .custom-note {
+            background: #fff0f3;
+            border-radius: 24px;
+            padding: 0.8rem 1.2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #97616b;
+            text-align: center;
+            border: 1px solid #ffc1cc;
+        }
 
-    .salutation {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: #7a6248;
-      margin-bottom: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
+        .custom-note i {
+            font-style: normal;
+            display: inline-block;
+            background: #fecad3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin: 0 4px;
+            color: #571f2e;
+        }
 
-    .message {
-      font-size: 1.1rem;
-      font-weight: 350;
-      line-height: 1.8;
-      color: #3f362d;
-      background: #fcf6ed;
-      padding: 1.6rem 2rem;
-      border-radius: 40px 8px 40px 8px;
-      margin: 1.2rem 0 1rem;
-      border-left: 8px solid #c5a26b;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    }
-
-    .ask {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: #3b2e21;
-      margin: 0.6rem 0 1.6rem;
-      font-style: italic;
-    }
-
-    /* ----- classic key motif (subtle) ----- */
-    .motif {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin: 2rem 0 0.5rem;
-      color: #9e8b72;
-    }
-    .motif i {
-      font-size: 1.6rem;
-      color: #b3976c;
-    }
-    .motif span {
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 2.5px;
-      background: #f0e5d8;
-      padding: 5px 18px;
-      border-radius: 60px;
-      color: #5d4b34;
-    }
-
-    /* ------- BUTTONS (elegant, gold/neutral) ------- */
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2.2rem 0 1.2rem;
-    }
-
-    .btn {
-      border: none;
-      padding: 0.9rem 2.4rem;
-      font-size: 1.1rem;
-      font-weight: 500;
-      border-radius: 60px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      font-family: 'Montserrat', sans-serif;
-      letter-spacing: 1px;
-      background: transparent;
-      border: 2px solid;
-      box-shadow: 0 8px 18px -8px rgba(0,0,0,0.2);
-    }
-
-    .yes-btn {
-      border-color: #b78a5c;
-      background: #b78a5c;
-      color: #fefaf5;
-    }
-    .yes-btn i {
-      color: #fcedd3;
-    }
-    .yes-btn:hover {
-      background: #a07147;
-      border-color: #a07147;
-      transform: scale(1.04);
-      box-shadow: 0 12px 22px -10px #b78a5c;
-    }
-
-    .no-btn {
-      border-color: #b9a68c;
-      color: #6b5a48;
-    }
-    .no-btn i {
-      color: #aa8e72;
-    }
-    .no-btn:hover {
-      background: #f2e5d7;
-      border-color: #9f896c;
-    }
-
-    /* response area & soft message */
-    .soft-message {
-      margin-top: 0.8rem;
-      padding: 0.9rem 2rem;
-      background: #efe4d7;
-      border-radius: 60px;
-      color: #584b3a;
-      font-size: 1rem;
-      font-weight: 400;
-      border-left: 6px solid #c8a87c;
-      display: inline-block;
-      align-self: center;
-    }
-
-    .response-section {
-      text-align: center;
-      animation: fadeUp 0.7s;
-    }
-
-    .response-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.2rem;
-      color: #886e4f;
-      margin-bottom: 0.5rem;
-    }
-
-    .response-message {
-      background: #fcf3e9;
-      padding: 2rem;
-      border-radius: 40px 8px 40px 8px;
-      margin: 1.5rem 0;
-      color: #3b332b;
-      border: 1px solid #e5cfb5;
-      box-shadow: inset 0 0 28px #f7e8da;
-    }
-
-    .reset-btn {
-      background: transparent;
-      border: 2px solid #b3976c;
-      color: #6e5b44;
-      padding: 0.7rem 2rem;
-      margin-top: 1rem;
-    }
-    .reset-btn:hover {
-      background: #e7d9c8;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(16px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* small responsiveness */
-    @media (max-width: 550px) {
-      .envelope-body { padding: 2rem 1.2rem; }
-      h1 { font-size: 2.2rem; }
-      .ask { font-size: 1.6rem; }
-      .btn { padding: 0.7rem 1.6rem; }
-    }
-  </style>
+        /* mobile fine-tuning */
+        @media (max-width: 500px) {
+            .letter-card {
+                padding: 2rem 1.3rem;
+            }
+            .to-aki h1 {
+                font-size: 2.8rem;
+            }
+            .letter-body {
+                font-size: 1rem;
+            }
+            .signature {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- gold dust background -->
-  <div class="glitter-bg">
-    <i class="fas fa-star" style="top: 5%; left: 10%; animation-delay: 0s;"></i>
-    <i class="fas fa-star" style="top: 20%; left: 80%; animation-delay: 7s;"></i>
-    <i class="fas fa-star" style="top: 70%; left: 25%; animation-delay: 3s;"></i>
-    <i class="fas fa-star" style="top: 90%; left: 70%; animation-delay: 12s;"></i>
-  </div>
-
-  <div class="envelope-wrapper">
-    <!-- THE SEALED INVITATION (gold wax) -->
-    <div class="envelope" id="envelope">
-      <div class="flap"></div>
-      <div class="wax-seal">
-        <i class="fas fa-heart"></i>
-      </div>
-      <div class="envelope-body">
-        <div class="letter-content" id="letterContent">
-          <!-- QUESTION SECTION (universal, formal) -->
-          <div id="questionContainer">
-            <div class="salutation">à mon très cher</div>
-            <h1>To you,</h1>
-            <div class="message">
-              <i class="fas fa-feather" style="color: #aa8b68; margin-right: 10px;"></i>
-              Red surrounds us, hearts everywhere —<br>
-              a sign that Valentine's is in the air.<br>
-              So I write this letter, hoping you'll see,<br>
-              a formal request, from the heart of me.<br>
-              <span style="display:inline-block; margin-top:12px;"></span>
-              I ask your permission, kind and true,<br>
-              to be my Valentine date — just us two.<br>
-            </div>
-            <!-- refined motif -->
-            <div class="motif">
-              <i class="fas fa-crown"></i>
-              <span>will you grace this valentine’s eve?</span>
-              <i class="fas fa-crown"></i>
-            </div>
-            <div class="ask">
-              Would you be my Valentine?
-            </div>
-            <!-- buttons -->
-            <div class="button-group" id="buttonGroup">
-              <button id="yesButton" class="btn yes-btn">
-                <i class="fas fa-check"></i> With pleasure
-              </button>
-              <button id="noButton" class="btn no-btn">
-                <i class="fas fa-pause"></i> I must decline
-              </button>
-            </div>
-            <!-- no message container -->
-            <div id="noMessageContainer" style="display: flex; justify-content: center; min-height: 70px; margin-top: 10px;"></div>
-            <div style="margin-top: 1.4rem; font-size: 0.85rem; color: #9a897a; font-style: italic;">
-              <i class="fas fa-feather-alt"></i> ever faithfully
-            </div>
-          </div>
-
-          <!-- RESPONSE SECTION (hidden) -->
-          <div id="responseContainer" class="response-section hidden">
-            <div class="response-title">
-              <i class="fas fa-heart" style="color: #b78a5c;"></i> A thousand thanks
-            </div>
-            <div class="response-message">
-              <i class="fas fa-check-circle" style="font-size: 2.8rem; color: #9f835d; margin-bottom: 0.5rem;"></i>
-              <p style="font-size: 2.4rem; font-family: 'Playfair Display'; margin: 0;">yes</p>
-              <p style="font-size: 1.2rem; font-weight: 400;">you have made this Valentine’s Day unforgettable.</p>
-              <p style="margin: 1.6rem 0 0.8rem;">— with deepest admiration —</p>
-            </div>
-            <button id="resetButton" class="btn reset-btn">
-              <i class="fas fa-undo-alt"></i> seal again
-            </button>
-          </div>
+    <div class="letter-card">
+        <div class="to-aki">
+            <h1>my dearest aki</h1>
+            <div class="sub">for your eyes only 💌</div>
         </div>
-      </div>
-      <!-- invitation to open -->
-      <div class="open-hint">
-        <i class="fas fa-envelope"></i> break the seal with a click
-      </div>
+
+        <div class="letter-body">
+            <!-- 
+                =====================================================
+                THIS IS YOUR LETTER — A STORY OF FALLING, 
+                ADMIRING, AND WAITING WITH ALL MY HEART.
+                Feel free to rewrite every word to make it truly yours.
+                =====================================================
+            -->
+
+            <p class="no-indent">My baby Aki,</p>
+
+            <p>Hi Baby! When was the last time na I called you babe? idk it's been so long na dinnn mahal koooo. Honestly, the first time you called me babe sa game, it makes my heart beating faster than normal speed like legit mahal. That day I realized na goshhhh I'm gayyyyyy, and imagine ang dami kong nakakalaro na random girls before pero it doesn't affect me like the way you do. So yeah ikaw bumali ng principles ko HAHAHAHAHHAHAHA. Ikaw ang nagparealize sa akin na I'm capable of loving someone and that someone is you. You became my world, everything around me it all makes sense as long as you are there. You made me love myself in the most unexpected way. Alam mo ba mahal may di ako sinasabi sa'yo, unang beses na tinawag mo akong baby tanginaaaa parang sasabog ang puso ko, nairit ako habang nakatakip unan sa mukha ko, para di ako maingay sa dorm. Unang beses na tinawag mo akong mahal tanginaaa babyyyy idk what to say noon, nanghihina ako sa sobrang kilig ko sa'yo. Yun yung kilig part na tandang tanda ko, pero alam mo what else yung mas lalong nagpahulog sa akin towards you? Yun ay nung umiyak ka sa akin right after mong lumabas sa work mo, iyak ka nang iyak non. Alam mo ba naglalaro me that time and binitawan ko yung nilalaro ko pagkadinig na pagkadinig kong sobrang lakas ng iyak mo. Pandalas akong kumuha ng earphone non para pakinggan ka at samahan ka, and then I'm silently crying with u that time. Ayokong iparinig at ipaalam sa'yo kasi alam kong mas lalo ka lang iiyak or magiguilty ka. Then gulat ako bigla kang nag end ng call HHAHAHAHAHAHAHAH yun pala pumasok ate mo sa kwarto. Tas natawa na ikaw after non, don ko narealize na sobrang strong ng mahal ko, despite all of those challenges na pinipilit mong harapin everyday, eh nagagawa mo pa ding maging happy sa mga maliliit na bagay just to make yourself better for a while.</p>
+And then as we talk to each other everyday I've seen your fragile side, your weak side, and your inner child. I wanna take care of those version of you with care, I wanna hold and love you gently and calmly coz I know you deserve all of it, I know those simple gestures will make you happy and realize na kamahal mahal kang tao. Kasi you really are that kind of person, tanda mo sinabi mo na tapos na ikaw sa lover girl era na yan na naubos ka na ni eric it made me sad and mad at the same time. I'm sad that I couldn't see that version of u and mad to eric kasi look how genuine you are para lang saktan ka tangina. He should've treat you carefully with full of love. And I realized na kahit anong version pa ang ipakita mo sa akin ay patuloy kitang mamahalin, di ka nakakasawang mahalin, di ka nakakapagod mahalin, maaring nasaktan kita or nasaktan mo ako pero that doesn't change the fact na I wanna be there in every step of your life. I wanna witness all of your success, I wanna be one of your support system. I wanna be your mahal. I wanna be there. Kaya kahit na pinatigil mo ako I'm still waiting sa malayo. Just let me know all of your problem, let me hear all of you rants and I'm all ears for you. You own me, you have me, iyong iyo ako mahal ko. 
+            <p>Every day, your character unfolds like a story I never want to end. The way you bite your lip when you're thinking, how you get suddenly passionate about the smallest things, your stubborn kindness that refuses to harden even when the world is unkind. You are not just beautiful — you are <strong>uniquely, impossibly you</strong>. And the more I see, the harder I fall. It's like my heart keeps finding new rooms it didn't know existed, and you're in all of them.</p>
+
+            <!-- small decorative hearts -->
+            <div class="heart-divider">
+                <i>✦</i> ❤️ <i>✦</i> ❤️ <i>✦</i>
+            </div>
+
+            <p> Alam mo ba kahit na I dont know you yet personally kasi i know you are still not ready for that, I trust you completely. I am trusting you mahal, not because I am blind pagdating sa pag-ibig or baka ganon tingin ng iba kung pov nila, pero that's not the reason. I am trusting you kasi alam kong you are not a bad person, gosh kilala ko ang mahal ko, kung may nakakakilala man sa'yo ako na yon, itataas ko pa dalawa kong kamay kapag tinanong kung kilalang kilala ba kita. Oo kilalang kilala kita, lahat ng version ni aki kilala ko, I may not know your personal life yet but I know you are a good person. Yung mga kinwento mo sa akin about sa family mo, I treasure those stories kasi it's a part of you, I want to hug them all, coz I want to be part of your life too. I'm literally serious pagdating sayo mahal ko. And you know what? Your readiness is sacred to me, and I'll be here, steady and patient, because <em>you</em> are worth every quiet day.</p>
+
+            <p> There's no rush, no pressure — only the certainty that whatever pace you need, I'll match it. Because the story of us isn't about destination; it's about the way you've already changed my world just by being in it. I really low you mahal ko. This is "just because" letter for you. I just wanna let you know na you still have zai despite of draining life of yours. And andito na lang rin naman ako, I wanna take this chance to apologize to all of my wrongdoings to you, I'm sorry that I'm not sensitive enough lately sa mga words na ginagamit ko. I'm sorry kasi I should've careful and considerate enough sa'yo. I'll change that about me mahal, I will for you, coz I know you dont deserve that. I will help u by all means, I will provide to you sa abot ng makakaya ko, kasi di ba I'm your partner, you may not treat me as your partner but I will be avaialable to you as your partner. I will do everything for you. Ang mahalin ka ay hindi mahirap, kailangan lang natin kumalma, at sumabay sa pace ng isa't isa. Mahal na mahal kita, at salamatttttt sa lahat, you are my one and only baby na gagawan ko ng ganito. Ikaw ang taong ipagmalalaki ko sa kahit na sino. I'm proud of you mahal, you did great always.</p>
+
+            <p class="no-indent" style="margin-top:2rem;">Forever falling,</p>
+        </div>
+
+        <div class="signature">
+            <span>your</span> [ your name ] 
+        </div>
+
+        <!-- optional small reminder that this is a template — you can delete it -->
+        <div class="custom-note">
+            💞 <i>aki's person</i> — this letter is yours to fill with your own truth. 
+            change every name, every memory, make it wholly you. 💞
+        </div>
     </div>
-  </div>
 
-  <script>
-    (function() {
-      // DOM elements
-      const envelope = document.getElementById('envelope');
-      const questionDiv = document.getElementById('questionContainer');
-      const responseDiv = document.getElementById('responseContainer');
-      const yesBtn = document.getElementById('yesButton');
-      const noBtn = document.getElementById('noButton');
-      const resetBtn = document.getElementById('resetButton');
-      const noMsgContainer = document.getElementById('noMessageContainer');
+    <!-- 
+        ██████╗  █████╗ ███████╗██╗   ██╗
+        ██╔══██╗██╔══██╗██╔════╝╚██╗ ██╔╝
+        ██████╔╝███████║███████╗ ╚████╔╝ 
+        ██╔══██╗██╔══██║╚════██║  ╚██╔╝  
+        ██████╔╝██║  ██║███████║   ██║   
+        ╚═════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   
 
-      let noClickCount = 0;
-
-      // open envelope (if closed) – only when clicking non-interactive area
-      function openEnvelope() {
-        if (!envelope.classList.contains('open')) {
-          envelope.classList.add('open');
-          // subtle confetti (gold and cream)
-          confetti({
-            particleCount: 40,
-            spread: 50,
-            origin: { y: 0.5 },
-            colors: ['#d4af37', '#f5e6d3', '#bfa88b', '#efe0c9']
-          });
-        }
-      }
-
-      // close envelope (reset to sealed)
-      function closeEnvelope() {
-        envelope.classList.remove('open');
-        questionDiv.classList.remove('hidden');
-        responseDiv.classList.add('hidden');
-        noMsgContainer.innerHTML = '';
-        noClickCount = 0;
-      }
-
-      // handle YES
-      function handleYes() {
-        questionDiv.classList.add('hidden');
-        responseDiv.classList.remove('hidden');
-        noMsgContainer.innerHTML = '';
-        noClickCount = 0;
-
-        // confetti celebration (golden shower)
-        confetti({
-          particleCount: 120,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#c2a15b', '#e5c28e', '#f2ddb0', '#ffffff']
-        });
-        setTimeout(() => {
-          confetti({
-            particleCount: 60,
-            spread: 45,
-            origin: { y: 0.5, x: 0.3 },
-            colors: ['#b68c54', '#ebd3b0']
-          });
-          confetti({
-            particleCount: 60,
-            spread: 45,
-            origin: { y: 0.5, x: 0.7 },
-            colors: ['#d4af37', '#f9e2c1']
-          });
-        }, 180);
-      }
-
-      // handle NO with formal, gentle responses
-      function handleNo() {
-        noClickCount++;
-        noMsgContainer.innerHTML = '';
-
-        const msg = document.createElement('div');
-        msg.className = 'soft-message';
-
-        const responses = [
-          "<i class='fas fa-feather'></i> I shall await another season, with patience.",
-          "<i class='fas fa-crown'></i> A courteous decline — the offer remains open.",
-          "<i class='fas fa-clock'></i> Time is but a gentle current; my question stands.",
-          "<i class='fas fa-star'></i> Even in refusal, you are grace itself.",
-          "<i class='fas fa-heart'></i> My sentiments are unchanged, ever respectful."
-        ];
-        const idx = Math.min(noClickCount - 1, responses.length - 1);
-        msg.innerHTML = responses[idx] || responses[0];
-        noMsgContainer.appendChild(msg);
-      }
-
-      // event listeners
-      envelope.addEventListener('click', (e) => {
-        const isBtn = e.target.closest('button') || e.target.closest('.btn');
-        if (!isBtn) openEnvelope();
-      });
-
-      yesBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        handleYes();
-      });
-
-      noBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        handleNo();
-      });
-
-      resetBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeEnvelope();
-      });
-
-      // hover effects (very subtle)
-      if (yesBtn) {
-        yesBtn.addEventListener('mouseenter', () => {
-          const icon = yesBtn.querySelector('i');
-          if (icon) icon.classList.replace('fa-check', 'fa-heart');
-        });
-        yesBtn.addEventListener('mouseleave', () => {
-          const icon = yesBtn.querySelector('i');
-          if (icon) icon.classList.replace('fa-heart', 'fa-check');
-        });
-      }
-      if (noBtn) {
-        noBtn.addEventListener('mouseenter', () => {
-          const icon = noBtn.querySelector('i');
-          if (icon) icon.classList.replace('fa-pause', 'fa-heart-broken');
-        });
-        noBtn.addEventListener('mouseleave', () => {
-          const icon = noBtn.querySelector('i');
-          if (icon) icon.classList.replace('fa-heart-broken', 'fa-pause');
-        });
-      }
-
-      // initial state
-      envelope.classList.remove('open');
-      questionDiv.classList.remove('hidden');
-      responseDiv.classList.add('hidden');
-      noMsgContainer.innerHTML = '';
-    })();
-  </script>
-
-  <!-- extra polish -->
-  <style>
-    .btn i { transition: all 0.2s; }
-    .envelope { transition: box-shadow 0.4s; }
-    .envelope:hover .wax-seal { transform: translateX(-50%) scale(1.03); background: #e4c28c; }
-    .envelope.open .wax-seal { transform: translateX(-50%) scale(0.6); }
-    #resetBtn { font-weight: 400; }
-    .motif span { background: #f5eadb; }
-  </style>
+        just a gentle hug for your words. 
+        now make it yours, lovely human.
+    -->
 </body>
 </html>
